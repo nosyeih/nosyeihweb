@@ -1,0 +1,158 @@
+/* css/style.css */
+
+/* 
+ * ============================================
+ * NEURAL AI THEME STYLES (LIGHT / DARK)
+ * ============================================
+ */
+
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom Selection */
+::selection {
+    background-color: #050505;
+    color: #ffffff;
+}
+.dark ::selection {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+/* Scrollbar customization for a sleek look */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #ffffff; 
+}
+.dark ::-webkit-scrollbar-track {
+    background: #050505; 
+}
+
+::-webkit-scrollbar-thumb {
+    background: #e2e8f0; 
+    border-radius: 4px;
+}
+.dark ::-webkit-scrollbar-thumb {
+    background: #1f1f1f; 
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #cbd5e1; 
+}
+.dark ::-webkit-scrollbar-thumb:hover {
+    background: #333333; 
+}
+
+/* 
+ * 1. NAVBAR - GLASSMORPHISM (Light / Dark variant)
+ */
+#navbar {
+    background: transparent;
+    transition: background-color 0.4s ease, backdrop-filter 0.4s ease;
+}
+
+#navbar.scrolled {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+.dark #navbar.scrolled {
+    background: rgba(5, 5, 5, 0.85);
+}
+
+#navbar.scrolled #nav-border {
+    border-bottom-color: rgba(226, 232, 240, 1); /* border-light-border */
+}
+.dark #navbar.scrolled #nav-border {
+    border-bottom-color: rgba(31, 31, 31, 1); /* border-dark-border */
+}
+
+
+/* 
+ * 2. NAV LINKS ACCENT
+ */
+.nav-link {
+    position: relative;
+    display: inline-block;
+}
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 1px;
+    bottom: 0;
+    left: 0;
+    background-color: #050505; /* light mode text color */
+    transition: width 0.3s ease;
+}
+.dark .nav-link::after {
+    background-color: #ffffff; /* dark mode text color */
+}
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* 
+ * 3. HERO SCROLL ANIMATION
+ */
+@keyframes scrollLine {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(200%); }
+}
+.animate-scroll-line {
+    animation: scrollLine 2s cubic-bezier(0.645, 0.045, 0.355, 1) infinite;
+}
+
+/* 
+ * 4. FORMS / INPUT
+ */
+input:-webkit-autofill,
+textarea:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 30px #ffffff inset !important;
+    -webkit-text-fill-color: #050505 !important;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+.dark input:-webkit-autofill,
+.dark textarea:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 30px #050505 inset !important;
+    -webkit-text-fill-color: #ffffff !important;
+}
+
+/* 
+ * 5. INFINITE MARQUEE ANIMATION 
+ */
+@keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+    display: flex;
+    white-space: nowrap;
+    animation: marquee 30s linear infinite;
+}
+
+.animate-marquee:hover {
+    animation-play-state: paused;
+}
+
+/* 
+ * 6. MULTICOLOR CURSOR (TYPEWRITER)
+ */
+@keyframes rgbCursor {
+    0% { background-color: #ef4444; } /* Red */
+    20% { background-color: #eab308; } /* Yellow */
+    40% { background-color: #22c55e; } /* Green */
+    60% { background-color: #3b82f6; } /* Blue */
+    80% { background-color: #a855f7; } /* Purple */
+    100% { background-color: #ef4444; }
+}
+
+.animate-rgb-cursor {
+    animation: rgbCursor 2s linear infinite, pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}

@@ -1,0 +1,68 @@
+{
+    "comentarios": [
+        {
+            "Compañia": "EMPRESA ABC S.A.C",
+            "foto": "",
+            "nombre": "Juan Pérez",
+            "email": "[EMAIL_ADDRESS]",
+            "telefono": "987654321",
+            "mensaje": "Hola, me gustaría saber más sobre tus servicios.",
+            "rating": 5
+        },
+        {
+            "Compañia": "EMPRESA PRUEBA1 S.A.C",
+            "foto": "",
+            "nombre": "Clara Diaz",
+            "email": "[EMAIL_ADDRESS]",
+            "telefono": "987654321",
+            "mensaje": "Estoy interesada en tus servicios de desarrollo web.",
+            "rating": 5
+        },
+        {
+            "Compañia": "EMPRESA PRUEBA2 S.A.C",
+            "foto": "",
+            "nombre": "María González",
+            "email": "[EMAIL_ADDRESS]",
+            "telefono": "987654321",
+            "mensaje": "Estoy interesada en tus servicios de desarrollo web.",
+            "rating": 5
+        },
+        {
+            "Compañia": "EMPRESA PRUEBA3 S.A.C",
+            "foto": "",
+            "nombre": "Luz Rojas",
+            "email": "[EMAIL_ADDRESS]",
+            "telefono": "987654321",
+            "mensaje": "Estoy interesada en tus servicios de desarrollo web.",
+            "rating": 5
+        },
+        {
+            "Compañia": "EMPRESA PRUEBA4 S.A.C",
+            "foto": "",
+            "nombre": "Luis Torres",
+            "email": "[EMAIL_ADDRESS]",
+            "telefono": "987654321",
+            "mensaje": "Estoy interesada en tus servicios de desarrollo web.",
+            "rating": 5
+        },
+        {
+            "Compañia": "EMPRESA PRUEBA5 S.A.C",
+            "foto": "",
+            "nombre": "Ana Torres",
+            "email": "[EMAIL_ADDRESS]",
+            "telefono": "987654321",
+            "mensaje": "Estoy interesada en tus servicios de desarrollo web.",
+            "rating": 5
+        },
+        {
+            "Compañia": "HIGH LOG INTERNATIONAL S.A.C",
+            "url": "https://highloginternational.com",
+            "foto": "",
+            "nombre": "Leila Hilario",
+            "email": "[EMAIL_ADDRESS]",
+            "telefono": "987654321",
+            "mensaje": "Estoy interesada en tus servicios de desarrollo web.",
+            "rating": 5
+        }
+    ]
+}

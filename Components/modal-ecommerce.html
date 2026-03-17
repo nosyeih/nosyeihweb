@@ -1,0 +1,65 @@
+<!-- Components/modal-ecommerce.html -->
+<div class="modal-inner-content">
+    <div class="flex items-center gap-4 mb-8">
+        <span class="text-xs font-mono border border-light-border dark:border-dark-border px-4 py-2 text-gray-500 dark:text-gray-400">Web</span>
+        <span class="text-xs font-mono border border-light-border dark:border-dark-border px-4 py-2 text-gray-500 dark:text-gray-400">NextJS / Shopify</span>
+        <span class="text-xs font-mono border border-light-border dark:border-dark-border px-4 py-2 text-gray-500 dark:text-gray-400">2025</span>
+    </div>
+    
+    <h2 class="text-4xl md:text-5xl font-display font-bold uppercase tracking-tighter mb-8 text-light-accent dark:text-white">
+        eCommerce <br><span class="text-light-muted dark:text-dark-muted">Headless</span>
+    </h2>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 mt-12">
+        <div class="lg:col-span-2 space-y-8">
+            <div>
+                <h3 class="text-sm font-mono tracking-widest uppercase text-light-muted dark:text-dark-muted border-b border-light-border dark:border-dark-border pb-2 mb-4">01 // El Desafío</h3>
+                <p class="text-light-accent dark:text-gray-300 font-light leading-relaxed">
+                    Una marca retail con alto volumen de tráfico perdía un 35% de sus ventas en dispositivos móviles de gama media debido a la lentitud extrema del checkout en su arquitectura monolítica antigua. Requerían tiempos de carga sub-segundo sin sacrificar la lógica de negocio robusta que tenían por detrás.
+                </p>
+            </div>
+            
+            <div>
+                <h3 class="text-sm font-mono tracking-widest uppercase text-light-muted dark:text-dark-muted border-b border-light-border dark:border-dark-border pb-2 mb-4">02 // La Solución Arquitectónica</h3>
+                <p class="text-light-accent dark:text-gray-300 font-light leading-relaxed">
+                    Aplicando el paradigma Jamstack, desacoplamos el frontend del backend. Construimos una PWA (Progressive Web App) en NextJS alojada en redes Edge (Vercel) para llevar el Front-End lo más cerca posible al cliente de manera global. Para el backend de comercio utilizamos las apis Storefront GraphQL de Shopify, integrando un rediseño UI/UX completo guiado por principios CRO y heurísticas neuromarketing.
+                </p>
+            </div>
+
+            <div class="bg-light-800 dark:bg-dark-900/50 p-6 border border-light-border dark:border-dark-border">
+                <ul class="space-y-4 font-mono text-sm text-light-accent dark:text-gray-300">
+                    <li class="flex items-center gap-4"><i data-lucide="check" class="w-4 h-4 text-green-500"></i> Puntuación Lighthouse Core Web Vitals (Performance) = 100/100</li>
+                    <li class="flex items-center gap-4"><i data-lucide="check" class="w-4 h-4 text-green-500"></i> Incremento en la Tasa de Conversión Móvil del 35% al 62%</li>
+                    <li class="flex items-center gap-4"><i data-lucide="check" class="w-4 h-4 text-green-500"></i> Disminución del Bounce Rate en un asombroso 50%</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="space-y-8">
+            <div>
+                <h3 class="text-sm font-mono tracking-widest uppercase text-light-muted dark:text-dark-muted border-b border-light-border dark:border-dark-border pb-2 mb-4">Stack Tecnológico</h3>
+                <div class="flex flex-wrap gap-2">
+                    <span class="px-3 py-1 bg-light-800 dark:bg-dark-900 border border-light-border dark:border-dark-border text-xs font-mono text-light-accent dark:text-gray-300">Next.js 14</span>
+                    <span class="px-3 py-1 bg-light-800 dark:bg-dark-900 border border-light-border dark:border-dark-border text-xs font-mono text-light-accent dark:text-gray-300">Shopify API (GraphQL)</span>
+                    <span class="px-3 py-1 bg-light-800 dark:bg-dark-900 border border-light-border dark:border-dark-border text-xs font-mono text-light-accent dark:text-gray-300">Tailwind CSS</span>
+                    <span class="px-3 py-1 bg-light-800 dark:bg-dark-900 border border-light-border dark:border-dark-border text-xs font-mono text-light-accent dark:text-gray-300">Framer Motion</span>
+                    <span class="px-3 py-1 bg-light-800 dark:bg-dark-900 border border-light-border dark:border-dark-border text-xs font-mono text-light-accent dark:text-gray-300">Vercel Edge</span>
+                </div>
+            </div>
+
+            <div>
+                <h3 class="text-sm font-mono tracking-widest uppercase text-light-muted dark:text-dark-muted border-b border-light-border dark:border-dark-border pb-2 mb-4">Servicios Involucrados</h3>
+                <ul class="text-sm text-light-accent dark:text-gray-400 space-y-2 font-light">
+                    <li>Ingeniería Front-End</li>
+                    <li>Auditoría Técnica CRO</li>
+                    <li>Desarrollo de PWA</li>
+                    <li>System Design (Headless)</li>
+                </ul>
+            </div>
+            
+            <a href="#contact" onclick="document.getElementById('modal-close').click();" class="w-full flex justify-center items-center py-4 bg-light-accent dark:bg-white text-light-900 dark:text-black font-mono text-xs uppercase tracking-widest hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors">
+                Requerir Sistema Similar
+            </a>
+        </div>
+    </div>
+</div>
