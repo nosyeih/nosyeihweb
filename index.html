@@ -316,7 +316,7 @@
     </div>
 
     <!-- GLOBAL DYNAMIC MODAL -->
-    <div id="global-modal" class="fixed inset-0 z-[100] flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300">
+    <div id="global-modal" class="fixed inset-0 z-[100] flex items-center justify-center hidden opacity-0 pointer-events-none transition-opacity duration-300">
         <!-- Overlay -->
         <div id="modal-overlay" class="absolute inset-0 bg-light-900/90 dark:bg-dark-900/90 backdrop-blur-md transition-colors duration-500"></div>
         
@@ -324,7 +324,7 @@
         <div class="relative w-full max-w-5xl max-h-[90vh] mx-4 overflow-y-auto bg-white dark:bg-dark-800 border border-light-border dark:border-dark-border shadow-2xl transition-transform duration-500 transform scale-95 opacity-0" id="modal-content-wrapper">
             
             <!-- Close Button -->
-            <button id="modal-close" class="absolute top-6 right-6 text-light-muted dark:text-dark-muted hover:text-light-accent dark:hover:text-white transition-colors z-10 w-10 h-10 flex items-center justify-center border border-light-border dark:border-dark-border bg-light-900/50 dark:bg-dark-900/50 backdrop-blur-sm rounded-full">
+            <button id="modal-close" class="absolute top-6 right-6 text-light-muted dark:text-dark-muted hover:text-light-accent dark:hover:text-white transition-colors z-50 w-10 h-10 flex items-center justify-center border border-light-border dark:border-dark-border bg-light-900/50 dark:bg-dark-900/50 backdrop-blur-md rounded-full shadow-md">
                 <i data-lucide="x" class="w-5 h-5"></i>
             </button>
             
@@ -340,29 +340,39 @@
     </div>
 
     <!-- GALLERY MODAL (FULL SCREEN) -->
-    <div id="gallery-modal" class="fixed inset-0 z-[110] flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300">
+    <div id="gallery-modal" class="fixed inset-0 z-[110] flex items-center justify-center hidden opacity-0 pointer-events-none transition-opacity duration-300">
         <!-- Dark Overlay -->
-        <div id="gallery-overlay" class="absolute inset-0 bg-black/95 backdrop-blur-xl transition-colors duration-500"></div>
+        <div id="gallery-overlay" class="absolute inset-0 bg-light-900/95 dark:bg-black/95 backdrop-blur-xl transition-colors duration-500"></div>
         
         <!-- Controls -->
-        <button id="gallery-close" class="absolute top-6 right-6 text-white hover:text-gray-300 transition-colors z-20 w-12 h-12 flex items-center justify-center bg-white/10 backdrop-blur-md rounded-full border border-white/20">
+        <button id="gallery-close" class="absolute top-6 right-6 text-light-accent dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors z-20 w-12 h-12 flex items-center justify-center bg-black/5 dark:bg-white/10 hover:bg-black/10 dark:hover:bg-white/20 backdrop-blur-md rounded-full border border-black/10 dark:border-white/20">
             <i data-lucide="x" class="w-6 h-6"></i>
         </button>
         
         <!-- Center Content -->
         <div class="relative w-full h-full flex flex-col items-center justify-center pointer-events-none p-4" id="gallery-content-wrapper">
             <!-- Header Info -->
-            <div id="gallery-header" class="absolute top-8 left-8 z-10 text-white pointer-events-auto">
+            <div id="gallery-header" class="absolute top-8 left-8 z-10 text-light-accent dark:text-white pointer-events-auto">
                  <h3 class="text-xl font-display font-bold uppercase tracking-widest mb-1" id="gallery-title">Galería</h3>
-                 <span class="text-xs font-mono tracking-widest text-gray-400" id="gallery-counter">1 / 1</span>
+                 <span class="text-xs font-mono tracking-widest text-light-muted dark:text-gray-400" id="gallery-counter">1 / 1</span>
             </div>
             
             <!-- Gallery images container -->
-            <div id="gallery-body" class="w-full max-w-6xl flex overflow-x-auto snap-x snap-mandatory gap-8 hide-scrollbar cursor-grab active:cursor-grabbing pointer-events-auto mt-20 md:mt-0 p-4">
-                <!-- Injected via JS -->
+            <div class="relative w-full max-w-7xl flex items-center pointer-events-auto mt-20 md:mt-0">
+                <button id="gallery-prev" class="hidden md:flex absolute -left-4 lg:left-4 z-30 w-12 h-12 items-center justify-center text-light-accent dark:text-white bg-black/5 dark:bg-white/10 hover:bg-black/10 dark:hover:bg-white/20 rounded-full border border-black/10 dark:border-white/20 backdrop-blur-md transition-all">
+                    <i data-lucide="chevron-left" class="w-6 h-6"></i>
+                </button>
+                
+                <div id="gallery-body" class="w-full flex overflow-x-auto scroll-smooth snap-x snap-mandatory gap-8 hide-scrollbar cursor-grab active:cursor-grabbing p-4">
+                    <!-- Injected via JS -->
+                </div>
+                
+                <button id="gallery-next" class="hidden md:flex absolute -right-4 lg:right-4 z-30 w-12 h-12 items-center justify-center text-light-accent dark:text-white bg-black/5 dark:bg-white/10 hover:bg-black/10 dark:hover:bg-white/20 rounded-full border border-black/10 dark:border-white/20 backdrop-blur-md transition-all">
+                    <i data-lucide="chevron-right" class="w-6 h-6"></i>
+                </button>
             </div>
             
-            <span class="absolute bottom-12 text-[10px] font-mono tracking-[0.2em] text-gray-500 uppercase z-10 pointer-events-none">Desliza o usa Shift+Scroll</span>
+            <span class="absolute bottom-12 text-[10px] font-mono tracking-[0.2em] text-light-muted dark:text-gray-500 uppercase z-10 pointer-events-none transition-colors">Desliza o usa Shift+Scroll</span>
         </div>
     </div>
 

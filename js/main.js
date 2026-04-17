@@ -14,7 +14,8 @@ const BRAND_CONFIG = {
     ],
     slogan: "Software Inteligente",
     subtitulo: "Diseñamos plataformas digitales y sistemas automatizados que tus usuarios amarán. Integramos IA y flujos con n8n.",
-    email: "contact@hieyson.com",
+    email1: "contacto@hieyson.com",
+    email2: "developer@hieyson.com",
     url_linkedin: "https://www.linkedin.com/in/nosyeih-dev/",
     url_github: "https://github.com/NosyeihDev",
 };
@@ -30,10 +31,9 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll('[data-bind="nombre_marca"]').forEach(el => el.textContent = BRAND_CONFIG.nombre_marca);
     document.querySelectorAll('[data-bind="slogan"]').forEach(el => el.textContent = BRAND_CONFIG.slogan);
     document.querySelectorAll('[data-bind="subtitulo"]').forEach(el => el.textContent = BRAND_CONFIG.subtitulo);
-    document.querySelectorAll('[data-bind="email"]').forEach(el => el.textContent = BRAND_CONFIG.email);
-    document.querySelectorAll('[data-bind-href="email"]').forEach(el => el.href = `mailto:${BRAND_CONFIG.email}`);
     document.querySelectorAll('[data-bind-href="linkedin"]').forEach(el => el.href = BRAND_CONFIG.url_linkedin);
     document.querySelectorAll('[data-bind-href="github"]').forEach(el => el.href = BRAND_CONFIG.url_github);
+
 
     // 3. Navbar scroll & Mobile Menu
     const navbar = document.getElementById('navbar');
@@ -208,6 +208,11 @@ async function applyTranslations() {
 
         if(translations['expertise.desc']) BRAND_CONFIG.subtitulo = translations['expertise.desc'];
         
+        // Render emails according to language
+        const emailToUse = currentLang === 'en' ? BRAND_CONFIG.email2 : BRAND_CONFIG.email1;
+        document.querySelectorAll('[data-bind="email"]').forEach(el => el.textContent = emailToUse);
+        document.querySelectorAll('[data-bind-href="email"]').forEach(el => el.href = `mailto:${emailToUse}`);
+
         // Force typewriter restart to translate
         initTypewriter();
 
@@ -432,6 +437,9 @@ function initDynamicModals() {
     // Function to Open Modal and fetch content
     async function openModal(url) {
         // Show Modal Container
+        modalContainer.classList.remove('hidden');
+        // Force reflow
+        void modalContainer.offsetWidth;
         modalContainer.classList.remove('opacity-0', 'pointer-events-none');
         document.body.style.overflow = 'hidden'; // Prevent background scrolling
 
@@ -476,10 +484,35 @@ function initDynamicModals() {
         modalWrapper.classList.add('scale-95', 'opacity-0');
         
         setTimeout(() => {
-            modalContainer.classList.add('opacity-0', 'pointer-events-none');
+            modalContainer.classList.add('opacity-0', 'pointer-events-none', 'hidden');
             document.body.style.overflow = ''; // Restore background scrolling
             modalBody.innerHTML = ''; // Clear memory
         }, 300); // Wait for transition
+    }
+
+    // Prevent multiple global listener assignments
+    if (!window._globalModalInitialized) {
+        window._globalModalInitialized = true;
+        
+        // Attach listener to Close Button
+        const glCloseBtn = document.getElementById('modal-close');
+        if (glCloseBtn) glCloseBtn.addEventListener('click', closeModal);
+        
+        // Attach listener to Overlay
+        const glModalOverlay = document.getElementById('modal-overlay');
+        if (glModalOverlay) glModalOverlay.addEventListener('click', closeModal);
+        
+        // Close on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !modalContainer.classList.contains('pointer-events-none')) {
+                // If the gallery modal is open, let its own listener handle it
+                const galleryModal = document.getElementById('gallery-modal');
+                if (galleryModal && !galleryModal.classList.contains('pointer-events-none')) {
+                    return;
+                }
+                closeModal();
+            }
+        });
     }
 
     // Attach Event Listeners to Triggers
@@ -509,6 +542,8 @@ function initDynamicModals() {
             
             if (project) {
                 // Open modal with loader
+                modalContainer.classList.remove('hidden');
+                void modalContainer.offsetWidth;
                 modalContainer.classList.remove('opacity-0', 'pointer-events-none');
                 document.body.style.overflow = 'hidden';
                 modalBody.innerHTML = defaultLoader;
@@ -601,18 +636,6 @@ function initDynamicModals() {
             }
         });
     });
-
-    // Close logic
-    if (closeBtn) closeBtn.addEventListener('click', closeModal);
-    if (modalOverlay) modalOverlay.addEventListener('click', closeModal);
-    
-    // Close on Escape key
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && !modalContainer.classList.contains('pointer-events-none')) {
-            closeModal();
-        }
-    });
-
 }
 
 /**
@@ -630,41 +653,140 @@ function openGalleryModal(project) {
 
     // Populate images
     if (project.imagenes && project.imagenes.length > 0) {
-        galleryBody.innerHTML = project.imagenes.map((imgSrc, i) => `
-            <div class="snap-center shrink-0 w-[95%] md:w-[85%] lg:w-[75%] h-[60vh] md:h-[75vh] relative flex items-center justify-center pointer-events-none">
-                <img src="${imgSrc}" loading="lazy" class="max-w-full max-h-full object-contain pointer-events-auto shadow-2xl border border-white/10" />
+        const visibleImages = project.imagenes.slice(0, 10);
+        
+        galleryBody.innerHTML = visibleImages.map((imgSrc, i) => `
+            <div class="snap-center shrink-0 w-[80%] md:w-[60%] lg:w-[50%] h-[50vh] md:h-[65vh] relative flex items-center justify-center pointer-events-none transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)]">
+                <img src="${imgSrc}" loading="lazy" class="max-w-full max-h-full object-contain pointer-events-auto border border-white/10 rounded-xl transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] shadow-[0_20px_50px_rgba(0,0,0,0.5)]" />
             </div>
         `).join('');
         
-        galleryTitle.textContent = project.titulo_modal || 'Galería';
-        galleryCounter.textContent = `1 / ${project.imagenes.length}`;
+        galleryTitle.innerHTML = project.titulo_modal || 'Galería';
+        galleryCounter.textContent = `1 / ${visibleImages.length}`;
         
-        // Add scroll listener for counter
-        galleryBody.addEventListener('scroll', () => {
-            const index = Math.round(galleryBody.scrollLeft / galleryBody.clientWidth);
-            galleryCounter.textContent = `${Math.min(index + 1, project.imagenes.length)} / ${project.imagenes.length}`;
-        });
+        const prevBtn = document.getElementById('gallery-prev');
+        const nextBtn = document.getElementById('gallery-next');
+        
+        const updateArrows = (index) => {
+             if(prevBtn) prevBtn.style.opacity = index === 0 ? '0.3' : '1';
+             if(prevBtn) prevBtn.style.pointerEvents = index === 0 ? 'none' : 'auto';
+             if(nextBtn) nextBtn.style.opacity = index === visibleImages.length - 1 ? '0.3' : '1';
+             if(nextBtn) nextBtn.style.pointerEvents = index === visibleImages.length - 1 ? 'none' : 'auto';
+        };
+
+        const scrollToItem = (index) => {
+            const children = galleryBody.children;
+            if(children[index]) {
+                children[index].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+            }
+        };
+
+        const getVisibleIndex = () => {
+            let minDiff = Infinity;
+            let idx = 0;
+            const containerCenter = window.innerWidth / 2;
+            Array.from(galleryBody.children).forEach((child, i) => {
+                const rect = child.getBoundingClientRect();
+                const childCenter = rect.left + rect.width / 2;
+                const diff = Math.abs(childCenter - containerCenter);
+                if (diff < minDiff) {
+                    minDiff = diff;
+                    idx = i;
+                }
+            });
+            return idx;
+        };
+
+        let currentIndex = 0;
+
+        if(prevBtn) {
+            prevBtn.onclick = () => {
+                currentIndex = getVisibleIndex();
+                if(currentIndex > 0) scrollToItem(currentIndex - 1);
+            };
+        }
+        if(nextBtn) {
+            nextBtn.onclick = () => {
+                currentIndex = getVisibleIndex();
+                if(currentIndex < visibleImages.length - 1) scrollToItem(currentIndex + 1);
+            };
+        }
+
+        const updateGalleryStyles = (activeIndex) => {
+            Array.from(galleryBody.children).forEach((child, i) => {
+                const img = child.querySelector('img');
+                if (!img) return;
+                
+                if (i === activeIndex) {
+                    child.style.transform = 'scale(1) translateZ(0)';
+                    child.style.opacity = '1';
+                    child.style.zIndex = '10';
+                    img.style.filter = 'brightness(1)';
+                } else if (i < activeIndex) {
+                    child.style.transform = 'scale(0.85) perspective(1200px) rotateY(25deg)';
+                    child.style.opacity = '0.35';
+                    child.style.zIndex = '5';
+                    img.style.filter = 'brightness(0.4)';
+                } else {
+                    child.style.transform = 'scale(0.85) perspective(1200px) rotateY(-25deg)';
+                    child.style.opacity = '0.35';
+                    child.style.zIndex = '5';
+                    img.style.filter = 'brightness(0.4)';
+                }
+            });
+        };
+
+        const scrollHandler = () => {
+            currentIndex = getVisibleIndex();
+            galleryCounter.textContent = `${Math.min(currentIndex + 1, visibleImages.length)} / ${visibleImages.length}`;
+            updateArrows(currentIndex);
+            updateGalleryStyles(currentIndex);
+        };
+        
+        galleryBody.addEventListener('scroll', scrollHandler);
+        // Add robust mousewheel scroll handling to prevent awkward scrolling
+        let scrollTimeout;
+        galleryBody.addEventListener('wheel', (e) => {
+             clearTimeout(scrollTimeout);
+             // Allow smooth wheel interactions instead of strict snapping instantly
+        }, { passive: true });
+
+        updateArrows(0);
+        // Add a small delay to ensure elements are rendered before applying Transforms
+        setTimeout(() => updateGalleryStyles(0), 50);
+        
+        project._cleanupGallery = () => {
+             galleryBody.removeEventListener('scroll', scrollHandler);
+        };
     }
 
     // Show modal
+    galleryModal.classList.remove('hidden');
+    void galleryModal.offsetWidth;
     galleryModal.classList.remove('opacity-0', 'pointer-events-none');
     
     // Add close logic
     const closeGallery = () => {
         galleryModal.classList.add('opacity-0', 'pointer-events-none');
-        galleryBody.innerHTML = ''; // Clean up
+        document.removeEventListener('keydown', window._galleryEscListener);
+        if(project._cleanupGallery) project._cleanupGallery();
+        
+        setTimeout(() => {
+            galleryModal.classList.add('hidden');
+            galleryBody.innerHTML = ''; // Clean up
+        }, 500);
     };
 
     document.getElementById('gallery-close').onclick = closeGallery;
     document.getElementById('gallery-overlay').onclick = closeGallery;
 
     // Esc closing
-    document.addEventListener('keydown', function escListener(e) {
+    window._galleryEscListener = function(e) {
         if (e.key === 'Escape') {
             closeGallery();
-            document.removeEventListener('keydown', escListener);
         }
-    });
+    };
+    document.addEventListener('keydown', window._galleryEscListener);
 }
 
 /**
