@@ -1,0 +1,119 @@
+{
+  "proyectos": [
+    {
+      "id": "logia-logistics",
+      "categoria": "Logística & SaaS",
+      "tecnologias_listado": "Django & Python",
+      "titulo_listado": "LogIA: Software para agencias de carga",
+      "descripcion_listado": "Torre de control digital para la gestión de envíos internacionales. Automatiza rastreos y cotizaciones eliminando el caos operativo.",
+      "url": "https://www.logia.lat",
+      "imagenes": [
+        "img/proyectos/logia/1.png"
+      ],
+      "tags": [
+        "Logística Digital",
+        "SaaS",
+        "Automatización"
+      ],
+      "titulo_modal": "LogIA <br><span class=\"text-light-muted dark:text-dark-muted\">Software para agencias de carga</span>",
+      "desafio": "Mover mercancía solía ser una pesadilla de correos infinitos y hojas de cálculo. Las agencias perdían horas rastreando contenedores manualmente.",
+      "solucion": "Diseñé LogIA como el cerebro central. Centraliza el rastreo en tiempo real y convierte horas de cálculos de cotización en un solo clic.",
+      "logros": [
+        "Reducción del 90% en la creación de cotizaciones",
+        "Interfaz estructurada para reducir fatiga visual",
+        "Rastreo automático con principales navieras (Maersk, MSC)"
+      ],
+      "stack": [
+        "Python",
+        "Django",
+        "PostgreSQL",
+        "Tracking APIs",
+        "Bootstrap 5",
+        "Tailwind CSS"
+      ],
+      "servicios": [
+        "Arquitectura SaaS",
+        "Automatización Logística",
+        "Integración de APIs",
+        "Full-Stack Development"
+      ]
+    },
+    {
+      "id": "clawbot",
+      "categoria": "AI Logic",
+      "tecnologias_listado": "n8n / OpenAI",
+      "titulo_listado": "Clawbot: Sales Agent",
+      "descripcion_listado": "Agente conversacional autónomo entrenado para calificación de leads B2B que triplica la tasa de conversión.",
+      "url": "",
+      "imagenes": [],
+      "tags": [
+        "AI Logic",
+        "n8n",
+        "RAG"
+      ],
+      "titulo_modal": "Clawbot <br><span class=\"text-light-muted dark:text-dark-muted\">Sales Agent</span>",
+      "desafio": "El equipo de ventas dedicaba el 70% de su tiempo a prospectos no cualificados que llegaban en masa.",
+      "solucion": "Desplegamos un Agente Basado en IA usando n8n para orquestación y OpenAI con RAG. Filtra y notifica asíncronamente al CRM.",
+      "logros": [
+        "Disminución del CAC en un 45%",
+        "Atención 24/7 sin latencia",
+        "Aumento de cierres en un 60%"
+      ],
+      "stack": [
+        "n8n",
+        "OpenAI API",
+        "Pinecone",
+        "HubSpot API"
+      ],
+      "servicios": [
+        "Prompt Engineering",
+        "Automatización B2B",
+        "Integración de Sistemas",
+        "NLP / RAG"
+      ]
+    },
+    {
+      "id": "eyg-fitness-sport",
+      "categoria": "E-commerce Premium",
+      "tecnologias_listado": "Django & JavaScript",
+      "titulo_listado": "E&G Fitness: Alto Rendimiento",
+      "descripcion_listado": "Ecosistema e-commerce de alta gama. Ingeniería de software aplicada a la venta de maquinaria con SEO hiper-optimizado.",
+      "url": "https://www.eygfitnnesssport.com/",
+      "imagenes": [
+        "img/proyectos/eyg/1.png",
+        "img/proyectos/eyg/2.png",
+        "img/proyectos/eyg/3.png",
+        "img/proyectos/eyg/4.png",
+        "img/proyectos/eyg/11.png",
+        "img/proyectos/eyg/22.png",
+        "img/proyectos/eyg/33.png",
+        "img/proyectos/eyg/44.png"
+      ],
+      "tags": [
+        "E-commerce",
+        "UX Inmersiva",
+        "SEO"
+      ],
+      "titulo_modal": "E&G Fitness <br><span class=\"text-light-muted dark:text-dark-muted font-light\">Elite Training Platform</span>",
+      "desafio": "Crear una interfaz digital que replique la experiencia de un showroom de equipamiento fitness de lujo.",
+      "solucion": "Plataforma que combina Django en backend con Vanilla JS ultra optimizado para un filtrado y navegación instantáneos.",
+      "logros": [
+        "E-commerce escalable",
+        "Posicionamiento SEO líder en su nicho",
+        "Interfaz intuitiva inspirada en lujo automotriz"
+      ],
+      "stack": [
+        "Python",
+        "Django",
+        "JavaScript",
+        "Tailwind CSS",
+        "SEO Tech"
+      ],
+      "servicios": [
+        "E-commerce",
+        "Technical SEO",
+        "UI/UX Design"
+      ]
+    }
+  ]
+}

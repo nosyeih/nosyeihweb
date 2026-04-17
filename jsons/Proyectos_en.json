@@ -1,0 +1,112 @@
+{
+  "proyectos": [
+    {
+      "id": "logia-logistics",
+      "categoria": "Logistics & SaaS",
+      "tecnologias_listado": "Django & Python",
+      "titulo_listado": "LogIA: Freight Forwarder Software",
+      "descripcion_listado": "Digital control tower for international shipment management. Automates tracking and quotes instantly.",
+      "url": "https://www.logia.lat",
+      "imagenes": [
+        "img/proyectos/logia/1.png"
+      ],
+      "tags": [
+        "Digital Logistics",
+        "SaaS",
+        "Automation"
+      ],
+      "titulo_modal": "LogIA <br><span class=\"text-light-muted dark:text-dark-muted\">Freight Forwarder Software</span>",
+      "desafio": "Moving global freight used to be a nightmare of emails and broken spreadsheets. Agencies lost hours tracking manually.",
+      "solucion": "Designed LogIA as the central brain. Centralizes real-time tracking and turns hours of quoting math into a single click.",
+      "logros": [
+        "90% reduction in quoting and document creation time",
+        "Structured interface to reduce visual fatigue",
+        "Automated tracking with main carriers (Maersk, MSC)"
+      ],
+      "stack": [
+        "Python",
+        "Django",
+        "PostgreSQL",
+        "Tracking APIs",
+        "Bootstrap 5",
+        "Tailwind CSS"
+      ],
+      "servicios": [
+        "SaaS Architecture",
+        "Logistics Automation",
+        "API Integrations",
+        "Full-Stack Dev"
+      ]
+    },
+    {
+      "id": "clawbot",
+      "categoria": "AI Logic",
+      "tecnologias_listado": "n8n / OpenAI",
+      "titulo_listado": "Clawbot: Sales Agent",
+      "descripcion_listado": "Autonomous conversational agent trained for B2B lead qualification that triples conversion rates.",
+      "url": "",
+      "imagenes": [],
+      "tags": [
+        "AI Logic",
+        "n8n",
+        "RAG"
+      ],
+      "titulo_modal": "Clawbot <br><span class=\"text-light-muted dark:text-dark-muted\">Sales Agent</span>",
+      "desafio": "Sales team spent 70% of their time on unqualified prospects arriving in mass volumes.",
+      "solucion": "Deployed an AI Agent using n8n for orchestration and OpenAI with RAG. Filters and notifies CRM asynchronously.",
+      "logros": [
+        "45% decrease in CAC",
+        "24/7 support with zero latency",
+        "60% increase in deal closures"
+      ],
+      "stack": [
+        "n8n",
+        "OpenAI API",
+        "Pinecone",
+        "HubSpot API"
+      ],
+      "servicios": [
+        "Prompt Engineering",
+        "B2B Automation",
+        "System Integration",
+        "NLP / RAG"
+      ]
+    },
+    {
+      "id": "eyg-fitness-sport",
+      "categoria": "Premium E-commerce",
+      "tecnologias_listado": "Django & JavaScript",
+      "titulo_listado": "E&G Fitness: High Performance",
+      "descripcion_listado": "High-end e-commerce ecosystem. Software engineering applied to gym machinery sales with hyper SEO.",
+      "url": "https://www.eygfitnnesssport.com/",
+      "imagenes": [
+        "img/proyectos/eyg/1.png"
+      ],
+      "tags": [
+        "E-commerce",
+        "Immersive UX",
+        "SEO"
+      ],
+      "titulo_modal": "E&G Fitness <br><span class=\"text-light-muted dark:text-dark-muted font-light\">Elite Training Platform</span>",
+      "desafio": "Create a digital interface that replicates the experience of a luxury fitness equipment showroom.",
+      "solucion": "Hybrid platform combining Django backend with ultra-optimized Vanilla JS for instant filtering and navigation.",
+      "logros": [
+        "Scalable e-commerce core",
+        "Leading SEO positioning in its niche",
+        "Intuitive interface inspired by automotive luxury"
+      ],
+      "stack": [
+        "Python",
+        "Django",
+        "JavaScript",
+        "Tailwind CSS",
+        "SEO Tech"
+      ],
+      "servicios": [
+        "E-commerce",
+        "Technical SEO",
+        "UI/UX Design"
+      ]
+    }
+  ]
+}

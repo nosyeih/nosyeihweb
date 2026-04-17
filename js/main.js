@@ -6,10 +6,15 @@
  * ============================================
  */
 const BRAND_CONFIG = {
-    nombre_marca: "NosyeihDev",
-    slogan: "Ingeniería",
-    subtitulo: "Soluciones de software de élite y automatización. Diseño funcional sin distracciones, enfocado en conversiones.",
-    email: "nosyeih.dev@mail.com",
+    nombre_marca: "HieysoN",
+    hero_phrases: [
+        { title: "Tecnología de última generación para negocios modernos.", subtitle: "Creamos sistemas digitales con Inteligencia Artificial para automatizar tus tareas diarias. Ahorra tiempo, dinero y haz que tu negocio trabaje en piloto automático." },
+        { title: "Ecosistemas digitales diseñados para escalar.", subtitle: "Transformamos la forma en que operas usando software a la medida. Olvídate del trabajo manual rutinario y enfócate en hacer crecer tu empresa." },
+        { title: "Automatización inteligente que acelera tus metas.", subtitle: "Conectamos herramientas como WhatsApp a tus bases de datos para crear asistentes en línea que atienden a tus clientes las 24 horas del día sin errores." }
+    ],
+    slogan: "Software Inteligente",
+    subtitulo: "Diseñamos plataformas digitales y sistemas automatizados que tus usuarios amarán. Integramos IA y flujos con n8n.",
+    email: "contact@hieyson.com",
     url_linkedin: "https://www.linkedin.com/in/nosyeih-dev/",
     url_github: "https://github.com/NosyeihDev",
 };
@@ -46,6 +51,9 @@ document.addEventListener("DOMContentLoaded", () => {
     mobileBtn.addEventListener('click', () => {
         mobileMenu.classList.toggle('hidden');
     });
+    
+    // Add I18n initialization
+    initI18n();
     
     mobileMenu.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
@@ -108,6 +116,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Call initially
     updateIcons();
+    updateFaviconAndLogo();
 
     function toggleTheme() {
         if (document.documentElement.classList.contains('dark')) {
@@ -118,6 +127,7 @@ document.addEventListener("DOMContentLoaded", () => {
             localStorage.setItem('color-theme', 'dark');
         }
         updateIcons();
+        updateFaviconAndLogo();
     }
 
     themeToggleBtn.addEventListener('click', toggleTheme);
@@ -129,16 +139,184 @@ document.addEventListener("DOMContentLoaded", () => {
     // 7. Dynamic AJAX Modal Logic
     initDynamicModals();
 
-    // 8. Load JSON Data (Clients & Ratings)
+    // 8. Load JSON Data (Projects, Clients & Ratings)
+    loadProjectsData();
     loadClientsData();
     loadRatingsData();
 });
+
+let currentLang = localStorage.getItem('site-lang') || 'es';
+
+/**
+ * ============================================
+ * I18N & THEME DYNAMIC LOGIC
+ * ============================================
+ */
+async function initI18n() {
+    // Setup toggle buttons if available
+    const langBtn = document.getElementById('lang-toggle');
+    if(langBtn) {
+        langBtn.textContent = currentLang === 'en' ? 'ES' : 'EN';
+        langBtn.addEventListener('click', () => {
+            currentLang = currentLang === 'en' ? 'es' : 'en';
+            localStorage.setItem('site-lang', currentLang);
+            langBtn.textContent = currentLang === 'en' ? 'ES' : 'EN';
+            applyTranslations();
+            loadProjectsData(); // Reload projects in new lang
+        });
+    }
+    await applyTranslations();
+}
+
+async function applyTranslations() {
+    try {
+        const response = await fetch(`jsons/locales/${currentLang}.json`);
+        if(!response.ok) return;
+        const translations = await response.json();
+        
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if(translations[key]) {
+                // If it's an input placeholder
+                if(el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                    el.placeholder = translations[key];
+                    // Find corresponding label if exists
+                    const label = el.parentElement.querySelector('label');
+                    if(label) label.textContent = translations[key];
+                } else if(el.id === 'tw-slogan' || el.id === 'typewriter-text' || el.id === 'tw-sub') {
+                    // Handled by typewriter logic natively maybe?
+                    // Restart typewriter to ensure language applies
+                } else {
+                    el.textContent = translations[key];
+                }
+            }
+        });
+        
+        // Refresh specific configs
+        if(translations['hero.tagline']) BRAND_CONFIG.slogan = translations['hero.tagline'];
+        
+        if(translations['hero.title_1']) {
+            BRAND_CONFIG.hero_phrases[0].title = translations['hero.title_1'];
+            BRAND_CONFIG.hero_phrases[0].subtitle = translations['hero.subtitle_1'];
+            
+            BRAND_CONFIG.hero_phrases[1].title = translations['hero.title_2'];
+            BRAND_CONFIG.hero_phrases[1].subtitle = translations['hero.subtitle_2'];
+            
+            BRAND_CONFIG.hero_phrases[2].title = translations['hero.title_3'];
+            BRAND_CONFIG.hero_phrases[2].subtitle = translations['hero.subtitle_3'];
+        }
+
+        if(translations['expertise.desc']) BRAND_CONFIG.subtitulo = translations['expertise.desc'];
+        
+        // Force typewriter restart to translate
+        initTypewriter();
+
+    } catch (e) {
+        console.error("I18n error", e);
+    }
+}
+
+function updateFaviconAndLogo() {
+    const isDark = document.documentElement.classList.contains('dark');
+    const folder = isDark ? 'white' : 'black';
+    const logoImg = document.getElementById('brand-logo');
+    
+    // Update logo in navbar
+    if (logoImg) {
+        logoImg.src = `img/logo/${folder}/favicon-96x96.png`;
+    }
+
+    // Update favicons
+    const iconLinks = [
+        { selector: 'link[rel="icon"][sizes="96x96"]', filename: 'favicon-96x96.png' },
+        { selector: 'link[rel="icon"][type="image/svg+xml"]', filename: 'favicon.svg' },
+        { selector: 'link[rel="shortcut icon"]', filename: 'favicon.ico' },
+        { selector: 'link[rel="apple-touch-icon"]', filename: 'apple-touch-icon.png' }
+    ];
+
+    iconLinks.forEach(linkObj => {
+        const el = document.querySelector(linkObj.selector);
+        if (el) el.href = `img/logo/${folder}/${linkObj.filename}`;
+    });
+}
 
 /**
  * ============================================
  * JSON DATA LOADING LOGIC
  * ============================================
  */
+let PROJECTS_DATA = [];
+
+async function loadProjectsData() {
+    const projectsContainer = document.getElementById('projects-container');
+    if (!projectsContainer) return;
+
+    try {
+        // Fetch projects data according to language
+        const jsonFile = currentLang === 'en' ? 'jsons/Proyectos_en.json' : 'jsons/Proyectos.json';
+        const jsonResponse = await fetch(jsonFile);
+        if (!jsonResponse.ok) throw new Error('Error loading Projects JSON');
+        const data = await jsonResponse.json();
+        PROJECTS_DATA = data.proyectos || [];
+
+        // Fetch HTML Template
+        const tplResponse = await fetch('Components/Projects.html');
+        if (!tplResponse.ok) throw new Error('Error loading Projects Template');
+        const templateHtml = await tplResponse.text();
+
+        let projectsHtml = '';
+        
+        PROJECTS_DATA.forEach(project => {
+            let itemHtml = templateHtml;
+            
+            // Replace variables
+            itemHtml = itemHtml.replace(/{{id}}/g, project.id || '');
+            itemHtml = itemHtml.replace(/{{categoria}}/g, project.categoria || '');
+            itemHtml = itemHtml.replace(/{{tecnologias_listado}}/g, project.tecnologias_listado || '');
+            itemHtml = itemHtml.replace(/{{titulo_listado}}/g, project.titulo_listado || '');
+            itemHtml = itemHtml.replace(/{{descripcion_listado}}/g, project.descripcion_listado || '');
+            
+            const firstImg = project.imagenes && project.imagenes.length > 0 ? project.imagenes[0] : '';
+            itemHtml = itemHtml.replace(/{{project_bg_image}}/g, firstImg);
+
+            projectsHtml += itemHtml;
+        });
+
+        projectsContainer.innerHTML = projectsHtml;
+
+        // Re-initialize Lucide icons
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons({
+                root: projectsContainer
+            });
+        }
+
+        // Refresh GSAP ScrollTrigger since we added new elements
+        if (typeof ScrollTrigger !== 'undefined') {
+            ScrollTrigger.refresh();
+            
+            // Re-apply animations to new elements if they have the gsap-scroll class
+            gsap.utils.toArray('#projects-container .gsap-scroll').forEach(elem => {
+                gsap.from(elem, {
+                    scrollTrigger: {
+                        trigger: elem,
+                        start: "top 85%",
+                    },
+                    y: 40,
+                    opacity: 0,
+                    duration: 1.2,
+                    ease: "power2.out"
+                });
+            });
+        }
+
+        // Re-initialize modal listeners for the new buttons
+        initDynamicModals();
+
+    } catch (error) {
+        console.error('Failed to load projects:', error);
+    }
+}
 
 async function loadClientsData() {
     const clientsTrack = document.getElementById('clients-track');
@@ -150,17 +328,23 @@ async function loadClientsData() {
         const data = await response.json();
         const clients = data.clientes || [];
 
-        // Build HTML
+        // Fetch HTML Template
+        const tplResponse = await fetch('Components/Client.html');
+        if (!tplResponse.ok) throw new Error('Error loading Client Template');
+        const templateHtml = await tplResponse.text();
+
         let htmlContent = '';
         clients.forEach(client => {
-            // Si el cliente no tiene icono especificado, usamos un servicio de placeholder con las iniciales de su empresa
+            let itemHtml = templateHtml;
+            
+            // Fallback para iconos
             const imgSrc = client.Icono || `https://ui-avatars.com/api/?name=${encodeURIComponent(client.Compañia)}&background=random&color=fff&size=200&font-size=0.4&format=svg`;
             
-            htmlContent += `
-                <a href="${client.url || '#'}" target="_blank" class="px-8 shrink-0 opacity-50 hover:opacity-100 grayscale hover:grayscale-0 transition-all duration-300">
-                    <img src="${imgSrc}" alt="${client.Compañia}" class="h-10 md:h-12 object-contain">
-                </a>
-            `;
+            itemHtml = itemHtml.replace(/{{url}}/g, client.url || '#');
+            itemHtml = itemHtml.replace(/{{Icono}}/g, imgSrc);
+            itemHtml = itemHtml.replace(/{{Compañia}}/g, client.Compañia || '');
+
+            htmlContent += itemHtml;
         });
 
         // Duplicamos el contenido para el efecto de marquee infinito
@@ -176,65 +360,51 @@ async function loadRatingsData() {
     if (!ratingsGrid) return;
 
     try {
-        // Fetch rating entries
         const jsonResponse = await fetch('jsons/Calificacion.json');
         if (!jsonResponse.ok) throw new Error('Error loading Ratings JSON');
         const data = await jsonResponse.json();
         const comentarios = data.comentarios || [];
 
-        // Fetch HTML Template
         const tplResponse = await fetch('Components/Rating.html');
         if (!tplResponse.ok) throw new Error('Error loading Rating Template');
         const templateHtml = await tplResponse.text();
 
         let gridHtml = '';
-        
         comentarios.forEach(item => {
             let itemHtml = templateHtml;
             
-            // Reemplazar variables exactas de la plantilla
+            // Reemplazar variables básicas
             itemHtml = itemHtml.replace(/{{mensaje}}/g, item.mensaje || '');
             itemHtml = itemHtml.replace(/{{nombre}}/g, item.nombre || '');
             itemHtml = itemHtml.replace(/{{email}}/g, item.email || '');
             itemHtml = itemHtml.replace(/{{Compañia}}/g, item.Compañia || '');
             
-            // Extraer iniciales del nombre
+            // Iniciales
             const initials = (item.nombre || 'U N').split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
             itemHtml = itemHtml.replace(/{{nombre_iniciales}}/g, initials);
 
-            // Determinar si hay foto
+            // Foto / Avatar
             if (item.foto) {
                 const imgHtml = `<img src="${item.foto}" alt="${item.nombre}" class="w-full h-full object-cover">`;
                 itemHtml = itemHtml.replace(/<span class="initials">.+?<\/span>/g, imgHtml);
             }
 
-            // Generar estrellas
+            // Estrellas
             let starsHtml = '';
-            const maxStars = 5;
             const rating = parseInt(item.rating) || 5;
-            for(let i=1; i<=maxStars; i++) {
-                if (i <= rating) {
-                    starsHtml += `<svg class="w-4 h-4 text-yellow-500 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>`;
-                } else {
-                    starsHtml += `<svg class="w-4 h-4 text-gray-300 dark:text-gray-600 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>`;
-                }
+            for(let i=1; i<=5; i++) {
+                const colorClass = i <= rating ? 'text-yellow-500 fill-current' : 'text-gray-300 dark:text-gray-600 fill-current';
+                starsHtml += `<svg class="w-4 h-4 ${colorClass}" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>`;
             }
-            
-            // Inyectar estrellas
-            // Reemplazar el comentario HTML `<!-- Las estrellas se inyectarán por JS según el rating -->`
             itemHtml = itemHtml.replace(/<!-- Las estrellas se inyectarán por JS según el rating -->/g, starsHtml);
 
             gridHtml += itemHtml;
         });
 
-        // Duplicamos el contenido para el efecto de marquee infinito suave
         ratingsGrid.innerHTML = gridHtml + gridHtml;
 
-        // Re-initialize Lucide icons inside the dynamically injected ratings grid
         if (typeof lucide !== 'undefined') {
-            lucide.createIcons({
-                root: ratingsGrid
-            });
+            lucide.createIcons({ root: ratingsGrid });
         }
 
     } catch (error) {
@@ -313,11 +483,122 @@ function initDynamicModals() {
     }
 
     // Attach Event Listeners to Triggers
+    // Standard modal targets (static URLs)
     document.querySelectorAll('[data-modal-target]').forEach(trigger => {
-        trigger.addEventListener('click', (e) => {
+        // Remove existing listener to avoid duplication if called multiple times
+        const newTrigger = trigger.cloneNode(true);
+        trigger.parentNode.replaceChild(newTrigger, trigger);
+        
+        newTrigger.addEventListener('click', (e) => {
             e.preventDefault();
-            const url = trigger.getAttribute('data-modal-target');
+            const url = newTrigger.getAttribute('data-modal-target');
             if (url) openModal(url);
+        });
+    });
+
+    // Project specific dynamic modals
+    document.querySelectorAll('[data-project-id]').forEach(trigger => {
+        // Clone to reset listeners
+        const newTrigger = trigger.cloneNode(true);
+        trigger.parentNode.replaceChild(newTrigger, trigger);
+
+        newTrigger.addEventListener('click', async (e) => {
+            e.preventDefault();
+            const projectId = newTrigger.getAttribute('data-project-id');
+            const project = PROJECTS_DATA.find(p => p.id === projectId);
+            
+            if (project) {
+                // Open modal with loader
+                modalContainer.classList.remove('opacity-0', 'pointer-events-none');
+                document.body.style.overflow = 'hidden';
+                modalBody.innerHTML = defaultLoader;
+                if(typeof lucide !== 'undefined') lucide.createIcons();
+                
+                setTimeout(() => {
+                    modalWrapper.classList.remove('scale-95', 'opacity-0');
+                    modalWrapper.classList.add('scale-100', 'opacity-100');
+                }, 10);
+
+                try {
+                    // Fetch generic modal template
+                    const response = await fetch('Components/ModalProject.html');
+                    if (!response.ok) throw new Error('Could not load modal template');
+                    let template = await response.text();
+
+                    // Generate Dynamic Parts
+                    const tagsHtml = project.tags.map(tag => 
+                        `<span class="text-xs font-mono border border-light-border dark:border-dark-border px-4 py-2 text-gray-500 dark:text-gray-400">${tag}</span>`
+                    ).join('');
+
+                    const logrosHtml = project.logros.map(logro => 
+                        `<li class="flex items-center gap-4"><i data-lucide="check" class="w-4 h-4 text-green-500"></i> ${logro}</li>`
+                    ).join('');
+
+                    const stackHtml = project.stack.map(tech => 
+                        `<span class="px-3 py-1 bg-light-800 dark:bg-dark-900 border border-light-border dark:border-dark-border text-xs font-mono text-light-accent dark:text-gray-300">${tech}</span>`
+                    ).join('');
+
+                    const serviciosHtml = project.servicios.map(servicio => 
+                        `<li>${servicio}</li>`
+                    ).join('');
+
+                    // Logic for Web URL Button
+                    let urlHtml = '';
+                    if (project.url) {
+                        const linkText = currentLang === 'en' ? 'Live Project' : 'Ver Proyecto en Vivo';
+                        urlHtml = `
+                        <div class="border border-light-border dark:border-dark-border p-6 bg-light-800 dark:bg-dark-900 group relative overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-r from-light-accent/5 to-transparent dark:from-white/5 dark:to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                            <h3 class="text-xs font-mono tracking-widest uppercase text-light-muted dark:text-dark-muted mb-4 relative z-10">Deploy</h3>
+                            <a href="${project.url}" target="_blank" rel="noopener noreferrer" class="relative z-10 flex items-center justify-between text-light-accent dark:text-white group-hover:text-gray-500 transition-colors">
+                                <span class="font-bold uppercase tracking-tighter truncate">${project.url.replace(/^https?:\/\//, '')}</span>
+                                <i data-lucide="external-link" class="w-5 h-5"></i>
+                            </a>
+                        </div>`;
+                    }
+
+                    // Logic for Gallery Button
+                    let btnGaleriaHtml = '';
+                    if (project.imagenes && project.imagenes.length > 0) {
+                        const btnText = currentLang === 'en' ? 'View System Gallery' : 'Ver Galería del Sistema';
+                        btnGaleriaHtml = `
+                        <div class="mt-8 border-t border-light-border dark:border-dark-border pt-8 flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <i data-lucide="images" class="w-5 h-5 text-light-muted dark:text-dark-muted"></i>
+                                <span class="text-xs font-mono uppercase tracking-[0.2em] text-light-muted dark:text-dark-muted">${project.imagenes.length} ${currentLang === 'en' ? 'Captures' : 'Capturas'}</span>
+                            </div>
+                            <button id="open-gallery-btn" class="px-6 py-3 border border-light-border dark:border-dark-border text-xs font-mono uppercase tracking-widest text-light-accent dark:text-white hover:bg-light-accent hover:text-light-900 dark:hover:bg-white dark:hover:text-black transition-colors flex items-center gap-2">
+                                <i data-lucide="maximize" class="w-4 h-4"></i> ${btnText}
+                            </button>
+                        </div>`;
+                    }
+
+                    // Replace in template
+                    template = template.replace(/{{tags_html}}/g, tagsHtml);
+                    template = template.replace(/{{titulo_modal}}/g, project.titulo_modal || '');
+                    template = template.replace(/{{desafio}}/g, project.desafio || '');
+                    template = template.replace(/{{solucion}}/g, project.solucion || '');
+                    template = template.replace(/{{logros_html}}/g, logrosHtml);
+                    template = template.replace(/{{stack_html}}/g, stackHtml);
+                    template = template.replace(/{{servicios_html}}/g, serviciosHtml);
+                    template = template.replace(/{{btn_galeria_html}}/g, btnGaleriaHtml);
+                    template = template.replace(/{{url_html}}/g, urlHtml);
+
+                    // Inject
+                    modalBody.innerHTML = template;
+                    if(typeof lucide !== 'undefined') lucide.createIcons();
+
+                    // Wire Gallery Button
+                    const galleryBtn = document.getElementById('open-gallery-btn');
+                    if (galleryBtn) {
+                        galleryBtn.addEventListener('click', () => openGalleryModal(project));
+                    }
+
+                } catch (error) {
+                    console.error('Error filling project modal:', error);
+                    modalBody.innerHTML = `<div class="p-8 text-center text-red-500 font-mono">Error al cargar datos dinámicos.</div>`;
+                }
+            }
         });
     });
 
@@ -331,6 +612,59 @@ function initDynamicModals() {
             closeModal();
         }
     });
+
+}
+
+/**
+ * ============================================
+ * GALLERY MODAL SPECIFIC LOGIC
+ * ============================================
+ */
+function openGalleryModal(project) {
+    const galleryModal = document.getElementById('gallery-modal');
+    if (!galleryModal) return;
+
+    const galleryBody = document.getElementById('gallery-body');
+    const galleryTitle = document.getElementById('gallery-title');
+    const galleryCounter = document.getElementById('gallery-counter');
+
+    // Populate images
+    if (project.imagenes && project.imagenes.length > 0) {
+        galleryBody.innerHTML = project.imagenes.map((imgSrc, i) => `
+            <div class="snap-center shrink-0 w-[95%] md:w-[85%] lg:w-[75%] h-[60vh] md:h-[75vh] relative flex items-center justify-center pointer-events-none">
+                <img src="${imgSrc}" loading="lazy" class="max-w-full max-h-full object-contain pointer-events-auto shadow-2xl border border-white/10" />
+            </div>
+        `).join('');
+        
+        galleryTitle.textContent = project.titulo_modal || 'Galería';
+        galleryCounter.textContent = `1 / ${project.imagenes.length}`;
+        
+        // Add scroll listener for counter
+        galleryBody.addEventListener('scroll', () => {
+            const index = Math.round(galleryBody.scrollLeft / galleryBody.clientWidth);
+            galleryCounter.textContent = `${Math.min(index + 1, project.imagenes.length)} / ${project.imagenes.length}`;
+        });
+    }
+
+    // Show modal
+    galleryModal.classList.remove('opacity-0', 'pointer-events-none');
+    
+    // Add close logic
+    const closeGallery = () => {
+        galleryModal.classList.add('opacity-0', 'pointer-events-none');
+        galleryBody.innerHTML = ''; // Clean up
+    };
+
+    document.getElementById('gallery-close').onclick = closeGallery;
+    document.getElementById('gallery-overlay').onclick = closeGallery;
+
+    // Esc closing
+    document.addEventListener('keydown', function escListener(e) {
+        if (e.key === 'Escape') {
+            closeGallery();
+            document.removeEventListener('keydown', escListener);
+        }
+    });
 }
 
 /**
@@ -339,37 +673,41 @@ function initDynamicModals() {
  * ============================================
  */
 function initTypewriter() {
-    const sloganEl = document.getElementById('tw-slogan');
     const mainTextEl = document.getElementById('typewriter-text');
     const subEl = document.getElementById('tw-sub');
     
-    if (!sloganEl || !mainTextEl || !subEl) return;
+    if (!mainTextEl || !subEl) return;
     
+    // Clear global loop to prevent overlapping
+    window.twActive = (window.twActive || 0) + 1;
+    const currentLoopId = window.twActive;
+
     // Clear elements
-    sloganEl.textContent = "";
     mainTextEl.textContent = "";
     subEl.textContent = "";
 
-    // Text to type
-    const sloganText = BRAND_CONFIG.slogan;
-    const mainText = "tecnológica.";
     const subText = BRAND_CONFIG.subtitulo;
 
-    // Create a dynamic cursor element
-    const cursor = document.createElement('span');
-    cursor.className = "inline-block w-[0.4em] lg:w-[0.5em] h-[1em] animate-rgb-cursor ml-1 align-middle opacity-80";
-    
-    // Helper to type text into an element
-    function typeText(element, text, minSpeed, maxSpeed) {
+    function createCursor() {
+        const cursor = document.createElement('span');
+        cursor.className = "inline-block w-[3px] h-[1em] animate-rgb-cursor ml-1 align-middle opacity-80";
+        return cursor;
+    }
+
+    const cursorMain = createCursor();
+    const cursorSub = createCursor();
+
+    function typeText(element, text, cursorEl, minSpeed, maxSpeed) {
         return new Promise(resolve => {
+            element.appendChild(cursorEl);
+            let textNode = document.createTextNode("");
+            element.insertBefore(textNode, cursorEl);
             let i = 0;
-            element.appendChild(cursor); // Move cursor to active element
             
             function type() {
+                if (window.twActive !== currentLoopId) return;
                 if (i < text.length) {
-                    // Inject character before the cursor
-                    const charNode = document.createTextNode(text.charAt(i));
-                    element.insertBefore(charNode, cursor);
+                    textNode.nodeValue += text.charAt(i);
                     i++;
                     setTimeout(type, Math.random() * (maxSpeed - minSpeed) + minSpeed);
                 } else {
@@ -380,21 +718,55 @@ function initTypewriter() {
         });
     }
 
-    // Run sequentially with slower speeds as requested
+    function deleteText(element, cursorEl, minSpeed, maxSpeed) {
+        return new Promise(resolve => {
+            element.appendChild(cursorEl);
+            let textNode = null;
+            for (let i = 0; i < element.childNodes.length; i++) {
+                if (element.childNodes[i].nodeType === 3) {
+                    textNode = element.childNodes[i];
+                }
+            }
+            
+            function del() {
+                if (window.twActive !== currentLoopId) return;
+                if (textNode && textNode.nodeValue.length > 0) {
+                    textNode.nodeValue = textNode.nodeValue.slice(0, -1);
+                    setTimeout(del, Math.random() * (maxSpeed - minSpeed) + minSpeed);
+                } else {
+                    resolve();
+                }
+            }
+            del();
+        });
+    }
+
     async function runTypewriterSequence() {
-        // 1. Slogan (moderate-slow speed)
-        await typeText(sloganEl, sloganText, 80, 180);
-        await new Promise(r => setTimeout(r, 400)); // Pause
-
-        // 2. Main Word "tecnológica." (slow, dramatic)
-        // Smaller/customized cursor size for the huge heading if needed, but we rely on ems so it's relative
-        await typeText(mainTextEl, mainText, 150, 300); 
-        await new Promise(r => setTimeout(r, 500)); // Pause
-
-        // 3. Subtitle (faster speed, since it's a long paragraph)
-        await typeText(subEl, subText, 10, 30);
+        let currentPhraseIndex = 0;
         
-        // Final state: leave cursor blinking at the end of subtitle
+        while(window.twActive === currentLoopId) {
+            const phrase = BRAND_CONFIG.hero_phrases[currentPhraseIndex];
+            
+            // Fast typing (simultaneously)
+            await Promise.all([
+                typeText(mainTextEl, phrase.title, cursorMain, 8, 20),
+                typeText(subEl, phrase.subtitle, cursorSub, 2, 8)
+            ]);
+
+            // Wait ~5-6 seconds
+            await new Promise(r => setTimeout(r, 6000));
+            if (window.twActive !== currentLoopId) break;
+
+            // Fast deleting
+            await Promise.all([
+                deleteText(mainTextEl, cursorMain, 3, 8),
+                deleteText(subEl, cursorSub, 1, 3)
+            ]);
+            
+            if (window.twActive !== currentLoopId) break;
+
+            currentPhraseIndex = (currentPhraseIndex + 1) % BRAND_CONFIG.hero_phrases.length;
+        }
     }
 
     runTypewriterSequence();
