@@ -16,6 +16,7 @@ export const BRAND_CONFIG = {
     email2: "developer@hieyson.com",
     url_linkedin: "https://www.linkedin.com/in/nosyeih-dev/",
     url_github: "https://github.com/NosyeihDev",
+    whatsapp: "51935533845",
 };
 
 /**

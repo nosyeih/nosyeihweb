@@ -1,56 +1,52 @@
 <!DOCTYPE html>
 <html lang="es" class="scroll-smooth dark">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HieysoN - Software & AI Automations</title>
-    <meta name="description" content="Diseñamos ecosistemas digitales y plataformas que tus clientes disfrutarán usar. Integración de IA y automatización B2B.">
-    
-    <!-- Open Graph -->
-    <meta property="og:title" content="HieysoN - Ingeniería y Desarrollo Full-Stack">
-    <meta property="og:description" content="Desarrollo web a medida, creación de Agentes IA y automatización de procesos con n8n.">
-    <meta property="og:type" content="website">
+    <title>HieysoN - Software Inteligente, Agentes IA y Automatización con n8n</title>
+    <meta name="description" content="Especialista en Ingeniería y Desarrollo Full-Stack. Creamos ecosistemas digitales, Agentes de IA y automatizaciones B2B con n8n para escalar tu negocio.">
+    <meta name="keywords" content="HieysoN, desarrollo web, agentes IA, n8n, automatización, software a medida, full stack, perú, inteligencia artificial">
+    <link rel="canonical" href="https://hieyson.com/" />
 
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class', // Habilita el modo oscuro por clase
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        display: ['Syncopate', 'sans-serif'],
-                        mono: ['JetBrains Mono', 'monospace'],
-                    },
-                    colors: {
-                        dark: {
-                            900: '#050505',
-                            800: '#0a0a0a',
-                            700: '#141414',
-                            border: '#1f1f1f',
-                            accent: '#ffffff',
-                            muted: '#6b7280'
-                        },
-                        light: {
-                            900: '#ffffff',     // Fondo principal claro
-                            800: '#f8f9fa',     // Fondos secundarios
-                            700: '#f1f5f9',     // Fondos terciarios (hover)
-                            border: '#e2e8f0',  // Bordes claros
-                            accent: '#050505',  // Texto/elementos principales
-                            muted: '#64748b'    // Texto secundario
-                        }
-                    }
-                }
-            }
-        }
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://hieyson.com/">
+    <meta property="og:title" content="HieysoN - Software Inteligente & Automatización IA">
+    <meta property="og:description" content="Diseñamos plataformas digitales y sistemas automatizados que tus usuarios amarán. Integramos IA y flujos con n8n.">
+    <meta property="og:image" content="https://hieyson.com/img/logo/og-image.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://hieyson.com/">
+    <meta property="twitter:title" content="HieysoN - Software Inteligente & Automatización IA">
+    <meta property="twitter:description" content="Diseñamos plataformas digitales y sistemas automatizados que tus usuarios amarán. Integramos IA y flujos con n8n.">
+    <meta property="twitter:image" content="https://hieyson.com/img/logo/og-image.jpg">
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "HieysoN",
+      "url": "https://hieyson.com",
+      "jobTitle": "Full-Stack Engineer & AI Specialist",
+      "sameAs": [
+        "https://www.linkedin.com/in/hieyson/",
+        "https://github.com/neve7s"
+      ],
+      "knowsAbout": ["Web Development", "AI Agents", "Workflow Automation", "n8n", "Node.js", "Python"]
+    }
     </script>
-    
+
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Syncopate:wght@400;700&display=swap"
+        rel="stylesheet">
+
     <!-- Icons (Lucide via CDN) -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
@@ -73,159 +69,241 @@
     <link rel="manifest" href="img/logo/black/site.webmanifest" />
 
 </head>
-<body class="bg-light-900 dark:bg-dark-900 text-light-accent dark:text-white antialiased font-sans font-light overflow-x-hidden transition-colors duration-500 selection:bg-light-accent selection:text-light-900 dark:selection:bg-white dark:selection:text-black">
+
+<body
+    class="bg-light-900 dark:bg-dark-900 text-light-accent dark:text-white antialiased font-sans font-light overflow-x-hidden transition-colors duration-500 selection:bg-light-accent selection:text-light-900 dark:selection:bg-white dark:selection:text-black">
 
     <!-- Interactive Neural Canvas -->
-    <canvas id="neural-canvas" class="fixed inset-0 w-full h-full pointer-events-none z-0 opacity-20 dark:opacity-40 transition-opacity duration-500"></canvas>
+    <canvas id="neural-canvas"
+        class="fixed inset-0 w-full h-full pointer-events-none z-0 opacity-20 dark:opacity-40 transition-opacity duration-500"></canvas>
 
     <!-- Grain Overlay for Texture -->
-    <div class="fixed inset-0 pointer-events-none z-0 opacity-[0.05] dark:opacity-[0.03]" style="background-image: url('data:image/svg+xml,%3Csvg viewBox=\"0 0 200 200\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cfilter id=\"noiseFilter\"%3E%3CfeTurbulence type=\"fractalNoise\" baseFrequency=\"0.65\" numOctaves=\"3\" stitchTiles=\"stitch\"/%3E%3C/filter%3E%3Crect width=\"100%25\" height=\"100%25\" filter=\"url(%23noiseFilter)\"/%3E%3C/svg%3E');"></div>
+    <div class="fixed inset-0 pointer-events-none z-0 opacity-[0.05] dark:opacity-[0.03]"
+        style="background-image: url('data:image/svg+xml,%3Csvg viewBox=\" 0 0 200 200\"
+        xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cfilter id=\"noiseFilter\"%3E%3CfeTurbulence type=\"fractalNoise\"
+        baseFrequency=\"0.65\" numOctaves=\"3\" stitchTiles=\"stitch\"/%3E%3C/filter%3E%3Crect width=\"100%25\"
+        height=\"100%25\" filter=\"url(%23noiseFilter)\"/%3E%3C/svg%3E');"></div>
 
     <!-- Layout Wrapper -->
     <div class="relative z-10 flex flex-col min-h-screen">
-        
+
         <!-- Header -->
         <header class="fixed w-full top-0 z-50 transition-all duration-300 pointer-events-none" id="navbar">
             <div class="max-w-7xl mx-auto px-6 lg:px-12 pointer-events-auto">
-                <div class="flex justify-between items-center h-24 border-b border-light-border/0 dark:border-dark-border/0 transition-colors duration-300" id="nav-border">
+                <div class="flex justify-between items-center h-24 border-b border-light-border/0 dark:border-dark-border/0 transition-colors duration-300"
+                    id="nav-border">
                     <!-- Brand -->
                     <div class="flex-shrink-0 cursor-pointer flex items-center h-full" onclick="window.scrollTo(0,0)">
-                        <img id="brand-logo" src="img/logo/white/favicon-96x96.png" alt="HieysoN Logo" class="h-8 md:h-10 w-auto opacity-90 hover:opacity-100 transition-opacity">
+                        <img id="brand-logo" src="img/logo/white/favicon-96x96.png" alt="HieysoN Logo"
+                            class="h-8 md:h-10 w-auto opacity-90 hover:opacity-100 transition-opacity">
                     </div>
-                    
+
                     <!-- Desktop Nav -->
                     <nav class="hidden md:flex space-x-12 items-center">
-                        <a href="#expertise" data-i18n="nav.expertise" class="nav-link text-xs tracking-[0.1em] uppercase text-light-muted dark:text-dark-muted hover:text-light-accent dark:hover:text-white transition-colors py-2">Servicios</a>
-                        <a href="#work" data-i18n="nav.work" class="nav-link text-xs tracking-[0.1em] uppercase text-light-muted dark:text-dark-muted hover:text-light-accent dark:hover:text-white transition-colors py-2">Proyectos</a>
-                        
+                        <a href="#expertise" data-i18n="nav.expertise"
+                            class="nav-link text-xs tracking-[0.1em] uppercase text-light-muted dark:text-dark-muted hover:text-light-accent dark:hover:text-white transition-colors py-2">Servicios</a>
+                        <a href="#work" data-i18n="nav.work"
+                            class="nav-link text-xs tracking-[0.1em] uppercase text-light-muted dark:text-dark-muted hover:text-light-accent dark:hover:text-white transition-colors py-2">Proyectos</a>
+
                         <!-- Theme Toggle & Lang Toggle -->
-                        <div class="flex items-center space-x-6 border-l border-light-border dark:border-dark-border pl-6 ml-6 h-8">
-                            <button id="theme-toggle" type="button" class="text-light-muted dark:text-dark-muted hover:text-light-accent dark:hover:text-white focus:outline-none transition-colors">
+                        <div
+                            class="flex items-center space-x-6 border-l border-light-border dark:border-dark-border pl-6 ml-6 h-8">
+                            <button id="theme-toggle" type="button"
+                                class="text-light-muted dark:text-dark-muted hover:text-light-accent dark:hover:text-white focus:outline-none transition-colors">
                                 <i data-lucide="sun" id="theme-toggle-light-icon" class="hidden w-5 h-5"></i>
                                 <i data-lucide="moon" id="theme-toggle-dark-icon" class="hidden w-5 h-5"></i>
                             </button>
-                            <button id="lang-toggle" type="button" class="text-[10px] font-mono tracking-widest uppercase text-light-muted dark:text-dark-muted hover:text-light-accent dark:hover:text-white focus:outline-none transition-colors">EN</button>
+                            <button id="lang-toggle" type="button"
+                                class="text-[10px] font-mono tracking-widest uppercase text-light-muted dark:text-dark-muted hover:text-light-accent dark:hover:text-white focus:outline-none transition-colors">EN</button>
                         </div>
 
-                        <a href="#contact" data-i18n="nav.contact" class="text-xs uppercase tracking-[0.1em] font-mono border border-light-border dark:border-dark-border px-6 py-3 hover:bg-light-accent hover:text-light-900 dark:hover:bg-white dark:hover:text-black transition-all">Contacto</a>
+                        <a href="#contact" data-i18n="nav.contact"
+                            class="text-xs uppercase tracking-[0.1em] font-mono border border-light-border dark:border-dark-border px-6 py-3 hover:bg-light-accent hover:text-light-900 dark:hover:bg-white dark:hover:text-black transition-all">Contacto</a>
                     </nav>
 
                     <!-- Mobile Toggle -->
                     <div class="md:hidden flex items-center gap-6">
                         <!-- Theme Toggle Mobile -->
-                        <button id="theme-toggle-mobile" type="button" class="text-light-accent dark:text-white focus:outline-none transition-colors">
+                        <button id="theme-toggle-mobile" type="button"
+                            class="text-light-accent dark:text-white focus:outline-none transition-colors">
                             <i data-lucide="sun" id="theme-toggle-light-icon-mobile" class="hidden w-5 h-5"></i>
                             <i data-lucide="moon" id="theme-toggle-dark-icon-mobile" class="hidden w-5 h-5"></i>
                         </button>
 
-                        <button id="mobile-btn" class="text-light-accent dark:text-white focus:outline-none transition-colors">
+                        <button id="mobile-btn"
+                            class="text-light-accent dark:text-white focus:outline-none transition-colors">
                             <i data-lucide="menu" class="w-6 h-6"></i>
                         </button>
                     </div>
                 </div>
             </div>
-            
+
             <!-- Mobile Menu -->
-            <div id="mobile-menu" class="hidden md:hidden bg-light-900/95 dark:bg-dark-900/95 backdrop-blur-md absolute w-full left-0 py-8 px-6 flex flex-col space-y-6 border-b border-light-border dark:border-dark-border pointer-events-auto transition-colors duration-500">
-                <a href="#expertise" class="text-xs tracking-[0.1em] uppercase border-b border-light-border dark:border-dark-border pb-3 text-light-muted dark:text-dark-muted hover:text-light-accent dark:hover:text-white transition-colors">Expertise</a>
-                <a href="#work" class="text-xs tracking-[0.1em] uppercase border-b border-light-border dark:border-dark-border pb-3 text-light-muted dark:text-dark-muted hover:text-light-accent dark:hover:text-white transition-colors">Work</a>
-                <a href="#contact" class="text-xs uppercase tracking-[0.1em] text-center mt-4 border border-light-border dark:border-dark-border py-4 text-light-accent dark:text-white transition-colors">Contact</a>
+            <div id="mobile-menu"
+                class="hidden md:hidden bg-light-900/95 dark:bg-dark-900/95 backdrop-blur-md absolute w-full left-0 py-8 px-6 flex flex-col space-y-6 border-b border-light-border dark:border-dark-border pointer-events-auto transition-colors duration-500">
+                <a href="#expertise"
+                    class="text-xs tracking-[0.1em] uppercase border-b border-light-border dark:border-dark-border pb-3 text-light-muted dark:text-dark-muted hover:text-light-accent dark:hover:text-white transition-colors">Expertise</a>
+                <a href="#work"
+                    class="text-xs tracking-[0.1em] uppercase border-b border-light-border dark:border-dark-border pb-3 text-light-muted dark:text-dark-muted hover:text-light-accent dark:hover:text-white transition-colors">Work</a>
+                <a href="#contact"
+                    class="text-xs uppercase tracking-[0.1em] text-center mt-4 border border-light-border dark:border-dark-border py-4 text-light-accent dark:text-white transition-colors">Contact</a>
             </div>
         </header>
 
         <!-- Main Content -->
         <main class="flex-grow">
-            
+
             <!-- HERO -->
             <section id="hero" class="relative min-h-[100vh] flex items-center pt-24 pb-12">
-                <div class="max-w-7xl mx-auto px-6 lg:px-12 w-full flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+                <div
+                    class="max-w-7xl mx-auto px-6 lg:px-12 w-full flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
                     <div class="w-full lg:w-[55%]">
-                        <div class="gsap-hero text-xs font-mono tracking-[0.3em] uppercase text-light-muted dark:text-dark-muted mb-8 flex items-center gap-4 transition-colors">
-                            <span class="w-8 h-[1px] bg-light-border dark:bg-dark-border inline-block transition-colors"></span>
+                        <div
+                            class="gsap-hero text-xs font-mono tracking-[0.3em] uppercase text-light-muted dark:text-dark-muted mb-8 flex items-center gap-4 transition-colors">
+                            <span
+                                class="w-8 h-[1px] bg-light-border dark:bg-dark-border inline-block transition-colors"></span>
                             <span data-i18n="hero.tagline">Software & AI Automations</span>
                         </div>
-                        
-                        <h1 class="gsap-hero text-3xl sm:text-4xl lg:text-[3.2rem] xl:text-[3.6rem] font-display font-bold uppercase leading-[1.35] tracking-tighter mb-8 text-light-accent dark:text-white transition-colors" style="line-height: 1.35;">
+
+                        <h1 class="gsap-hero text-3xl sm:text-4xl lg:text-[3.2rem] xl:text-[3.6rem] font-display font-bold uppercase leading-[1.35] tracking-tighter mb-8 text-light-accent dark:text-white transition-colors"
+                            style="line-height: 1.35;">
                             <span class="flex items-center w-full break-words min-h-[3.6em] sm:min-h-[2.4em]">
-                                <span id="typewriter-text" class="text-transparent bg-clip-text bg-gradient-to-r from-gray-900 via-gray-600 to-gray-400 dark:from-white dark:via-gray-300 dark:to-gray-600 transition-colors inline-block pb-2"></span>
+                                <span id="typewriter-text"
+                                    class="text-transparent bg-clip-text bg-gradient-to-r from-gray-900 via-gray-600 to-gray-400 dark:from-white dark:via-gray-300 dark:to-gray-600 transition-colors inline-block pb-2"></span>
                             </span>
                         </h1>
-                        
-                        <p id="tw-sub" class="gsap-hero text-lg md:text-xl text-gray-600 dark:text-gray-400 font-light max-w-2xl leading-relaxed mb-12 transition-colors min-h-[4rem]">
+
+                        <p id="tw-sub"
+                            class="gsap-hero text-lg md:text-xl text-gray-600 dark:text-gray-400 font-light max-w-2xl leading-relaxed mb-12 transition-colors min-h-[4rem]">
                         </p>
-                        
+
                         <div class="gsap-hero flex flex-wrap items-center gap-6">
-                            <a href="#contact" data-i18n="hero.cta" class="px-8 py-4 bg-light-accent dark:bg-white text-light-900 dark:text-black text-xs font-mono tracking-[0.1em] uppercase hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors flex items-center gap-3 group">
+                            <a href="#contact" data-i18n="hero.cta"
+                                class="px-8 py-4 bg-light-accent dark:bg-white text-light-900 dark:text-black text-xs font-mono tracking-[0.1em] uppercase hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors flex items-center gap-3 group">
                                 Iniciar Proyecto
-                                <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                                <i data-lucide="arrow-right"
+                                    class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
                             </a>
                         </div>
                     </div>
 
                     <div class="w-full lg:w-[45%] flex justify-center gsap-hero mt-8 lg:mt-0 relative">
-                        <div class="relative w-full max-w-[280px] sm:max-w-sm lg:max-w-md xl:max-w-lg before:absolute before:-inset-2 before:bg-gradient-to-tr before:from-gray-500/20 before:to-transparent before:rounded-lg before:-z-10 dark:before:from-white/10 opacity-95 hover:opacity-100 transition-opacity duration-500">
-                            <img src="img/web/hero.jpg" alt="Hero Image" class="w-full rounded-sm object-cover aspect-[4/5] md:aspect-square shadow-2xl dark:shadow-[0_0_40px_rgba(255,255,255,0.05)] border border-light-border dark:border-dark-border transition-transform duration-[1.5s] hover:scale-[1.02]">
+                        <div
+                            class="relative w-full max-w-[280px] sm:max-w-sm lg:max-w-md xl:max-w-lg before:absolute before:-inset-2 before:bg-gradient-to-tr before:from-gray-500/20 before:to-transparent before:rounded-lg before:-z-10 dark:before:from-white/10 opacity-95 hover:opacity-100 transition-opacity duration-500">
+                            <img src="img/web/hero.jpg" alt="Hero Image"
+                                class="w-full rounded-sm object-cover aspect-[4/5] md:aspect-square shadow-2xl dark:shadow-[0_0_40px_rgba(255,255,255,0.05)] border border-light-border dark:border-dark-border transition-transform duration-[1.5s] hover:scale-[1.02]">
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Scroll Indicator -->
-                <div class="absolute bottom-12 left-6 lg:left-12 hidden md:flex flex-col items-center gap-4 opacity-40 dark:opacity-50 gsap-hero transition-opacity">
-                    <span data-i18n="hero.scroll" class="text-[10px] uppercase font-mono tracking-widest text-light-accent dark:text-white transition-colors" style="writing-mode: vertical-rl;">Bajar</span>
+                <div
+                    class="absolute bottom-12 left-6 lg:left-12 hidden md:flex flex-col items-center gap-4 opacity-40 dark:opacity-50 gsap-hero transition-opacity">
+                    <span data-i18n="hero.scroll"
+                        class="text-[10px] uppercase font-mono tracking-widest text-light-accent dark:text-white transition-colors"
+                        style="writing-mode: vertical-rl;">Bajar</span>
                     <div class="w-[1px] h-12 bg-black/20 dark:bg-white/20 relative overflow-hidden transition-colors">
-                        <div class="w-full h-1/2 bg-black dark:bg-white absolute top-0 animate-scroll-line transition-colors"></div>
+                        <div
+                            class="w-full h-1/2 bg-black dark:bg-white absolute top-0 animate-scroll-line transition-colors">
+                        </div>
                     </div>
                 </div>
             </section>
 
             <!-- EXPERTISE / SERVICIOS -->
-            <section id="expertise" class="py-32 relative border-t border-light-border dark:border-dark-border bg-light-900/50 dark:bg-dark-900/50 backdrop-blur-sm transition-colors duration-500">
+            <section id="expertise"
+                class="py-32 relative border-t border-light-border dark:border-dark-border bg-light-900/50 dark:bg-dark-900/50 backdrop-blur-sm transition-colors duration-500">
                 <div class="max-w-7xl mx-auto px-6 lg:px-12">
                     <div class="flex flex-col md:flex-row md:items-end justify-between mb-24 gsap-scroll">
                         <div>
-                            <span data-i18n="expertise.num" class="text-xs font-mono tracking-[0.2em] text-light-muted dark:text-dark-muted uppercase mb-4 block transition-colors">01 // Nuestras Capacidades</span>
-                            <h2 class="text-4xl md:text-5xl font-display font-bold uppercase tracking-tighter text-light-accent dark:text-white transition-colors"><span data-i18n="expertise.title_1">Soluciones </span><br><span data-i18n="expertise.title_2" class="text-light-muted dark:text-dark-muted transition-colors">Inteligentes</span></h2>
+                            <span data-i18n="expertise.num"
+                                class="text-xs font-mono tracking-[0.2em] text-light-muted dark:text-dark-muted uppercase mb-4 block transition-colors">01
+                                // Nuestras Capacidades</span>
+                            <h2
+                                class="text-4xl md:text-5xl font-display font-bold uppercase tracking-tighter text-light-accent dark:text-white transition-colors">
+                                <span data-i18n="expertise.title_1">Soluciones </span><br><span
+                                    data-i18n="expertise.title_2"
+                                    class="text-light-muted dark:text-dark-muted transition-colors">Inteligentes</span>
+                            </h2>
                         </div>
-                        <p data-i18n="expertise.desc" class="text-gray-600 dark:text-gray-400 font-light max-w-sm mt-6 md:mt-0 text-sm transition-colors">
-                            Desarrollo de ecosistemas de software robustos. Integrando IA y automatización para que tu negocio trabaje por ti y tus clientes te amen.
+                        <p data-i18n="expertise.desc"
+                            class="text-gray-600 dark:text-gray-400 font-light max-w-sm mt-6 md:mt-0 text-sm transition-colors">
+                            Desarrollo de ecosistemas de software robustos. Integrando IA y automatización para que tu
+                            negocio trabaje por ti y tus clientes te amen.
                         </p>
                     </div>
 
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-light-border dark:bg-dark-border border border-light-border dark:border-dark-border transition-colors duration-500">
+                    <div
+                        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-light-border dark:bg-dark-border border border-light-border dark:border-dark-border transition-colors duration-500">
                         <!-- Item 1 -->
-                        <div class="bg-light-900 dark:bg-dark-900 p-10 lg:p-12 hover:bg-light-800 dark:hover:bg-dark-800 transition-colors duration-300 group gsap-scroll">
-                            <i data-lucide="terminal" class="w-8 h-8 text-light-accent dark:text-white mb-10 group-hover:scale-110 transition-transform duration-500"></i>
-                            <h3 data-i18n="exp1.title" class="text-lg font-mono tracking-tight text-light-accent dark:text-white mb-4 transition-colors">Desarrollo de Software a Medida</h3>
-                            <p data-i18n="exp1.desc" class="text-sm text-light-muted dark:text-dark-muted font-light leading-relaxed transition-colors">Aplicaciones rápidas, seguras y fáciles de usar. Single Page Applications (SPAs) y plataformas interactivas sin distracciones.</p>
+                        <div
+                            class="bg-light-900 dark:bg-dark-900 p-10 lg:p-12 hover:bg-light-800 dark:hover:bg-dark-800 transition-colors duration-300 group gsap-scroll">
+                            <i data-lucide="terminal"
+                                class="w-8 h-8 text-light-accent dark:text-white mb-10 group-hover:scale-110 transition-transform duration-500"></i>
+                            <h3 data-i18n="exp1.title"
+                                class="text-lg font-mono tracking-tight text-light-accent dark:text-white mb-4 transition-colors">
+                                Desarrollo de Software a Medida</h3>
+                            <p data-i18n="exp1.desc"
+                                class="text-sm text-light-muted dark:text-dark-muted font-light leading-relaxed transition-colors">
+                                Aplicaciones rápidas, seguras y fáciles de usar. Single Page Applications (SPAs) y
+                                plataformas interactivas sin distracciones.</p>
                         </div>
                         <!-- Item 2 -->
-                        <div class="bg-light-900 dark:bg-dark-900 p-10 lg:p-12 hover:bg-light-800 dark:hover:bg-dark-800 transition-colors duration-300 group gsap-scroll">
-                            <i data-lucide="bot" class="w-8 h-8 text-light-accent dark:text-white mb-10 group-hover:scale-110 transition-transform duration-500"></i>
-                            <h3 data-i18n="exp2.title" class="text-lg font-mono tracking-tight text-light-accent dark:text-white mb-4 transition-colors">Agentes de IA y Chatbots</h3>
-                            <p data-i18n="exp2.desc" class="text-sm text-light-muted dark:text-dark-muted font-light leading-relaxed transition-colors">Sistemas RAG conversacionales que atienden a tus clientes, califican leads y realizan ventas automáticamente, operando las 24 horas del día.</p>
+                        <div
+                            class="bg-light-900 dark:bg-dark-900 p-10 lg:p-12 hover:bg-light-800 dark:hover:bg-dark-800 transition-colors duration-300 group gsap-scroll">
+                            <i data-lucide="bot"
+                                class="w-8 h-8 text-light-accent dark:text-white mb-10 group-hover:scale-110 transition-transform duration-500"></i>
+                            <h3 data-i18n="exp2.title"
+                                class="text-lg font-mono tracking-tight text-light-accent dark:text-white mb-4 transition-colors">
+                                Agentes de IA y Chatbots</h3>
+                            <p data-i18n="exp2.desc"
+                                class="text-sm text-light-muted dark:text-dark-muted font-light leading-relaxed transition-colors">
+                                Sistemas RAG conversacionales que atienden a tus clientes, califican leads y realizan
+                                ventas automáticamente, operando las 24 horas del día.</p>
                         </div>
                         <!-- Item 3 -->
-                        <div class="bg-light-900 dark:bg-dark-900 p-10 lg:p-12 hover:bg-light-800 dark:hover:bg-dark-800 transition-colors duration-300 group gsap-scroll">
-                            <i data-lucide="workflow" class="w-8 h-8 text-light-accent dark:text-white mb-10 group-hover:scale-110 transition-transform duration-500"></i>
-                            <h3 data-i18n="exp3.title" class="text-lg font-mono tracking-tight text-light-accent dark:text-white mb-4 transition-colors">Automatizaciones (n8n)</h3>
-                            <p data-i18n="exp3.desc" class="text-sm text-light-muted dark:text-dark-muted font-light leading-relaxed transition-colors">Elimina el trabajo manual. Conectamos tus CRMs, correos, bases de datos y WhatsApp en flujos de trabajo inteligentes que nunca fallan.</p>
+                        <div
+                            class="bg-light-900 dark:bg-dark-900 p-10 lg:p-12 hover:bg-light-800 dark:hover:bg-dark-800 transition-colors duration-300 group gsap-scroll">
+                            <i data-lucide="workflow"
+                                class="w-8 h-8 text-light-accent dark:text-white mb-10 group-hover:scale-110 transition-transform duration-500"></i>
+                            <h3 data-i18n="exp3.title"
+                                class="text-lg font-mono tracking-tight text-light-accent dark:text-white mb-4 transition-colors">
+                                Automatizaciones (n8n)</h3>
+                            <p data-i18n="exp3.desc"
+                                class="text-sm text-light-muted dark:text-dark-muted font-light leading-relaxed transition-colors">
+                                Elimina el trabajo manual. Conectamos tus CRMs, correos, bases de datos y WhatsApp en
+                                flujos de trabajo inteligentes que nunca fallan.</p>
                         </div>
                         <!-- Item 4 -->
-                        <div class="bg-light-900 dark:bg-dark-900 p-10 lg:p-12 hover:bg-light-800 dark:hover:bg-dark-800 transition-colors duration-300 group gsap-scroll">
-                            <i data-lucide="briefcase" class="w-8 h-8 text-light-accent dark:text-white mb-10 group-hover:scale-110 transition-transform duration-500"></i>
-                            <h3 data-i18n="exp4.title" class="text-lg font-mono tracking-tight text-light-accent dark:text-white mb-4 transition-colors">Sistemas B2B & Dashboards</h3>
-                            <p data-i18n="exp4.desc" class="text-sm text-light-muted dark:text-dark-muted font-light leading-relaxed transition-colors">Creación de plataformas corporativas. Portales de clientes y paneles administrativos complejos pero visualmente agradables y fáciles de entender.</p>
+                        <div
+                            class="bg-light-900 dark:bg-dark-900 p-10 lg:p-12 hover:bg-light-800 dark:hover:bg-dark-800 transition-colors duration-300 group gsap-scroll">
+                            <i data-lucide="briefcase"
+                                class="w-8 h-8 text-light-accent dark:text-white mb-10 group-hover:scale-110 transition-transform duration-500"></i>
+                            <h3 data-i18n="exp4.title"
+                                class="text-lg font-mono tracking-tight text-light-accent dark:text-white mb-4 transition-colors">
+                                Sistemas B2B & Dashboards</h3>
+                            <p data-i18n="exp4.desc"
+                                class="text-sm text-light-muted dark:text-dark-muted font-light leading-relaxed transition-colors">
+                                Creación de plataformas corporativas. Portales de clientes y paneles administrativos
+                                complejos pero visualmente agradables y fáciles de entender.</p>
                         </div>
                     </div>
                 </div>
             </section>
 
             <!-- WORK / PORTFOLIO -->
-            <section id="work" class="py-32 border-t border-light-border dark:border-dark-border relative transition-colors duration-500">
+            <section id="work"
+                class="py-32 border-t border-light-border dark:border-dark-border relative transition-colors duration-500">
                 <div class="max-w-7xl mx-auto px-6 lg:px-12">
                     <div class="mb-24 gsap-scroll">
-                        <span data-i18n="work.num" class="text-xs font-mono tracking-[0.2em] text-light-muted dark:text-dark-muted uppercase mb-4 block transition-colors">02 // Nuestra Experiencia</span>
-                        <h2 class="text-4xl md:text-5xl font-display font-bold uppercase tracking-tighter text-light-accent dark:text-white transition-colors"><span data-i18n="work.title_1">Casos de </span><span data-i18n="work.title_2" class="text-transparent bg-clip-text bg-gradient-to-r from-gray-500 to-gray-900 dark:from-gray-400 dark:to-white transition-colors">Éxito</span></h2>
+                        <span data-i18n="work.num"
+                            class="text-xs font-mono tracking-[0.2em] text-light-muted dark:text-dark-muted uppercase mb-4 block transition-colors">02
+                            // Nuestra Experiencia</span>
+                        <h2
+                            class="text-4xl md:text-5xl font-display font-bold uppercase tracking-tighter text-light-accent dark:text-white transition-colors">
+                            <span data-i18n="work.title_1">Casos de </span><span data-i18n="work.title_2"
+                                class="text-transparent bg-clip-text bg-gradient-to-r from-gray-500 to-gray-900 dark:from-gray-400 dark:to-white transition-colors">Éxito</span>
+                        </h2>
                     </div>
 
                     <div id="projects-container" class="space-y-6">
@@ -235,158 +313,208 @@
             </section>
 
             <!-- TECH STACK -->
-            <section id="tech-stack" class="py-32 border-t border-light-border dark:border-dark-border relative transition-colors duration-500">
+            <section id="tech-stack"
+                class="py-32 border-t border-light-border dark:border-dark-border relative transition-colors duration-500">
                 <div class="max-w-7xl mx-auto px-6 lg:px-12">
                     <div class="flex flex-col md:flex-row md:items-end justify-between mb-24 gsap-scroll">
                         <div>
-                            <span data-i18n="tech.num" class="text-xs font-mono tracking-[0.2em] text-light-muted dark:text-dark-muted uppercase mb-4 block transition-colors">03 // Nuestro Stack</span>
-                            <h2 class="text-4xl md:text-5xl font-display font-bold uppercase tracking-tighter text-light-accent dark:text-white transition-colors">
+                            <span data-i18n="tech.num"
+                                class="text-xs font-mono tracking-[0.2em] text-light-muted dark:text-dark-muted uppercase mb-4 block transition-colors">03
+                                // Nuestro Stack</span>
+                            <h2
+                                class="text-4xl md:text-5xl font-display font-bold uppercase tracking-tighter text-light-accent dark:text-white transition-colors">
                                 <span data-i18n="tech.title_1">Tecnologías de </span><br>
-                                <span data-i18n="tech.title_2" class="text-light-muted dark:text-dark-muted transition-colors">Vanguardia</span>
+                                <span data-i18n="tech.title_2"
+                                    class="text-light-muted dark:text-dark-muted transition-colors">Vanguardia</span>
                             </h2>
                         </div>
-                        <p data-i18n="tech.desc" class="text-gray-600 dark:text-gray-400 font-light max-w-sm mt-6 md:mt-0 text-sm transition-colors">
-                            Utilizamos las herramientas más potentes y modernas para garantizar escalabilidad, seguridad y una experiencia de usuario excepcional.
+                        <p data-i18n="tech.desc"
+                            class="text-gray-600 dark:text-gray-400 font-light max-w-sm mt-6 md:mt-0 text-sm transition-colors">
+                            Utilizamos las herramientas más potentes y modernas para garantizar escalabilidad, seguridad
+                            y una experiencia de usuario excepcional.
                         </p>
                     </div>
 
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-px bg-light-border dark:bg-dark-border border border-light-border dark:border-dark-border transition-colors duration-500">
+                    <div
+                        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-px bg-light-border dark:bg-dark-border border border-light-border dark:border-dark-border transition-colors duration-500">
                         <!-- Frontend -->
-                        <div class="bg-light-900 dark:bg-dark-900 p-8 lg:p-10 transition-colors duration-300 gsap-scroll">
-                            <h3 class="text-[10px] font-mono tracking-[0.2em] uppercase text-light-muted dark:text-dark-muted mb-8" data-i18n="tech.cat.frontend">Frontend</h3>
+                        <div
+                            class="bg-light-900 dark:bg-dark-900 p-8 lg:p-10 transition-colors duration-300 gsap-scroll">
+                            <h3 class="text-[10px] font-mono tracking-[0.2em] uppercase text-light-muted dark:text-dark-muted mb-8"
+                                data-i18n="tech.cat.frontend">Frontend</h3>
                             <div class="grid grid-cols-3 gap-6">
                                 <div class="tech-item group flex justify-center" title="React">
-                                    <img src="https://api.iconify.design/logos:react.svg" alt="React" class="w-8 h-8 filter grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500">
+                                    <img src="https://api.iconify.design/logos:react.svg" alt="React"
+                                        class="w-8 h-8 filter grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500">
                                 </div>
                                 <div class="tech-item group flex justify-center" title="Next.js">
-                                    <img src="https://api.iconify.design/logos:nextjs-icon.svg" alt="Next.js" class="w-8 h-8 filter grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 dark:invert">
+                                    <img src="https://api.iconify.design/logos:nextjs-icon.svg" alt="Next.js"
+                                        class="w-8 h-8 filter grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 dark:invert">
                                 </div>
                                 <div class="tech-item group flex justify-center" title="Tailwind CSS">
-                                    <img src="https://api.iconify.design/logos:tailwindcss-icon.svg" alt="Tailwind CSS" class="w-8 h-8 filter grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500">
+                                    <img src="https://api.iconify.design/logos:tailwindcss-icon.svg" alt="Tailwind CSS"
+                                        class="w-8 h-8 filter grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500">
                                 </div>
                                 <div class="tech-item group flex justify-center" title="JavaScript">
-                                    <img src="https://api.iconify.design/logos:javascript.svg" alt="JavaScript" class="w-8 h-8 filter grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500">
+                                    <img src="https://api.iconify.design/logos:javascript.svg" alt="JavaScript"
+                                        class="w-8 h-8 filter grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500">
                                 </div>
                                 <div class="tech-item group flex justify-center" title="TypeScript">
-                                    <img src="https://api.iconify.design/logos:typescript-icon.svg" alt="TypeScript" class="w-8 h-8 filter grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500">
+                                    <img src="https://api.iconify.design/logos:typescript-icon.svg" alt="TypeScript"
+                                        class="w-8 h-8 filter grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500">
                                 </div>
                                 <div class="tech-item group flex justify-center" title="HTML5">
-                                    <img src="https://api.iconify.design/logos:html-5.svg" alt="HTML5" class="w-8 h-8 filter grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500">
+                                    <img src="https://api.iconify.design/logos:html-5.svg" alt="HTML5"
+                                        class="w-8 h-8 filter grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500">
                                 </div>
                                 <div class="tech-item group flex justify-center" title="CSS3">
-                                    <img src="https://api.iconify.design/logos:css-3.svg" alt="CSS3" class="w-8 h-8 filter grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500">
+                                    <img src="https://api.iconify.design/logos:css-3.svg" alt="CSS3"
+                                        class="w-8 h-8 filter grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500">
                                 </div>
                                 <div class="tech-item group flex justify-center" title="Bootstrap">
-                                    <img src="https://api.iconify.design/logos:bootstrap.svg" alt="Bootstrap" class="w-8 h-8 filter grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500">
+                                    <img src="https://api.iconify.design/logos:bootstrap.svg" alt="Bootstrap"
+                                        class="w-8 h-8 filter grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500">
                                 </div>
                             </div>
                         </div>
 
                         <!-- Backend -->
-                        <div class="bg-light-900 dark:bg-dark-900 p-8 lg:p-10 transition-colors duration-300 gsap-scroll">
-                            <h3 class="text-[10px] font-mono tracking-[0.2em] uppercase text-light-muted dark:text-dark-muted mb-8" data-i18n="tech.cat.backend">Backend</h3>
+                        <div
+                            class="bg-light-900 dark:bg-dark-900 p-8 lg:p-10 transition-colors duration-300 gsap-scroll">
+                            <h3 class="text-[10px] font-mono tracking-[0.2em] uppercase text-light-muted dark:text-dark-muted mb-8"
+                                data-i18n="tech.cat.backend">Backend</h3>
                             <div class="grid grid-cols-3 gap-6">
                                 <div class="tech-item group flex justify-center" title="Node.js">
-                                    <img src="https://api.iconify.design/logos:nodejs-icon.svg" alt="Node.js" class="w-8 h-8 filter grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500">
+                                    <img src="https://api.iconify.design/logos:nodejs-icon.svg" alt="Node.js"
+                                        class="w-8 h-8 filter grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500">
                                 </div>
                                 <div class="tech-item group flex justify-center" title="Python">
-                                    <img src="https://api.iconify.design/logos:python.svg" alt="Python" class="w-8 h-8 filter grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500">
+                                    <img src="https://api.iconify.design/logos:python.svg" alt="Python"
+                                        class="w-8 h-8 filter grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500">
                                 </div>
                                 <div class="tech-item group flex justify-center" title="Django">
-                                    <img src="https://api.iconify.design/logos:django-icon.svg" alt="Django" class="w-8 h-8 filter grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500">
+                                    <img src="https://api.iconify.design/logos:django-icon.svg" alt="Django"
+                                        class="w-8 h-8 filter grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500">
                                 </div>
                                 <div class="tech-item group flex justify-center" title="Express">
-                                    <img src="https://api.iconify.design/simple-icons:express.svg?color=888888" alt="Express" class="w-8 h-8 filter grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 dark:invert">
+                                    <img src="https://api.iconify.design/simple-icons:express.svg?color=888888"
+                                        alt="Express"
+                                        class="w-8 h-8 filter grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 dark:invert">
                                 </div>
                                 <div class="tech-item group flex justify-center" title="FastAPI">
-                                    <img src="https://api.iconify.design/logos:fastapi-icon.svg" alt="FastAPI" class="w-8 h-8 filter grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500">
+                                    <img src="https://api.iconify.design/logos:fastapi-icon.svg" alt="FastAPI"
+                                        class="w-8 h-8 filter grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500">
                                 </div>
                             </div>
                         </div>
 
                         <!-- Databases -->
-                        <div class="bg-light-900 dark:bg-dark-900 p-8 lg:p-10 transition-colors duration-300 gsap-scroll">
-                            <h3 class="text-[10px] font-mono tracking-[0.2em] uppercase text-light-muted dark:text-dark-muted mb-8" data-i18n="tech.cat.databases">Databases</h3>
+                        <div
+                            class="bg-light-900 dark:bg-dark-900 p-8 lg:p-10 transition-colors duration-300 gsap-scroll">
+                            <h3 class="text-[10px] font-mono tracking-[0.2em] uppercase text-light-muted dark:text-dark-muted mb-8"
+                                data-i18n="tech.cat.databases">Databases</h3>
                             <div class="grid grid-cols-3 gap-6">
                                 <div class="tech-item group flex justify-center" title="MongoDB">
-                                    <img src="https://api.iconify.design/logos:mongodb-icon.svg" alt="MongoDB" class="w-8 h-8 filter grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500">
+                                    <img src="https://api.iconify.design/logos:mongodb-icon.svg" alt="MongoDB"
+                                        class="w-8 h-8 filter grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500">
                                 </div>
                                 <div class="tech-item group flex justify-center" title="PostgreSQL">
-                                    <img src="https://api.iconify.design/logos:postgresql.svg" alt="PostgreSQL" class="w-8 h-8 filter grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500">
+                                    <img src="https://api.iconify.design/logos:postgresql.svg" alt="PostgreSQL"
+                                        class="w-8 h-8 filter grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500">
                                 </div>
                                 <div class="tech-item group flex justify-center" title="MySQL">
-                                    <img src="https://api.iconify.design/logos:mysql-icon.svg" alt="MySQL" class="w-8 h-8 filter grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500">
+                                    <img src="https://api.iconify.design/logos:mysql-icon.svg" alt="MySQL"
+                                        class="w-8 h-8 filter grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500">
                                 </div>
                                 <div class="tech-item group flex justify-center" title="Supabase">
-                                    <img src="https://api.iconify.design/logos:supabase-icon.svg" alt="Supabase" class="w-8 h-8 filter grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500">
+                                    <img src="https://api.iconify.design/logos:supabase-icon.svg" alt="Supabase"
+                                        class="w-8 h-8 filter grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500">
                                 </div>
                                 <div class="tech-item group flex justify-center" title="Redis">
-                                    <img src="https://api.iconify.design/logos:redis.svg" alt="Redis" class="w-8 h-8 filter grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500">
+                                    <img src="https://api.iconify.design/logos:redis.svg" alt="Redis"
+                                        class="w-8 h-8 filter grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500">
                                 </div>
                             </div>
                         </div>
 
                         <!-- AI Agents -->
-                        <div class="bg-light-900 dark:bg-dark-900 p-8 lg:p-10 transition-colors duration-300 gsap-scroll">
-                            <h3 class="text-[10px] font-mono tracking-[0.2em] uppercase text-light-muted dark:text-dark-muted mb-8" data-i18n="tech.cat.ai">AI Agents</h3>
+                        <div
+                            class="bg-light-900 dark:bg-dark-900 p-8 lg:p-10 transition-colors duration-300 gsap-scroll">
+                            <h3 class="text-[10px] font-mono tracking-[0.2em] uppercase text-light-muted dark:text-dark-muted mb-8"
+                                data-i18n="tech.cat.ai">AI Agents</h3>
                             <div class="grid grid-cols-3 gap-6">
                                 <div class="tech-item group flex justify-center" title="n8n">
-                                    <img src="https://api.iconify.design/simple-icons:n8n.svg" alt="n8n" class="w-8 h-8 filter grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500">
+                                    <img src="https://api.iconify.design/simple-icons:n8n.svg" alt="n8n"
+                                        class="w-8 h-8 filter grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500">
                                 </div>
                                 <div class="tech-item group flex justify-center" title="OpenAI">
-                                    <img src="https://api.iconify.design/logos:openai-icon.svg" alt="OpenAI" class="w-8 h-8 filter grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 dark:invert">
+                                    <img src="https://api.iconify.design/logos:openai-icon.svg" alt="OpenAI"
+                                        class="w-8 h-8 filter grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 dark:invert">
                                 </div>
                                 <div class="tech-item group flex justify-center" title="Anthropic (Claude)">
-                                    <img src="https://api.iconify.design/logos:anthropic-icon.svg" alt="Anthropic" class="w-8 h-8 filter grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 dark:invert">
+                                    <img src="https://api.iconify.design/logos:anthropic-icon.svg" alt="Anthropic"
+                                        class="w-8 h-8 filter grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 dark:invert">
                                 </div>
                                 <div class="tech-item group flex justify-center" title="LangChain">
-                                    <img src="https://api.iconify.design/simple-icons:langchain.svg" alt="LangChain" class="w-8 h-8 filter grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 dark:invert">
+                                    <img src="https://api.iconify.design/simple-icons:langchain.svg" alt="LangChain"
+                                        class="w-8 h-8 filter grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 dark:invert">
                                 </div>
                                 <div class="tech-item group flex justify-center" title="Hugging Face">
-                                    <img src="https://api.iconify.design/logos:hugging-face-icon.svg" alt="Hugging Face" class="w-8 h-8 filter grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500">
+                                    <img src="https://api.iconify.design/logos:hugging-face-icon.svg" alt="Hugging Face"
+                                        class="w-8 h-8 filter grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500">
                                 </div>
                                 <div class="tech-item group flex justify-center" title="CrewAI">
-                                    <img src="https://api.iconify.design/simple-icons:crewai.svg" alt="CrewAI" class="w-8 h-8 filter grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 dark:invert">
-                                </div>
-                                <div class="tech-item group flex justify-center" title="LlamaIndex">
-                                    <img src="https://api.iconify.design/simple-icons:llamaindex.svg" alt="LlamaIndex" class="w-8 h-8 filter grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 dark:invert">
+                                    <img src="https://api.iconify.design/simple-icons:crewai.svg" alt="CrewAI"
+                                        class="w-8 h-8 filter grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 dark:invert">
                                 </div>
                             </div>
                         </div>
 
                         <!-- DevOps -->
-                        <div class="bg-light-900 dark:bg-dark-900 p-8 lg:p-10 transition-colors duration-300 gsap-scroll">
-                            <h3 class="text-[10px] font-mono tracking-[0.2em] uppercase text-light-muted dark:text-dark-muted mb-8" data-i18n="tech.cat.devops">DevOps</h3>
+                        <div
+                            class="bg-light-900 dark:bg-dark-900 p-8 lg:p-10 transition-colors duration-300 gsap-scroll">
+                            <h3 class="text-[10px] font-mono tracking-[0.2em] uppercase text-light-muted dark:text-dark-muted mb-8"
+                                data-i18n="tech.cat.devops">DevOps</h3>
                             <div class="grid grid-cols-3 gap-6">
                                 <div class="tech-item group flex justify-center" title="Docker">
-                                    <img src="https://api.iconify.design/logos:docker-icon.svg" alt="Docker" class="w-8 h-8 filter grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500">
+                                    <img src="https://api.iconify.design/logos:docker-icon.svg" alt="Docker"
+                                        class="w-8 h-8 filter grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500">
                                 </div>
                                 <div class="tech-item group flex justify-center" title="Kubernetes">
-                                    <img src="https://api.iconify.design/logos:kubernetes.svg" alt="Kubernetes" class="w-8 h-8 filter grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500">
+                                    <img src="https://api.iconify.design/logos:kubernetes.svg" alt="Kubernetes"
+                                        class="w-8 h-8 filter grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500">
                                 </div>
                                 <div class="tech-item group flex justify-center" title="Terraform">
-                                    <img src="https://api.iconify.design/logos:terraform-icon.svg" alt="Terraform" class="w-8 h-8 filter grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500">
+                                    <img src="https://api.iconify.design/logos:terraform-icon.svg" alt="Terraform"
+                                        class="w-8 h-8 filter grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500">
                                 </div>
                                 <div class="tech-item group flex justify-center" title="Linux">
-                                    <img src="https://api.iconify.design/logos:linux-tux.svg" alt="Linux" class="w-8 h-8 filter grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 dark:invert">
+                                    <img src="https://api.iconify.design/logos:linux-tux.svg" alt="Linux"
+                                        class="w-8 h-8 filter grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 dark:invert">
                                 </div>
                                 <div class="tech-item group flex justify-center" title="Git">
-                                    <img src="https://api.iconify.design/logos:git-icon.svg" alt="Git" class="w-8 h-8 filter grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500">
+                                    <img src="https://api.iconify.design/logos:git-icon.svg" alt="Git"
+                                        class="w-8 h-8 filter grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500">
                                 </div>
                                 <div class="tech-item group flex justify-center" title="GitHub">
-                                    <img src="https://api.iconify.design/logos:github-icon.svg" alt="GitHub" class="w-8 h-8 filter grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 dark:invert">
+                                    <img src="https://api.iconify.design/logos:github-icon.svg" alt="GitHub"
+                                        class="w-8 h-8 filter grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 dark:invert">
                                 </div>
                                 <div class="tech-item group flex justify-center" title="Nginx">
-                                    <img src="https://api.iconify.design/logos:nginx.svg" alt="Nginx" class="w-8 h-8 filter grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500">
+                                    <img src="https://api.iconify.design/logos:nginx.svg" alt="Nginx"
+                                        class="w-8 h-8 filter grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500">
                                 </div>
                                 <div class="tech-item group flex justify-center" title="Cloudflare">
-                                    <img src="https://api.iconify.design/logos:cloudflare.svg" alt="Cloudflare" class="w-8 h-8 filter grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500">
+                                    <img src="https://api.iconify.design/logos:cloudflare.svg" alt="Cloudflare"
+                                        class="w-8 h-8 filter grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500">
                                 </div>
                                 <div class="tech-item group flex justify-center" title="Vercel">
-                                    <img src="https://api.iconify.design/logos:vercel-icon.svg" alt="Vercel" class="w-8 h-8 filter grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 dark:invert">
+                                    <img src="https://api.iconify.design/logos:vercel-icon.svg" alt="Vercel"
+                                        class="w-8 h-8 filter grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 dark:invert">
                                 </div>
                                 <div class="tech-item group flex justify-center" title="Amazon AWS">
-                                    <img src="https://api.iconify.design/logos:aws.svg" alt="AWS" class="w-8 h-8 filter grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 dark:invert">
+                                    <img src="https://api.iconify.design/logos:aws.svg" alt="AWS"
+                                        class="w-8 h-8 filter grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 dark:invert">
                                 </div>
                             </div>
                         </div>
@@ -395,32 +523,46 @@
             </section>
 
             <!-- CAPABILITY / CLIENTS TICKER -->
-            <section id="clients-section" class="py-16 border-t border-light-border dark:border-dark-border bg-light-900/80 dark:bg-dark-900/80 backdrop-blur-md overflow-hidden transition-colors duration-500">
+            <section id="clients-section"
+                class="py-16 border-t border-light-border dark:border-dark-border bg-light-900/80 dark:bg-dark-900/80 backdrop-blur-md overflow-hidden transition-colors duration-500">
                 <div class="max-w-7xl mx-auto px-6 lg:px-12 mb-8">
-                     <span data-i18n="clients.title" class="text-[10px] font-mono tracking-[0.2em] text-light-muted dark:text-dark-muted uppercase block text-center transition-colors">Tecnologías y Enfoque</span>
+                    <span data-i18n="clients.title"
+                        class="text-[10px] font-mono tracking-[0.2em] text-light-muted dark:text-dark-muted uppercase block text-center transition-colors">Tecnologías
+                        y Enfoque</span>
                 </div>
-                
+
                 <!-- Infinite CSS Marquee -->
-                <div class="relative flex overflow-x-hidden text-light-accent dark:text-white font-display uppercase font-bold tracking-widest opacity-50 dark:opacity-40 hover:opacity-100 transition-opacity duration-500 group">
-                    <div id="clients-track" class="animate-marquee group-hover:[animation-play-state:paused] whitespace-nowrap flex items-center w-max gap-16 py-4">
+                <div
+                    class="relative flex overflow-x-hidden text-light-accent dark:text-white font-display uppercase font-bold tracking-widest opacity-50 dark:opacity-40 hover:opacity-100 transition-opacity duration-500 group">
+                    <div id="clients-track"
+                        class="animate-marquee group-hover:[animation-play-state:paused] whitespace-nowrap flex items-center w-max gap-16 py-4">
                         <!-- Loaded dynamically from Clientes.json -->
                     </div>
                 </div>
             </section>
 
             <!-- TESTIMONIALS / RATINGS -->
-            <section id="opinions" class="py-32 border-t border-light-border dark:border-dark-border relative transition-colors duration-500">
+            <section id="opinions"
+                class="py-32 border-t border-light-border dark:border-dark-border relative transition-colors duration-500">
                 <div class="max-w-7xl mx-auto px-6 lg:px-12">
-                     <div class="flex flex-col md:flex-row md:items-end justify-between mb-24 gsap-scroll">
+                    <div class="flex flex-col md:flex-row md:items-end justify-between mb-24 gsap-scroll">
                         <div>
-                            <span data-i18n="testimonials.num" class="text-xs font-mono tracking-[0.2em] text-light-muted dark:text-dark-muted uppercase mb-4 block transition-colors">04 // Testimonios</span>
-                            <h2 class="text-4xl md:text-5xl font-display font-bold uppercase tracking-tighter text-light-accent dark:text-white transition-colors"><span data-i18n="testimonials.title_1">Lo que dicen </span><br><span data-i18n="testimonials.title_2" class="text-light-muted dark:text-dark-muted transition-colors">de nosotros</span></h2>
+                            <span data-i18n="testimonials.num"
+                                class="text-xs font-mono tracking-[0.2em] text-light-muted dark:text-dark-muted uppercase mb-4 block transition-colors">04
+                                // Testimonios</span>
+                            <h2
+                                class="text-4xl md:text-5xl font-display font-bold uppercase tracking-tighter text-light-accent dark:text-white transition-colors">
+                                <span data-i18n="testimonials.title_1">Lo que dicen </span><br><span
+                                    data-i18n="testimonials.title_2"
+                                    class="text-light-muted dark:text-dark-muted transition-colors">de nosotros</span>
+                            </h2>
                         </div>
                     </div>
 
                     <!-- Infinite CSS Marquee for Ratings -->
                     <div class="relative flex overflow-x-hidden mt-12 py-4 group">
-                        <div id="ratings-grid" class="animate-marquee group-hover:[animation-play-state:paused] flex w-max items-stretch shrink-0">
+                        <div id="ratings-grid"
+                            class="animate-marquee group-hover:[animation-play-state:paused] flex w-max items-stretch shrink-0">
                             <!-- Rating items will be injected here via JS from Calificacion.json -->
                         </div>
                     </div>
@@ -429,54 +571,88 @@
         </main>
 
         <!-- FOOTER / CONTACT -->
-        <footer id="contact" class="border-t border-light-border dark:border-dark-border bg-light-900 dark:bg-dark-900 pt-32 pb-12 relative z-10 transition-colors duration-500">
+        <footer id="contact"
+            class="border-t border-light-border dark:border-dark-border bg-light-900 dark:bg-dark-900 pt-32 pb-12 relative z-10 transition-colors duration-500">
             <div class="max-w-7xl mx-auto px-6 lg:px-12">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-20 lg:gap-32 mb-32">
-                    
+
                     <div class="gsap-scroll">
-                        <span data-i18n="contact.num" class="text-xs font-mono tracking-[0.2em] text-light-muted dark:text-dark-muted uppercase mb-4 block transition-colors">05 // Conversemos</span>
-                        <h2 class="text-5xl xl:text-7xl font-display font-bold uppercase tracking-tighter mb-8 text-light-accent dark:text-white transition-colors"><span data-i18n="contact.title_1">Inicia tu </span><br><span data-i18n="contact.title_2" class="text-light-muted dark:text-dark-muted transition-colors">Proyecto.</span></h2>
-                        <a href="#" data-bind-href="email" class="inline-flex items-center gap-4 text-xl font-mono text-light-accent dark:text-white hover:text-gray-500 dark:hover:text-gray-400 transition-colors group">
-                            <span data-bind="email">contacto@dominio.com</span>
-                            <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-2 transition-transform"></i>
+                        <span data-i18n="contact.num"
+                            class="text-xs font-mono tracking-[0.2em] text-light-muted dark:text-dark-muted uppercase mb-4 block transition-colors">05
+                            // Conversemos</span>
+                        <h2
+                            class="text-5xl xl:text-7xl font-display font-bold uppercase tracking-tighter mb-8 text-light-accent dark:text-white transition-colors">
+                            <span data-i18n="contact.title_1">Inicia tu </span><br><span data-i18n="contact.title_2"
+                                class="text-light-muted dark:text-dark-muted transition-colors">Proyecto.</span></h2>
+                        <a href="#" data-bind-href="email"
+                            class="inline-flex items-center gap-4 text-xl font-mono text-light-accent dark:text-white hover:text-gray-500 dark:hover:text-gray-400 transition-colors group">
+                            <span data-bind="email">hieysonshc@gmail.com</span>
+                            <i data-lucide="arrow-right"
+                                class="w-5 h-5 group-hover:translate-x-2 transition-transform"></i>
                         </a>
                     </div>
-                    
+
                     <div class="gsap-scroll">
                         <form onsubmit="event.preventDefault();" class="space-y-8">
                             <div class="relative">
-                                <input type="text" id="name" data-i18n="contact.placeholder.name" class="w-full bg-transparent border-b border-light-border dark:border-dark-border py-4 text-light-accent dark:text-white font-mono text-sm focus:outline-none focus:border-light-accent dark:focus:border-white transition-colors peer placeholder-transparent" placeholder="Tu Nombre o Empresa">
-                                <label for="name" class="absolute left-0 top-4 text-light-muted dark:text-dark-muted font-mono text-xs uppercase tracking-[0.1em] transition-all peer-focus:-top-2 peer-focus:text-[10px] peer-focus:text-light-accent dark:peer-focus:text-white peer-[:not(:placeholder-shown)]:-top-2 peer-[:not(:placeholder-shown)]:text-[10px] peer-[:not(:placeholder-shown)]:text-light-accent dark:peer-[:not(:placeholder-shown)]:text-white pointer-events-none">Tu Nombre o Empresa</label>
+                                <input type="text" id="name" data-i18n="contact.placeholder.name"
+                                    class="w-full bg-transparent border-b border-light-border dark:border-dark-border py-4 text-light-accent dark:text-white font-mono text-sm focus:outline-none focus:border-light-accent dark:focus:border-white transition-colors peer placeholder-transparent"
+                                    placeholder="Tu Nombre o Empresa">
+                                <label for="name"
+                                    class="absolute left-0 top-4 text-light-muted dark:text-dark-muted font-mono text-xs uppercase tracking-[0.1em] transition-all peer-focus:-top-2 peer-focus:text-[10px] peer-focus:text-light-accent dark:peer-focus:text-white peer-[:not(:placeholder-shown)]:-top-2 peer-[:not(:placeholder-shown)]:text-[10px] peer-[:not(:placeholder-shown)]:text-light-accent dark:peer-[:not(:placeholder-shown)]:text-white pointer-events-none">Tu
+                                    Nombre o Empresa</label>
                             </div>
                             <div class="relative">
-                                <input type="email" id="email" data-i18n="contact.placeholder.email" class="w-full bg-transparent border-b border-light-border dark:border-dark-border py-4 text-light-accent dark:text-white font-mono text-sm focus:outline-none focus:border-light-accent dark:focus:border-white transition-colors peer placeholder-transparent" placeholder="Tu Correo Electrónico">
-                                <label for="email" class="absolute left-0 top-4 text-light-muted dark:text-dark-muted font-mono text-xs uppercase tracking-[0.1em] transition-all peer-focus:-top-2 peer-focus:text-[10px] peer-focus:text-light-accent dark:peer-focus:text-white peer-[:not(:placeholder-shown)]:-top-2 peer-[:not(:placeholder-shown)]:text-[10px] peer-[:not(:placeholder-shown)]:text-light-accent dark:peer-[:not(:placeholder-shown)]:text-white pointer-events-none">Tu Correo Electrónico</label>
+                                <input type="email" id="email" data-i18n="contact.placeholder.email"
+                                    class="w-full bg-transparent border-b border-light-border dark:border-dark-border py-4 text-light-accent dark:text-white font-mono text-sm focus:outline-none focus:border-light-accent dark:focus:border-white transition-colors peer placeholder-transparent"
+                                    placeholder="Tu Correo Electrónico">
+                                <label for="email"
+                                    class="absolute left-0 top-4 text-light-muted dark:text-dark-muted font-mono text-xs uppercase tracking-[0.1em] transition-all peer-focus:-top-2 peer-focus:text-[10px] peer-focus:text-light-accent dark:peer-focus:text-white peer-[:not(:placeholder-shown)]:-top-2 peer-[:not(:placeholder-shown)]:text-[10px] peer-[:not(:placeholder-shown)]:text-light-accent dark:peer-[:not(:placeholder-shown)]:text-white pointer-events-none">Tu
+                                    Correo Electrónico</label>
                             </div>
                             <div class="relative">
-                                <textarea id="message" rows="1" data-i18n="contact.placeholder.msg" class="w-full bg-transparent border-b border-light-border dark:border-dark-border py-4 text-light-accent dark:text-white font-mono text-sm focus:outline-none focus:border-light-accent dark:focus:border-white transition-colors peer placeholder-transparent resize-none overflow-hidden min-h-[50px] max-h-[150px]" placeholder="Cuéntame un poco de tu idea..."></textarea>
-                                <label for="message" class="absolute left-0 top-4 text-light-muted dark:text-dark-muted font-mono text-xs uppercase tracking-[0.1em] transition-all peer-focus:-top-2 peer-focus:text-[10px] peer-focus:text-light-accent dark:peer-focus:text-white peer-[:not(:placeholder-shown)]:-top-2 peer-[:not(:placeholder-shown)]:text-[10px] peer-[:not(:placeholder-shown)]:text-light-accent dark:peer-[:not(:placeholder-shown)]:text-white pointer-events-none">Cuéntame un poco de tu idea...</label>
+                                <textarea id="message" rows="1" data-i18n="contact.placeholder.msg"
+                                    class="w-full bg-transparent border-b border-light-border dark:border-dark-border py-4 text-light-accent dark:text-white font-mono text-sm focus:outline-none focus:border-light-accent dark:focus:border-white transition-colors peer placeholder-transparent resize-none overflow-hidden min-h-[50px] max-h-[150px]"
+                                    placeholder="Cuéntame un poco de tu idea..."></textarea>
+                                <label for="message"
+                                    class="absolute left-0 top-4 text-light-muted dark:text-dark-muted font-mono text-xs uppercase tracking-[0.1em] transition-all peer-focus:-top-2 peer-focus:text-[10px] peer-focus:text-light-accent dark:peer-focus:text-white peer-[:not(:placeholder-shown)]:-top-2 peer-[:not(:placeholder-shown)]:text-[10px] peer-[:not(:placeholder-shown)]:text-light-accent dark:peer-[:not(:placeholder-shown)]:text-white pointer-events-none">Cuéntame
+                                    un poco de tu idea...</label>
                             </div>
-                            <button type="submit" class="w-full border border-light-border dark:border-dark-border bg-light-900 dark:bg-dark-900 text-light-accent dark:text-white font-mono text-xs uppercase tracking-[0.2em] py-5 hover:bg-light-accent hover:text-light-900 dark:hover:bg-white dark:hover:text-black transition-colors flex justify-center items-center gap-3">
-                                <i data-lucide="send" class="w-4 h-4"></i> <span data-i18n="contact.btn">Enviar Mensaje</span>
+                            <button type="submit"
+                                class="w-full border border-light-border dark:border-dark-border bg-light-900 dark:bg-dark-900 text-light-accent dark:text-white font-mono text-xs uppercase tracking-[0.2em] py-5 hover:bg-light-accent hover:text-light-900 dark:hover:bg-white dark:hover:text-black transition-colors flex justify-center items-center gap-3">
+                                <i data-lucide="send" class="w-4 h-4"></i> <span data-i18n="contact.btn">Enviar
+                                    Mensaje</span>
                             </button>
                         </form>
                     </div>
                 </div>
-                
-                <div class="border-t border-light-border dark:border-dark-border pt-8 flex flex-col md:flex-row justify-between items-center gap-6 transition-colors duration-500">
+
+                <div
+                    class="border-t border-light-border dark:border-dark-border pt-8 flex flex-col md:flex-row justify-between items-center gap-6 transition-colors duration-500">
                     <div class="flex flex-col gap-2">
-                        <p class="text-light-muted dark:text-dark-muted font-mono text-[10px] uppercase tracking-[0.2em] transition-colors">&copy; 2026 <span data-bind="nombre_marca"></span>. <span data-i18n="footer.rights">TODOS LOS DERECHOS RESERVADOS.</span></p>
-                        <div class="flex gap-4 text-light-muted dark:text-dark-muted font-mono text-[10px] uppercase tracking-[0.1em]">
-                            <a href="privacidad.html" class="hover:text-light-accent dark:hover:text-white transition-colors">Privacidad</a>
+                        <p
+                            class="text-light-muted dark:text-dark-muted font-mono text-[10px] uppercase tracking-[0.2em] transition-colors">
+                            &copy; 2026 <span data-bind="nombre_marca"></span>. <span data-i18n="footer.rights">TODOS
+                                LOS DERECHOS RESERVADOS.</span></p>
+                        <div
+                            class="flex gap-4 text-light-muted dark:text-dark-muted font-mono text-[10px] uppercase tracking-[0.1em]">
+                            <a href="privacidad"
+                                class="hover:text-light-accent dark:hover:text-white transition-colors">Privacidad</a>
                             <span>|</span>
-                            <a href="terminos.html" class="hover:text-light-accent dark:hover:text-white transition-colors">Términos</a>
+                            <a href="terminos"
+                                class="hover:text-light-accent dark:hover:text-white transition-colors">Términos</a>
                             <span>|</span>
-                            <a href="cookies.html" class="hover:text-light-accent dark:hover:text-white transition-colors">Cookies</a>
+                            <a href="cookies"
+                                class="hover:text-light-accent dark:hover:text-white transition-colors">Cookies</a>
                         </div>
                     </div>
                     <div class="flex gap-8">
-                        <a href="#" data-bind-href="linkedin" class="text-light-muted dark:text-dark-muted hover:text-light-accent dark:hover:text-white transition-colors"><i data-lucide="linkedin" class="w-5 h-5"></i></a>
-                        <a href="#" data-bind-href="github" class="text-light-muted dark:text-dark-muted hover:text-light-accent dark:hover:text-white transition-colors"><i data-lucide="github" class="w-5 h-5"></i></a>
+                        <a href="#" data-bind-href="linkedin"
+                            class="text-light-muted dark:text-dark-muted hover:text-light-accent dark:hover:text-white transition-colors"><i
+                                data-lucide="linkedin" class="w-5 h-5"></i></a>
+                        <a href="#" data-bind-href="github"
+                            class="text-light-muted dark:text-dark-muted hover:text-light-accent dark:hover:text-white transition-colors"><i
+                                data-lucide="github" class="w-5 h-5"></i></a>
                     </div>
                 </div>
             </div>
@@ -484,18 +660,23 @@
     </div>
 
     <!-- GLOBAL DYNAMIC MODAL -->
-    <div id="global-modal" class="fixed inset-0 z-[100] flex items-center justify-center hidden opacity-0 pointer-events-none transition-opacity duration-300">
+    <div id="global-modal"
+        class="fixed inset-0 z-[100] flex items-center justify-center hidden opacity-0 pointer-events-none transition-opacity duration-300">
         <!-- Overlay -->
-        <div id="modal-overlay" class="absolute inset-0 bg-light-900/90 dark:bg-dark-900/90 backdrop-blur-md transition-colors duration-500"></div>
-        
+        <div id="modal-overlay"
+            class="absolute inset-0 bg-light-900/90 dark:bg-dark-900/90 backdrop-blur-md transition-colors duration-500">
+        </div>
+
         <!-- Modal Content Container -->
-        <div class="relative w-full max-w-5xl max-h-[90vh] mx-4 overflow-y-auto bg-white dark:bg-dark-800 border border-light-border dark:border-dark-border shadow-2xl transition-transform duration-500 transform scale-95 opacity-0" id="modal-content-wrapper">
-            
+        <div class="relative w-full max-w-5xl max-h-[90vh] mx-4 overflow-y-auto bg-white dark:bg-dark-800 border border-light-border dark:border-dark-border shadow-2xl transition-transform duration-500 transform scale-95 opacity-0"
+            id="modal-content-wrapper">
+
             <!-- Close Button -->
-            <button id="modal-close" class="absolute top-6 right-6 text-light-muted dark:text-dark-muted hover:text-light-accent dark:hover:text-white transition-colors z-50 w-10 h-10 flex items-center justify-center border border-light-border dark:border-dark-border bg-light-900/50 dark:bg-dark-900/50 backdrop-blur-md rounded-full shadow-md">
+            <button id="modal-close"
+                class="absolute top-6 right-6 text-light-muted dark:text-dark-muted hover:text-light-accent dark:hover:text-white transition-colors z-50 w-10 h-10 flex items-center justify-center border border-light-border dark:border-dark-border bg-light-900/50 dark:bg-dark-900/50 backdrop-blur-md rounded-full shadow-md">
                 <i data-lucide="x" class="w-5 h-5"></i>
             </button>
-            
+
             <!-- Dynamic Injection Anchor -->
             <div id="modal-body" class="p-8 lg:p-12 min-h-[300px]">
                 <!-- Load Spinner (Default state) -->
@@ -503,44 +684,57 @@
                     <i data-lucide="loader-2" class="w-8 h-8 text-light-muted dark:text-dark-muted animate-spin"></i>
                 </div>
             </div>
-            
+
         </div>
     </div>
 
     <!-- GALLERY MODAL (FULL SCREEN) -->
-    <div id="gallery-modal" class="fixed inset-0 z-[110] flex items-center justify-center hidden opacity-0 pointer-events-none transition-opacity duration-300">
+    <div id="gallery-modal"
+        class="fixed inset-0 z-[110] flex items-center justify-center hidden opacity-0 pointer-events-none transition-opacity duration-300">
         <!-- Dark Overlay -->
-        <div id="gallery-overlay" class="absolute inset-0 bg-light-900/95 dark:bg-black/95 backdrop-blur-xl transition-colors duration-500"></div>
-        
+        <div id="gallery-overlay"
+            class="absolute inset-0 bg-light-900/95 dark:bg-black/95 backdrop-blur-xl transition-colors duration-500">
+        </div>
+
         <!-- Controls -->
-        <button id="gallery-close" class="absolute top-6 right-6 text-light-accent dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors z-20 w-12 h-12 flex items-center justify-center bg-black/5 dark:bg-white/10 hover:bg-black/10 dark:hover:bg-white/20 backdrop-blur-md rounded-full border border-black/10 dark:border-white/20">
+        <button id="gallery-close"
+            class="absolute top-6 right-6 text-light-accent dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors z-20 w-12 h-12 flex items-center justify-center bg-black/5 dark:bg-white/10 hover:bg-black/10 dark:hover:bg-white/20 backdrop-blur-md rounded-full border border-black/10 dark:border-white/20">
             <i data-lucide="x" class="w-6 h-6"></i>
         </button>
-        
+
         <!-- Center Content -->
-        <div class="relative w-full h-full flex flex-col items-center justify-center pointer-events-none p-4" id="gallery-content-wrapper">
+        <div class="relative w-full h-full flex flex-col items-center justify-center pointer-events-none p-4"
+            id="gallery-content-wrapper">
             <!-- Header Info -->
-            <div id="gallery-header" class="absolute top-8 left-8 z-10 text-light-accent dark:text-white pointer-events-auto">
-                 <h3 class="text-xl font-display font-bold uppercase tracking-widest mb-1" id="gallery-title">Galería</h3>
-                 <span class="text-xs font-mono tracking-widest text-light-muted dark:text-gray-400" id="gallery-counter">1 / 1</span>
+            <div id="gallery-header"
+                class="absolute top-8 left-8 z-10 text-light-accent dark:text-white pointer-events-auto">
+                <h3 class="text-xl font-display font-bold uppercase tracking-widest mb-1" id="gallery-title">Galería
+                </h3>
+                <span class="text-xs font-mono tracking-widest text-light-muted dark:text-gray-400"
+                    id="gallery-counter">1 / 1</span>
             </div>
-            
+
             <!-- Gallery images container -->
             <div class="relative w-full max-w-7xl flex items-center pointer-events-auto mt-20 md:mt-0">
-                <button id="gallery-prev" class="hidden md:flex absolute -left-4 lg:left-4 z-30 w-12 h-12 items-center justify-center text-light-accent dark:text-white bg-black/5 dark:bg-white/10 hover:bg-black/10 dark:hover:bg-white/20 rounded-full border border-black/10 dark:border-white/20 backdrop-blur-md transition-all">
+                <button id="gallery-prev"
+                    class="hidden md:flex absolute -left-4 lg:left-4 z-30 w-12 h-12 items-center justify-center text-light-accent dark:text-white bg-black/5 dark:bg-white/10 hover:bg-black/10 dark:hover:bg-white/20 rounded-full border border-black/10 dark:border-white/20 backdrop-blur-md transition-all">
                     <i data-lucide="chevron-left" class="w-6 h-6"></i>
                 </button>
-                
-                <div id="gallery-body" class="w-full flex overflow-x-auto scroll-smooth snap-x snap-mandatory gap-8 hide-scrollbar cursor-grab active:cursor-grabbing p-4">
+
+                <div id="gallery-body"
+                    class="w-full flex overflow-x-auto scroll-smooth snap-x snap-mandatory gap-8 hide-scrollbar cursor-grab active:cursor-grabbing p-4">
                     <!-- Injected via JS -->
                 </div>
-                
-                <button id="gallery-next" class="hidden md:flex absolute -right-4 lg:right-4 z-30 w-12 h-12 items-center justify-center text-light-accent dark:text-white bg-black/5 dark:bg-white/10 hover:bg-black/10 dark:hover:bg-white/20 rounded-full border border-black/10 dark:border-white/20 backdrop-blur-md transition-all">
+
+                <button id="gallery-next"
+                    class="hidden md:flex absolute -right-4 lg:right-4 z-30 w-12 h-12 items-center justify-center text-light-accent dark:text-white bg-black/5 dark:bg-white/10 hover:bg-black/10 dark:hover:bg-white/20 rounded-full border border-black/10 dark:border-white/20 backdrop-blur-md transition-all">
                     <i data-lucide="chevron-right" class="w-6 h-6"></i>
                 </button>
             </div>
-            
-            <span class="absolute bottom-12 text-[10px] font-mono tracking-[0.2em] text-light-muted dark:text-gray-500 uppercase z-10 pointer-events-none transition-colors">Desliza o usa Shift+Scroll</span>
+
+            <span
+                class="absolute bottom-12 text-[10px] font-mono tracking-[0.2em] text-light-muted dark:text-gray-500 uppercase z-10 pointer-events-none transition-colors">Desliza
+                o usa Shift+Scroll</span>
         </div>
     </div>
 
@@ -548,8 +742,16 @@
     <!-- GSAP via CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    
+
+    <!-- Floating WhatsApp Button -->
+    <a href="#" data-bind-href="whatsapp_link" target="_blank" class="fixed bottom-8 right-8 z-[100] w-14 h-14 bg-[#25D366] text-white rounded-full flex items-center justify-center shadow-[0_10px_40px_-10px_rgba(37,211,102,0.5)] hover:scale-110 transition-all duration-300 group" title="Chat on WhatsApp">
+        <img src="https://api.iconify.design/simple-icons:whatsapp.svg?color=white" alt="WhatsApp" class="w-7 h-7">
+        <span class="absolute right-full mr-4 px-3 py-1 bg-black/80 text-white text-[10px] font-mono uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap">WhatsApp</span>
+        <span class="absolute inset-0 rounded-full bg-[#25D366] animate-ping opacity-20 pointer-events-none"></span>
+    </a>
+
     <!-- Main JS -->
     <script type="module" src="js/main.js"></script>
 </body>
+
 </html>

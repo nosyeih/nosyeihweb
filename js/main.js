@@ -17,6 +17,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.querySelectorAll('[data-bind="nombre_marca"]').forEach(el => el.textContent = BRAND_CONFIG.nombre_marca);
     document.querySelectorAll('[data-bind-href="linkedin"]').forEach(el => el.href = BRAND_CONFIG.url_linkedin);
     document.querySelectorAll('[data-bind-href="github"]').forEach(el => el.href = BRAND_CONFIG.url_github);
+    document.querySelectorAll('[data-bind-href="whatsapp_link"]').forEach(el => el.href = `https://wa.me/${BRAND_CONFIG.whatsapp}`);
 
     // 3. Navbar scroll & Mobile Menu
     const navbar = document.getElementById('navbar');
