@@ -1,40 +1,156 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="scroll-smooth dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Términos y Condiciones - HieysoN</title>
+    <title>Términos - HieysoN</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        body { font-family: 'Inter', sans-serif; }
-    </style>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Syncopate', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        dark: {
+                            900: '#050505',
+                            800: '#0a0a0a',
+                            700: '#141414',
+                            border: '#1f1f1f',
+                            accent: '#ffffff',
+                            muted: '#6b7280'
+                        },
+                        light: {
+                            900: '#ffffff',
+                            800: '#f8f9fa',
+                            700: '#f1f5f9',
+                            border: '#e2e8f0',
+                            accent: '#050505',
+                            muted: '#64748b'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <script>
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
 </head>
-<body class="bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200 antialiased p-8 lg:p-24">
-    <div class="max-w-4xl mx-auto">
-        <a href="index.html" class="text-blue-600 dark:text-blue-400 hover:underline mb-8 inline-block">&larr; Volver al inicio</a>
-        <h1 class="text-4xl font-bold mb-6 text-black dark:text-white">Términos y Condiciones</h1>
-        <p class="text-sm text-gray-500 mb-8">Última actualización: 17 de Abril de 2026</p>
-        
-        <section class="mb-8 space-y-4">
-            <h2 class="text-2xl font-semibold text-black dark:text-white">1. Aceptación de los Términos</h2>
-            <p>Al acceder y utilizar el sitio web de HieysoN y nuestros servicios de desarrollo de software y SaaS, usted acepta estar sujeto a estos Términos y Condiciones. Si no está de acuerdo con alguna parte, se le prohíbe utilizar o acceder a nuestros servicios.</p>
-        </section>
+<body class="bg-light-900 dark:bg-dark-900 text-light-accent dark:text-white antialiased font-sans font-light overflow-x-hidden transition-colors duration-500">
+    
+    <!-- Floating Home Button -->
+    <a href="index.html" class="fixed bottom-8 right-8 z-[100] w-12 h-12 bg-white/10 dark:bg-black/20 backdrop-blur-xl border border-light-border dark:border-dark-border rounded-full flex items-center justify-center text-light-accent dark:text-white shadow-2xl hover:scale-110 hover:bg-light-accent hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-300 group" title="Volver al Inicio">
+        <i data-lucide="home" class="w-5 h-5"></i>
+        <span class="absolute right-full mr-4 px-3 py-1 bg-light-accent dark:bg-white text-white dark:text-black text-[10px] font-mono uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap">Inicio</span>
+    </a>
 
-        <section class="mb-8 space-y-4">
-            <h2 class="text-2xl font-semibold text-black dark:text-white">2. Propiedad Intelectual</h2>
-            <p>A menos que se declare explícitamente mediante una licencia comercial, todo el código fuente propietario, algoritmos de IA, flujos de automatización de n8n, diseño y contenido escrito resultante del desarrollo son propiedad de HieysoN. Ocasionalmente otorgamos licencias de uso o hacemos entrega de código bajo contratos específicos.</p>
-        </section>
+    <!-- Interactive Neural Canvas -->
+    <canvas id="neural-canvas" class="fixed inset-0 w-full h-full pointer-events-none z-0 opacity-20 dark:opacity-40 transition-opacity duration-500"></canvas>
+    
+    <!-- Grain Overlay -->
+    <div class="fixed inset-0 pointer-events-none z-0 opacity-[0.05] dark:opacity-[0.03]" style="background-image: url('data:image/svg+xml,%3Csvg viewBox=\"0 0 200 200\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cfilter id=\"noiseFilter\"%3E%3CfeTurbulence type=\"fractalNoise\" baseFrequency=\"0.65\" numOctaves=\"3\" stitchTiles=\"stitch\"/%3E%3C/filter%3E%3Crect width=\"100%25\" height=\"100%25\" filter=\"url(%23noiseFilter)\"/%3E%3C/svg%3E');"></div>
 
-        <section class="mb-8 space-y-4">
-            <h2 class="text-2xl font-semibold text-black dark:text-white">3. Prestación de Servicios</h2>
-            <p>Nos reservamos el derecho a retirar o modificar nuestros servicios sin previo aviso sistemático. No seremos responsables si, por algún motivo imprevisto en infraestructuras de terceros, total o parte de nuestros portales no están disponibles en algún lapso.</p>
-        </section>
+    <main class="relative z-10 min-h-screen flex flex-col items-center pt-24 pb-12 px-6 lg:px-12">
+        <div class="max-w-4xl w-full">
+            <!-- Content Card -->
+            <div class="bg-white/50 dark:bg-dark-900/50 backdrop-blur-xl border border-light-border dark:border-dark-border p-8 md:p-16 shadow-2xl transition-colors duration-500 mb-24">
+                <div class="mb-16">
+                    <span class="text-[10px] font-mono tracking-[0.3em] uppercase text-light-muted dark:text-dark-muted mb-4 block">Legal // Términos de Uso</span>
+                    <h1 class="text-4xl md:text-5xl font-display font-bold uppercase tracking-tighter mb-4 text-light-accent dark:text-white transition-colors">Términos y <span class="text-light-muted dark:text-dark-muted transition-colors">Condiciones</span></h1>
+                    <p class="text-xs font-mono text-light-muted dark:text-dark-muted uppercase tracking-widest">Última actualización: 04 de Mayo de 2026</p>
+                </div>
+                
+                <div class="space-y-16 text-sm md:text-base leading-relaxed text-gray-600 dark:text-gray-400">
+                    <section>
+                        <h2 class="text-lg font-mono uppercase tracking-widest text-light-accent dark:text-white mb-6 border-b border-light-border dark:border-dark-border pb-4 flex items-center gap-4">
+                            <span class="text-xs text-light-muted dark:text-dark-muted">01</span> Aceptación del Servicio
+                        </h2>
+                        <p>Al acceder a los servicios de HieysoN, usted acepta que el software, las automatizaciones de n8n y los agentes de IA se proporcionan para optimizar flujos comerciales. El uso de nuestras plataformas implica la aceptación de estas normas de operación técnica y legal.</p>
+                    </section>
 
-        <section class="mb-8 space-y-4">
-            <h2 class="text-2xl font-semibold text-black dark:text-white">4. Limitación de Responsabilidad</h2>
-            <p>En ningún caso HieysoN, ni nuestros desarrolladores o afiliados, serán responsables de daños indirectos o lucro cesante relacionados con la integración y uso del software desarrollado.</p>
-        </section>
-    </div>
+                    <section>
+                        <h2 class="text-lg font-mono uppercase tracking-widest text-light-accent dark:text-white mb-6 border-b border-light-border dark:border-dark-border pb-4 flex items-center gap-4">
+                            <span class="text-xs text-light-muted dark:text-dark-muted">02</span> Propiedad Intelectual e IA
+                        </h2>
+                        <p class="mb-4">HieysoN retiene la propiedad de los algoritmos base y arquitecturas de automatización desarrolladas, a menos que se estipule lo contrario por contrato. Sin embargo:</p>
+                        <ul class="list-none space-y-4 font-mono text-xs uppercase tracking-tight">
+                            <li class="flex gap-4"><span class="text-light-muted dark:text-dark-muted">—</span> El cliente es dueño de sus datos de entrenamiento específicos.</li>
+                            <li class="flex gap-4"><span class="text-light-muted dark:text-dark-muted">—</span> Las licencias SaaS otorgan un derecho de uso exclusivo pero no transferible del software.</li>
+                            <li class="flex gap-4"><span class="text-light-muted dark:text-dark-muted">—</span> Queda prohibida la ingeniería inversa de nuestros Agentes de IA propietarios.</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2 class="text-lg font-mono uppercase tracking-widest text-light-accent dark:text-white mb-6 border-b border-light-border dark:border-dark-border pb-4 flex items-center gap-4">
+                            <span class="text-xs text-light-muted dark:text-dark-muted">03</span> SLA y Disponibilidad
+                        </h2>
+                        <p>Nos esforzamos por mantener un 99.9% de uptime en nuestras integraciones. No obstante, HieysoN no se hace responsable por interrupciones derivadas de proveedores externos (APIs de OpenAI, WhatsApp Business, n8n Cloud, AWS, etc.).</p>
+                    </section>
+
+                    <section>
+                        <h2 class="text-lg font-mono uppercase tracking-widest text-light-accent dark:text-white mb-6 border-b border-light-border dark:border-dark-border pb-4 flex items-center gap-4">
+                            <span class="text-xs text-light-muted dark:text-dark-muted">04</span> Responsabilidad de Uso
+                        </h2>
+                        <p>El cliente es el único responsable del contenido generado por los Agentes de IA ante sus usuarios finales. HieysoN proporciona las herramientas, pero no supervisa el uso ético o legal que el cliente dé a los modelos conversacionales integrados.</p>
+                    </section>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer (Consistent with index.html) -->
+        <footer class="w-full max-w-7xl border-t border-light-border dark:border-dark-border pt-8 flex flex-col md:flex-row justify-between items-center gap-6 transition-colors duration-500">
+            <div class="flex flex-col gap-2">
+                <p class="text-light-muted dark:text-dark-muted font-mono text-[10px] uppercase tracking-[0.2em] transition-colors">&copy; 2026 <span data-bind="nombre_marca"></span>. <span data-i18n="footer.rights">TODOS LOS DERECHOS RESERVADOS.</span></p>
+                <div class="flex gap-4 text-light-muted dark:text-dark-muted font-mono text-[10px] uppercase tracking-[0.1em]">
+                    <a href="privacidad.html" class="hover:text-light-accent dark:hover:text-white transition-colors">Privacidad</a>
+                    <span>|</span>
+                    <a href="terminos.html" class="hover:text-light-accent dark:hover:text-white transition-colors">Términos</a>
+                    <span>|</span>
+                    <a href="cookies.html" class="hover:text-light-accent dark:hover:text-white transition-colors">Cookies</a>
+                </div>
+            </div>
+            <div class="flex gap-8">
+                <a href="#" data-bind-href="linkedin" class="text-light-muted dark:text-dark-muted hover:text-light-accent dark:hover:text-white transition-colors"><i data-lucide="linkedin" class="w-5 h-5"></i></a>
+                <a href="#" data-bind-href="github" class="text-light-muted dark:text-dark-muted hover:text-light-accent dark:hover:text-white transition-colors"><i data-lucide="github" class="w-5 h-5"></i></a>
+            </div>
+        </footer>
+    </main>
+
+    <!-- Essential Scripts -->
+    <script type="module">
+        import { initNeuralNetwork, initIcons, updateFaviconAndLogo } from './js/utils.js';
+        import { BRAND_CONFIG } from './js/config.js';
+        import { applyTranslations } from './js/api.js';
+
+        document.addEventListener("DOMContentLoaded", async () => {
+            initNeuralNetwork();
+            initIcons();
+            updateFaviconAndLogo();
+            
+            // Bindings
+            document.querySelectorAll('[data-bind="nombre_marca"]').forEach(el => el.textContent = BRAND_CONFIG.nombre_marca);
+            document.querySelectorAll('[data-bind-href="linkedin"]').forEach(el => el.href = BRAND_CONFIG.url_linkedin);
+            document.querySelectorAll('[data-bind-href="github"]').forEach(el => el.href = BRAND_CONFIG.url_github);
+            
+            await applyTranslations();
+        });
+    </script>
 </body>
 </html>
