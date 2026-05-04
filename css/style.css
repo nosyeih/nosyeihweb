@@ -158,7 +158,19 @@ textarea:-webkit-autofill {
 }
 
 /* 
- * 7. UTILITIES
+ * 7. TECH STACK STYLES
+ */
+.tech-item img {
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tech-item:hover img {
+    transform: translateY(-5px) scale(1.1);
+    filter: drop-shadow(0 0 8px currentColor);
+}
+
+/* 
+ * 8. UTILITIES
  */
 .hide-scrollbar::-webkit-scrollbar {
     display: none;
@@ -166,5 +178,4 @@ textarea:-webkit-autofill {
 .hide-scrollbar {
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
-}
 
