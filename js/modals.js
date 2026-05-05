@@ -160,34 +160,46 @@ export function initDynamicModals(root = document) {
                         `<li>${servicio}</li>`
                     ).join('');
 
+                    let btnGaleriaHtml = '';
+                    let totalItems = (project.imagenes ? project.imagenes.length : 0);
+                    if (project.videos && Array.isArray(project.videos)) {
+                        totalItems += project.videos.length;
+                    } else {
+                        totalItems += Object.keys(project).filter(k => k.startsWith('video') && project[k]).length;
+                    }
+
+                    if (totalItems > 0) {
+                        const btnText = STATE.currentLang === 'en' ? 'OPEN SYSTEM GALLERY' : 'ABRIR GALERÍA SISTEMA';
+                        btnGaleriaHtml = `
+                        <button id="open-gallery-btn" class="w-full flex items-center justify-between px-5 py-3.5 border border-light-border dark:border-dark-border text-[10px] font-mono uppercase tracking-[0.2em] text-light-accent dark:text-white hover:bg-light-accent hover:text-white dark:hover:bg-white dark:hover:text-black transition-all active:scale-[0.98] group">
+                            <div class="flex items-center">
+                                <i data-lucide="maximize-2" class="w-3.5 h-3.5 mr-2"></i>
+                                <span>${btnText}</span>
+                            </div>
+                            <span class="opacity-40 font-bold">(${totalItems})</span>
+                        </button>`;
+                    }
+
                     let urlHtml = '';
                     if (project.url) {
-                        const linkText = STATE.currentLang === 'en' ? 'Live Project' : 'Ver Proyecto en Vivo';
+                        const deployLabel = STATE.currentLang === 'en' ? 'LIVE DEPLOY' : 'SISTEMA EN VIVO';
                         urlHtml = `
-                        <div class="border border-light-border dark:border-dark-border p-6 bg-light-800 dark:bg-dark-900 group relative overflow-hidden">
-                            <div class="absolute inset-0 bg-gradient-to-r from-light-accent/5 to-transparent dark:from-white/5 dark:to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                            <h3 class="text-xs font-mono tracking-widest uppercase text-light-muted dark:text-dark-muted mb-4 relative z-10">Deploy</h3>
-                            <a href="${project.url}" target="_blank" rel="noopener noreferrer" class="relative z-10 flex items-center justify-between text-light-accent dark:text-white group-hover:text-gray-500 transition-colors">
-                                <span class="font-bold uppercase tracking-tighter truncate">${project.url.replace(/^https?:\/\//, '')}</span>
-                                <i data-lucide="external-link" class="w-5 h-5"></i>
+                        <div class="electric-link-container" style="position: relative; padding: 1.25rem; background: #000; border-radius: 12px; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: visible; min-height: 100px; border: 1px solid rgba(34, 197, 94, 0.3); gap: 0.75rem;">
+                            <canvas id="lightning-canvas" style="position: absolute; inset: -30px; width: calc(100% + 60px); height: calc(100% + 60px); pointer-events: none; z-index: 5;"></canvas>
+                            
+                            <div style="position: relative; z-index: 10; text-align: center; width: 100%;">
+                                <span style="display: block; font-family: 'JetBrains Mono', monospace; font-size: 8px; color: #4ade80; letter-spacing: 0.3em; margin-bottom: 0.25rem; opacity: 0.6;">${deployLabel}</span>
+                                <a href="${project.url}" target="_blank" rel="noopener noreferrer" style="color: #fff; font-family: 'Syncopate', sans-serif; font-weight: 700; font-size: 0.8rem; text-decoration: none; transition: all 0.3s; letter-spacing: -0.02em; display: block; word-break: break-all; max-width: 100%;">
+                                    ${project.url.replace(/^https?:\/\//, '').replace(/\/$/, '')}
+                                </a>
+                            </div>
+
+                            <a href="${project.url}" target="_blank" rel="noopener noreferrer" style="position: relative; z-index: 10; width: 100%; text-align: center; color: #4ade80; font-family: 'JetBrains Mono', monospace; font-size: 9px; text-decoration: none; font-weight: bold; border: 1px solid rgba(74, 222, 128, 0.4); padding: 8px; border-radius: 6px; transition: all 0.3s; background: rgba(74, 222, 128, 0.05);" onmouseover="this.style.background='#4ade80'; this.style.color='#000'; this.style.boxShadow='0 0 20px #4ade80'" onmouseout="this.style.background='rgba(74, 222, 128, 0.05)'; this.style.color='#4ade80'; this.style.boxShadow='none'">
+                                Ver &gt;
                             </a>
                         </div>`;
                     }
 
-                    let btnGaleriaHtml = '';
-                    if (project.imagenes && project.imagenes.length > 0) {
-                        const btnText = STATE.currentLang === 'en' ? 'View System Gallery' : 'Ver Galería del Sistema';
-                        btnGaleriaHtml = `
-                        <div class="mt-8 border-t border-light-border dark:border-dark-border pt-8 flex items-center justify-between">
-                            <div class="flex items-center gap-3">
-                                <i data-lucide="images" class="w-5 h-5 text-light-muted dark:text-dark-muted"></i>
-                                <span class="text-xs font-mono uppercase tracking-[0.2em] text-light-muted dark:text-dark-muted">${project.imagenes.length} ${STATE.currentLang === 'en' ? 'Captures' : 'Capturas'}</span>
-                            </div>
-                            <button id="open-gallery-btn" class="px-6 py-3 border border-light-border dark:border-dark-border text-xs font-mono uppercase tracking-widest text-light-accent dark:text-white hover:bg-light-accent hover:text-light-900 dark:hover:bg-white dark:hover:text-black transition-colors flex items-center gap-2">
-                                <i data-lucide="maximize" class="w-4 h-4"></i> ${btnText}
-                            </button>
-                        </div>`;
-                    }
 
                     template = template.replace(/{{tags_html}}/g, tagsHtml);
                     template = template.replace(/{{titulo_modal}}/g, project.titulo_modal || '');
@@ -207,6 +219,9 @@ export function initDynamicModals(root = document) {
                         galleryBtn.addEventListener('click', () => openGalleryModal(project));
                     }
 
+                    // Inicializar el efecto de rayos casi reales
+                    initElectricLinkEffect();
+
                 } catch (error) {
                     console.error('Error filling project modal:', error);
                     modalBody.innerHTML = `<div class="p-8 text-center text-red-500 font-mono">Error al cargar datos dinámicos.</div>`;
@@ -214,4 +229,112 @@ export function initDynamicModals(root = document) {
             }
         });
     });
+}
+
+/**
+ * Crea una animación de rayos y chispas realistas sobre un canvas.
+ */
+function initElectricLinkEffect() {
+    const canvas = document.getElementById('lightning-canvas');
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    let width, height;
+
+    const resize = () => {
+        const rect = canvas.getBoundingClientRect();
+        width = canvas.width = rect.width;
+        height = canvas.height = rect.height;
+    };
+    window.addEventListener('resize', resize);
+    resize();
+
+    let bolts = [];
+    let sparks = [];
+
+    class Spark {
+        constructor(x, y) {
+            this.x = x;
+            this.y = y;
+            this.vx = (Math.random() - 0.5) * 10;
+            this.vy = (Math.random() - 0.5) * 10;
+            this.life = 1.0;
+            this.decay = 0.02 + Math.random() * 0.05;
+            this.size = 1 + Math.random() * 2;
+        }
+        update() {
+            this.x += this.vx;
+            this.y += this.vy;
+            this.vy += 0.2; // Gravity
+            this.life -= this.decay;
+        }
+        draw() {
+            ctx.fillStyle = `rgba(74, 222, 128, ${this.life})`;
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fill();
+        }
+    }
+
+    function createBolt() {
+        const margin = 60;
+        const x1 = margin + Math.random() * (width - margin * 2);
+        const y1 = margin + Math.random() * (height - margin * 2);
+        const x2 = x1 + (Math.random() - 0.5) * 100;
+        const y2 = y1 + (Math.random() - 0.5) * 100;
+        
+        let segments = [];
+        let curX = x1, curY = y1;
+        const parts = 10;
+        
+        for (let i = 0; i < parts; i++) {
+            const tx = x1 + (x2 - x1) * (i / parts) + (Math.random() - 0.5) * 30;
+            const ty = y1 + (y2 - y1) * (i / parts) + (Math.random() - 0.5) * 30;
+            segments.push({ x1: curX, y1: curY, x2: tx, y2: ty });
+            curX = tx; curY = ty;
+            
+            if (Math.random() > 0.8) { // Chispas en el impacto del rayo
+                for(let s=0; s<5; s++) sparks.push(new Spark(tx, ty));
+            }
+        }
+        return { segments, life: 1.0, decay: 0.1 + Math.random() * 0.2 };
+    }
+
+    function animate() {
+        if (!document.getElementById('lightning-canvas')) return;
+        
+        ctx.clearRect(0, 0, width, height);
+        
+        if (Math.random() > 0.92) bolts.push(createBolt());
+
+        ctx.lineCap = 'round';
+        
+        bolts.forEach((bolt, index) => {
+            ctx.shadowBlur = 15;
+            ctx.shadowColor = '#4ade80';
+            ctx.strokeStyle = `rgba(255, 255, 255, ${bolt.life})`;
+            ctx.lineWidth = 2 * bolt.life;
+            
+            ctx.beginPath();
+            bolt.segments.forEach(s => {
+                ctx.moveTo(s.x1, s.y1);
+                ctx.lineTo(s.x2, s.y2);
+            });
+            ctx.stroke();
+            
+            bolt.life -= bolt.decay;
+            if (bolt.life <= 0) bolts.splice(index, 1);
+        });
+
+        ctx.shadowBlur = 0;
+        sparks.forEach((spark, index) => {
+            spark.update();
+            spark.draw();
+            if (spark.life <= 0) sparks.splice(index, 1);
+        });
+
+        requestAnimationFrame(animate);
+    }
+
+    animate();
 }

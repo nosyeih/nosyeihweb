@@ -14,9 +14,11 @@ export const BRAND_CONFIG = {
     subtitulo: "Diseñamos plataformas digitales y sistemas automatizados que tus usuarios amarán. Integramos IA y flujos con n8n.",
     email1: "contacto@hieyson.com",
     email2: "developer@hieyson.com",
-    url_linkedin: "https://www.linkedin.com/in/nosyeih-dev/",
-    url_github: "https://github.com/NosyeihDev",
+    url_linkedin: "https://www.linkedin.com/in/hieyson/",
+    url_github: "https://github.com/neve7s",
+    url_youtube: "https://www.youtube.com/@hieyson",
     whatsapp: "51935533845",
+    phone: "+51 935 533 845",
 };
 
 /**
