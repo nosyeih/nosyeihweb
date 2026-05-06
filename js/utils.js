@@ -315,3 +315,119 @@ export function updateFaviconAndLogo() {
         if (el) el.href = `img/logo/${folder}/${linkObj.filename}`;
     });
 }
+
+/**
+ * Inicia la animación de chispas y rayos en los botones con canvas (ej. index buttons).
+ */
+export function initButtonSparks() {
+    const canvases = document.querySelectorAll('.spark-btn-canvas');
+    if (canvases.length === 0) return;
+
+    canvases.forEach(canvas => {
+        const ctx = canvas.getContext('2d');
+        let width, height;
+
+        const resize = () => {
+            const rect = canvas.getBoundingClientRect();
+            width = canvas.width = rect.width;
+            height = canvas.height = rect.height;
+        };
+        window.addEventListener('resize', resize);
+        resize();
+
+        let bolts = [];
+        let sparks = [];
+
+        class Spark {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                this.vx = (Math.random() - 0.5) * 10;
+                this.vy = (Math.random() - 0.5) * 10;
+                this.life = 1.0;
+                this.decay = 0.02 + Math.random() * 0.05;
+                this.size = 1 + Math.random() * 2;
+            }
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                this.vy += 0.2; // Gravity
+                this.life -= this.decay;
+            }
+            draw() {
+                ctx.fillStyle = `rgba(74, 222, 128, ${this.life})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function createBolt() {
+            const margin = 0; // Margin is 0 because the canvas fits exactly inside the container now
+            const x1 = margin + Math.random() * (width - margin * 2);
+            const y1 = margin + Math.random() * (height - margin * 2);
+            const x2 = x1 + (Math.random() - 0.5) * 100;
+            const y2 = y1 + (Math.random() - 0.5) * 100;
+            
+            let segments = [];
+            let curX = x1, curY = y1;
+            const parts = 10;
+            
+            for (let i = 0; i < parts; i++) {
+                const tx = x1 + (x2 - x1) * (i / parts) + (Math.random() - 0.5) * 30;
+                const ty = y1 + (y2 - y1) * (i / parts) + (Math.random() - 0.5) * 30;
+                segments.push({ x1: curX, y1: curY, x2: tx, y2: ty });
+                curX = tx; curY = ty;
+                
+                if (Math.random() > 0.8) { 
+                    for(let s=0; s<5; s++) sparks.push(new Spark(tx, ty));
+                }
+            }
+            return { segments, life: 1.0, decay: 0.1 + Math.random() * 0.2 };
+        }
+
+        function animate() {
+            // Comprobar si el canvas sigue visible en el DOM (en caso se remueva o se oculte)
+            if (!document.body.contains(canvas)) return;
+            
+            ctx.clearRect(0, 0, width, height);
+            
+            // Generate sparks less frequently maybe, but let's stick to the project modal frequency
+            if (Math.random() > 0.92) bolts.push(createBolt());
+
+            ctx.lineCap = 'round';
+            
+            bolts.forEach((bolt, index) => {
+                ctx.shadowBlur = 15;
+                ctx.shadowColor = '#4ade80';
+                ctx.strokeStyle = `rgba(255, 255, 255, ${bolt.life})`;
+                ctx.lineWidth = 2 * bolt.life;
+                
+                ctx.beginPath();
+                bolt.segments.forEach(s => {
+                    ctx.moveTo(s.x1, s.y1);
+                    ctx.lineTo(s.x2, s.y2);
+                });
+                ctx.stroke();
+                
+                bolt.life -= bolt.decay;
+                if (bolt.life <= 0) bolts.splice(index, 1);
+            });
+
+            ctx.shadowBlur = 0;
+            sparks.forEach((spark, index) => {
+                spark.update();
+                spark.draw();
+                if (spark.life <= 0) sparks.splice(index, 1);
+            });
+
+            requestAnimationFrame(animate);
+        }
+
+        // Delay starting slightly so bounding client rect is accurate after layouts
+        setTimeout(() => {
+            resize();
+            animate();
+        }, 100);
+    });
+}

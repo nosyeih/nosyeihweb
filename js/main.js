@@ -4,7 +4,7 @@
  */
 
 import { BRAND_CONFIG, STATE } from './config.js';
-import { initIcons, initNeuralNetwork, updateThemeIcons, updateFaviconAndLogo } from './utils.js';
+import { initIcons, initNeuralNetwork, updateThemeIcons, updateFaviconAndLogo, initButtonSparks } from './utils.js';
 import { initI18n, loadProjectsData, loadClientsData, loadRatingsData } from './api.js';
 import { initDynamicModals } from './modals.js';
 
@@ -105,4 +105,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // 8. Dynamic AJAX Modal Logic Inicial
     initDynamicModals();
+
+    // 9. Buttons Spark Animations
+    initButtonSparks();
 });

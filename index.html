@@ -117,8 +117,11 @@
                                 class="text-[10px] font-mono tracking-widest uppercase text-light-muted dark:text-dark-muted hover:text-light-accent dark:hover:text-white focus:outline-none transition-colors">EN</button>
                         </div>
 
-                        <a href="#contact" data-i18n="nav.contact"
-                            class="text-xs uppercase tracking-[0.1em] font-mono border border-light-border dark:border-dark-border px-6 py-3 hover:bg-light-accent hover:text-light-900 dark:hover:bg-white dark:hover:text-black transition-all">Contacto</a>
+                        <div class="relative overflow-hidden inline-flex">
+                            <canvas class="spark-btn-canvas absolute inset-0 w-full h-full pointer-events-none z-10"></canvas>
+                            <a href="#contact" data-i18n="nav.contact"
+                                class="relative z-20 text-xs uppercase tracking-[0.1em] font-mono border border-light-border dark:border-dark-border px-6 py-3 hover:bg-light-accent hover:text-light-900 dark:hover:bg-white dark:hover:text-black transition-all bg-transparent">Contacto</a>
+                        </div>
                     </nav>
 
                     <!-- Mobile Toggle -->
@@ -178,12 +181,15 @@
                         </p>
 
                         <div class="gsap-hero flex flex-wrap items-center gap-6">
-                            <a href="#contact" data-i18n="hero.cta"
-                                class="px-8 py-4 bg-light-accent dark:bg-white text-light-900 dark:text-black text-xs font-mono tracking-[0.1em] uppercase hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors flex items-center gap-3 group">
-                                Iniciar Proyecto
-                                <i data-lucide="arrow-right"
-                                    class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
-                            </a>
+                            <div class="relative overflow-hidden inline-flex">
+                                <canvas class="spark-btn-canvas absolute inset-0 w-full h-full pointer-events-none z-10"></canvas>
+                                <a href="#contact" data-i18n="hero.cta"
+                                    class="relative z-20 px-8 py-4 bg-transparent border border-light-border dark:border-dark-border text-light-accent dark:text-white text-xs font-mono tracking-[0.1em] uppercase hover:bg-light-accent hover:text-light-900 dark:hover:bg-white dark:hover:text-black transition-colors flex items-center gap-3 group">
+                                    Iniciar Proyecto
+                                    <i data-lucide="arrow-right"
+                                        class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                                </a>
+                            </div>
                         </div>
                     </div>
 
@@ -618,11 +624,14 @@
                                     class="absolute left-0 top-4 text-light-muted dark:text-dark-muted font-mono text-xs uppercase tracking-[0.1em] transition-all peer-focus:-top-2 peer-focus:text-[10px] peer-focus:text-light-accent dark:peer-focus:text-white peer-[:not(:placeholder-shown)]:-top-2 peer-[:not(:placeholder-shown)]:text-[10px] peer-[:not(:placeholder-shown)]:text-light-accent dark:peer-[:not(:placeholder-shown)]:text-white pointer-events-none">Cuéntame
                                     un poco de tu idea...</label>
                             </div>
-                            <button type="submit"
-                                class="w-full border border-light-border dark:border-dark-border bg-light-900 dark:bg-dark-900 text-light-accent dark:text-white font-mono text-xs uppercase tracking-[0.2em] py-5 hover:bg-light-accent hover:text-light-900 dark:hover:bg-white dark:hover:text-black transition-colors flex justify-center items-center gap-3">
-                                <i data-lucide="send" class="w-4 h-4"></i> <span data-i18n="contact.btn">Enviar
-                                    Mensaje</span>
-                            </button>
+                            <div class="relative overflow-hidden w-full">
+                                <canvas class="spark-btn-canvas absolute inset-0 w-full h-full pointer-events-none z-10"></canvas>
+                                <button type="submit"
+                                    class="relative z-20 w-full border border-light-border dark:border-dark-border bg-transparent text-light-accent dark:text-white font-mono text-xs uppercase tracking-[0.2em] py-5 hover:bg-light-accent hover:text-light-900 dark:hover:bg-white dark:hover:text-black transition-colors flex justify-center items-center gap-3">
+                                    <i data-lucide="send" class="w-4 h-4"></i> <span data-i18n="contact.btn">Enviar
+                                        Mensaje</span>
+                                </button>
+                            </div>
                         </form>
                     </div>
                 </div>
