@@ -1,4 +1,5 @@
 {
+  "nav.home": "Inicio",
   "nav.expertise": "Servicios",
   "nav.work": "Proyectos",
   "nav.contact": "Contacto",
@@ -9,7 +10,7 @@
   "hero.title_3": "Automatización inteligente que acelera tus metas.",
   "hero.subtitle_3": "Conectamos herramientas como WhatsApp a tus bases de datos para crear asistentes en línea que atienden a tus clientes las 24 horas del día sin errores.",
   "expertise.desc": "Construimos herramientas digitales integradas a la Inteligencia Artificial para que tu negocio sea ágil. Ahorra tiempo, reduce el error humano y da un servicio que todos amen.",
-  "hero.tagline": "Software & Integraciones con IA",
+  "hero.tagline": "Software & Integraciones de IA",
   "hero.cta": "Iniciar Proyecto",
   "hero.scroll": "Bajar",
   "expertise.num": "01 // Nuestros servicios",
@@ -47,5 +48,7 @@
   "contact.placeholder.email": "Tu Correo Electrónico",
   "contact.placeholder.msg": "Cuéntame un poco de tu idea...",
   "contact.btn": "Enviar Mensaje",
+  "services.prev": "Anterior",
+  "services.next": "Siguiente",
   "footer.rights": "TODOS LOS DERECHOS RESERVADOS."
 }

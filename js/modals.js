@@ -37,6 +37,364 @@ export function closeModal() {
  * Abre un modal y carga su contenido mediante un archivo externo HTML.
  * @param {string} url - Ruta relativa del archivo HTML a cargar.
  */
+const SERVICES_DATA = {
+    es: [
+        {
+            id: "s1",
+            icon: "terminal",
+            category: "Desarrollo de Software",
+            title: "Desarrollo de Software a Medida",
+            human_title: "¿Quieres una página web profesional o una plataforma única para tu negocio?",
+            desc: "Creamos páginas web de última generación y aplicaciones a la medida de tus necesidades, garantizando velocidad extrema, seguridad y un diseño exclusivo que enamora a tus clientes.",
+            examples_title: "Ejemplos prácticos de lo que hacemos:",
+            examples: [
+                {
+                    title: "Páginas de Lanzamiento (Landing Pages):",
+                    desc: "Páginas web rápidas y vendedoras, diseñadas con secciones estratégicas para captar clientes, presentar un producto estrella y cerrar ventas sin distracciones."
+                },
+                {
+                    title: "Sitios Web Corporativos:",
+                    desc: "La cara digital de tu empresa en internet. Diseños rápidos, modernos, adaptados a celulares y listos para posicionarse en los primeros puestos de Google."
+                },
+                {
+                    title: "Aplicaciones y Sistemas Web:",
+                    desc: "Sistemas interactivos y personalizados para gestionar reservas, vender en línea, catálogos interactivos, plataformas educativas o cualquier idea digital."
+                }
+            ],
+            cta_heading: "¿Listo para dar el siguiente paso?",
+            cta_desc: "Escríbenos hoy y coticemos tu página o aplicación a la medida sin compromiso.",
+            cta_button: "Solicitar este Servicio"
+        },
+        {
+            id: "s2",
+            icon: "bot",
+            category: "Agentes de IA",
+            title: "Agentes de IA y Chatbots",
+            human_title: "¿Quieres automatizar tu atención al cliente y vender las 24 horas?",
+            desc: "Diseñamos asistentes virtuales inteligentes con Inteligencia Artificial de vanguardia que chatean como humanos, resuelven dudas, agendan citas y captan prospectos de forma autónoma.",
+            examples_title: "Ejemplos prácticos de lo que hacemos:",
+            examples: [
+                {
+                    title: "Agentes de WhatsApp Inteligentes:",
+                    desc: "Conectamos la IA de ChatGPT directamente a tu número para que atienda clientes, responda preguntas de tu catálogo, agende citas o envíe cotizaciones de inmediato."
+                },
+                {
+                    title: "Asistentes Integrados en tu Web:",
+                    desc: "Chatbots elegantes que reciben a los visitantes de tu sitio, resuelven sus preguntas frecuentes de inmediato y capturan sus datos de contacto para tu equipo de ventas."
+                },
+                {
+                    title: "Entrenamiento con Información de tu Empresa:",
+                    desc: "Le enseñamos a la IA todo sobre tu negocio (manuales, políticas, precios) para que sus respuestas sean 100% precisas, profesionales y sin errores."
+                }
+            ],
+            cta_heading: "¿Listo para automatizar tus chats?",
+            cta_desc: "Escríbenos y diseñemos un agente inteligente a la medida de tu flujo de trabajo.",
+            cta_button: "Solicitar este Servicio"
+        },
+        {
+            id: "s3",
+            icon: "workflow",
+            category: "Automatización",
+            title: "Automatizaciones (n8n)",
+            human_title: "¿Cansado de hacer tareas manuales, repetitivas y aburridas en la computadora?",
+            desc: "Conectamos tus aplicaciones diarias (WhatsApp, Excel, Gmail, CRM, etc.) para que compartan datos entre sí y ejecuten tareas automáticamente sin que tengas que mover un dedo.",
+            examples_title: "Ejemplos prácticos de lo que hacemos:",
+            examples: [
+                {
+                    title: "Registro de Prospectos en Tiempo Real:",
+                    desc: "Cuando alguien te escriba o llene un formulario, su información se guardará al instante en tu base de datos o Excel y se enviará un correo automático."
+                },
+                {
+                    title: "Alertas y Notificaciones Instantáneas:",
+                    desc: "Recibe notificaciones inmediatas en tu celular cuando ocurra algo importante en tu negocio (ventas, pedidos, registros) para actuar rápido."
+                },
+                {
+                    title: "Procesamiento de Documentos Inteligente:",
+                    desc: "Flujos automáticos que extraen información de facturas o correos entrantes, rellenan reportes financieros y los archivan de forma segura en la nube."
+                }
+            ],
+            cta_heading: "¿Listo para liberar tu tiempo?",
+            cta_desc: "Cuéntanos qué procesos manuales haces hoy en tu negocio y nosotros los automatizaremos.",
+            cta_button: "Solicitar este Servicio"
+        },
+        {
+            id: "s4",
+            icon: "briefcase",
+            category: "Sistemas & Dashboards",
+            title: "Sistemas B2B & Dashboards",
+            human_title: "¿Quieres tener el control operativo y financiero de tu negocio en un solo panel?",
+            desc: "Creamos portales web privados y paneles administrativos sencillos pero potentes para centralizar tu información de ventas, clientes, inventarios y finanzas de forma segura.",
+            examples_title: "Ejemplos prácticos de lo que hacemos:",
+            examples: [
+                {
+                    title: "Paneles de Control de Ventas e Ingresos (Dashboards):",
+                    desc: "Gráficos intuitivos y tablas actualizadas en tiempo real para visualizar ingresos, gastos, rendimiento de vendedores y estadísticas clave para decidir mejor."
+                },
+                {
+                    title: "Portales de Autogestión para Clientes o Socios:",
+                    desc: "Áreas privadas donde tus clientes corporativos o usuarios pueden iniciar sesión, descargar facturas, ver el estado de sus pedidos o contratar servicios por sí mismos."
+                },
+                {
+                    title: "Sistemas de Administración Interna:",
+                    desc: "Herramientas de software ágiles para llevar el control de stock, registrar compras, coordinar entregas y delegar tareas operativas a tu personal."
+                }
+            ],
+            cta_heading: "¿Listo para poner orden en tu empresa?",
+            cta_desc: "Escríbenos y diseñemos un sistema interno visual, intuitivo y adaptado a tus flujos de trabajo.",
+            cta_button: "Solicitar este Servicio"
+        }
+    ],
+    en: [
+        {
+            id: "s1",
+            icon: "terminal",
+            category: "Software Development",
+            title: "Custom Software Development",
+            human_title: "Do you want a unique digital platform or a professional website for your business?",
+            desc: "We build next-generation websites and tailor-made applications designed specifically for your needs, guaranteeing extreme speed, robust security, and exclusive design to attract customers.",
+            examples_title: "Practical examples of what we do:",
+            examples: [
+                {
+                    title: "Landing Pages:",
+                    desc: "High-conversion web pages designed with strategic sections to attract leads, showcase a star product, and drive sales without distractions."
+                },
+                {
+                    title: "Corporate Websites:",
+                    desc: "A highly professional internet presence for your company. Fast, modern, responsive for mobile phones, and optimized for Google search rankings."
+                },
+                {
+                    title: "Web Applications & Interactive Portals:",
+                    desc: "Custom interactive systems to manage bookings, online catalogs, e-commerce, educational platforms, or any custom digital product."
+                }
+            ],
+            cta_heading: "Ready to take the next step?",
+            cta_desc: "Get in touch with us today and let's discuss your custom project without any obligation.",
+            cta_button: "Inquire About This Service"
+        },
+        {
+            id: "s2",
+            icon: "bot",
+            category: "AI Agents",
+            title: "AI Agents & Chatbots",
+            human_title: "Do you want to automate customer support and make sales 24/7?",
+            desc: "We design intelligent virtual assistants powered by state-of-the-art AI that chat like humans, answer questions, schedule appointments, and capture leads autonomously.",
+            examples_title: "Practical examples of what we do:",
+            examples: [
+                {
+                    title: "Intelligent WhatsApp Agents:",
+                    desc: "We connect ChatGPT technology directly to your WhatsApp number to handle customers, answer questions about your catalog, schedule bookings, or send quotes instantly."
+                },
+                {
+                    title: "Website-Integrated Assistants:",
+                    desc: "Elegant chat widgets that greet visitors, solve their frequently asked questions instantly, and capture their contact info for your sales team."
+                },
+                {
+                    title: "Custom Business Training:",
+                    desc: "We feed the AI with your business knowledge base (manuals, catalogs, pricing) to ensure 100% accurate, helpful, and professional answers without errors."
+                }
+            ],
+            cta_heading: "Ready to automate your chats?",
+            cta_desc: "Contact us today and let's design an intelligent agent tailored specifically to your workflow.",
+            cta_button: "Inquire About This Service"
+        },
+        {
+            id: "s3",
+            icon: "workflow",
+            category: "Automation",
+            title: "Business Automations (n8n)",
+            human_title: "Tired of doing repetitive, manual, and boring computer work?",
+            desc: "We connect your daily digital tools (WhatsApp, Excel, Gmail, CRMs, etc.) so they instantly share data and perform tasks automatically without you having to lift a finger.",
+            examples_title: "Practical examples of what we do:",
+            examples: [
+                {
+                    title: "Real-Time Lead Syncing:",
+                    desc: "When someone writes to you or fills a form, their contact details are instantly saved in your CRM or spreadsheet, triggering an automated welcome email."
+                },
+                {
+                    title: "Instant Alerts & Reminders:",
+                    desc: "Receive immediate notifications on your phone or Slack when sales, orders, or registration milestones occur so you can act quickly."
+                },
+                {
+                    title: "Smart Document Processing:",
+                    desc: "Automated flows that extract data from incoming invoices or emails, automatically populate spreadsheets, and back up files securely in the cloud."
+                }
+            ],
+            cta_heading: "Ready to free up your time?",
+            cta_desc: "Tell us about your manual processes, and we will build intelligent automations to handle them for you.",
+            cta_button: "Inquire About This Service"
+        },
+        {
+            id: "s4",
+            icon: "briefcase",
+            category: "Systems & Dashboards",
+            title: "B2B Systems & Dashboards",
+            human_title: "Do you want to control your entire business operations from a single visual dashboard?",
+            desc: "We build secure corporate web portals and custom administrative dashboards to centralize your sales data, inventory, customer relationships, and finances effortlessly.",
+            examples_title: "Practical examples of what we do:",
+            examples: [
+                {
+                    title: "Sales & Financial Dashboards:",
+                    desc: "Intuitive charts and live data boards to visualize revenues, expenses, sales performance, and key indicators for fast decision-making."
+                },
+                {
+                    title: "Customer & Partner Portals:",
+                    desc: "Secure private areas where clients can log in, download invoices, track order statuses, or request support completely on their own."
+                },
+                {
+                    title: "Internal Management Systems:",
+                    desc: "Fast, custom web software to manage stock counts, log purchases, dispatch logistics, and assign daily tasks to your employees."
+                }
+            ],
+            cta_heading: "Ready to streamline your company?",
+            cta_desc: "Inquire today to build a visual, clean, and secure internal system tailored precisely to your operational flows.",
+            cta_button: "Inquire About This Service"
+        }
+    ]
+};
+
+/**
+ * Abre el modal de servicios y lo renderiza de forma dinámica e interactiva.
+ * @param {string} serviceId - ID del servicio ('s1', 's2', 's3', 's4')
+ */
+export async function openServiceModal(serviceId) {
+    const modalContainer = document.getElementById('global-modal');
+    const modalWrapper = document.getElementById('modal-content-wrapper');
+    const modalBody = document.getElementById('modal-body');
+
+    if (!modalContainer || !modalWrapper || !modalBody) return;
+
+    modalContainer.classList.remove('hidden');
+    void modalContainer.offsetWidth; // Force reflow
+    modalContainer.classList.remove('opacity-0', 'pointer-events-none');
+    document.body.style.overflow = 'hidden';
+
+    modalBody.innerHTML = defaultLoader;
+    initIcons();
+
+    setTimeout(() => {
+        modalWrapper.classList.remove('scale-95', 'opacity-0');
+        modalWrapper.classList.add('scale-100', 'opacity-100');
+    }, 10);
+
+    try {
+        const response = await fetch('Components/ModalService.html');
+        if (!response.ok) throw new Error('Could not load service modal template');
+        const templateHtml = await response.text();
+
+        renderServiceInModal(serviceId, templateHtml);
+    } catch (error) {
+        console.error('Error loading service modal template:', error);
+        modalBody.innerHTML = `<div class="p-8 text-center text-red-500 font-mono">Error al cargar plantilla de servicios.</div>`;
+    }
+}
+
+/**
+ * Renderiza el contenido del servicio seleccionado dentro del modal.
+ */
+function renderServiceInModal(serviceId, templateHtml) {
+    const modalBody = document.getElementById('modal-body');
+    if (!modalBody) return;
+
+    const lang = STATE.currentLang || 'es';
+    const services = SERVICES_DATA[lang] || SERVICES_DATA['es'];
+    const serviceIndex = services.findIndex(s => s.id === serviceId);
+    if (serviceIndex === -1) return;
+
+    const service = services[serviceIndex];
+
+    // Build examples list HTML
+    const examplesHtml = service.examples.map((ex, idx) => `
+        <div class="flex gap-4 p-4 bg-light-800 dark:bg-dark-900 border border-light-border dark:border-dark-border rounded-sm transition-all duration-300 hover:border-light-accent dark:hover:border-white">
+            <div class="flex-shrink-0 w-8 h-8 rounded-full bg-light-accent/10 dark:bg-white/10 flex items-center justify-center font-mono text-xs font-bold text-light-accent dark:text-white">
+                0${idx + 1}
+            </div>
+            <div>
+                <h4 class="text-xs font-mono font-bold tracking-tight text-light-accent dark:text-white mb-1">${ex.title}</h4>
+                <p class="text-xs text-light-muted dark:text-dark-muted font-light leading-relaxed">${ex.desc}</p>
+            </div>
+        </div>
+    `).join('');
+
+    let html = templateHtml;
+    html = html.replace(/{{category}}/g, service.category);
+    html = html.replace(/{{human_title}}/g, service.human_title);
+    html = html.replace(/{{desc}}/g, service.desc);
+    html = html.replace(/{{examples_title}}/g, service.examples_title);
+    html = html.replace(/{{examples_html}}/g, examplesHtml);
+    html = html.replace(/{{cta_heading}}/g, service.cta_heading);
+    html = html.replace(/{{cta_desc}}/g, service.cta_desc);
+    html = html.replace(/{{cta_button}}/g, service.cta_button);
+
+    modalBody.innerHTML = html;
+    initIcons(modalBody);
+
+    // Update active state on top tabs
+    modalBody.querySelectorAll('[data-service-tab]').forEach(tab => {
+        const tabId = tab.getAttribute('data-service-tab');
+        if (tabId === serviceId) {
+            tab.className = "text-[10px] font-mono tracking-widest uppercase px-4 py-2 border bg-light-accent text-white dark:bg-white dark:text-black border-light-accent dark:border-white rounded-full transition-all duration-300 pointer-events-none";
+        } else {
+            tab.className = "text-[10px] font-mono tracking-widest uppercase px-4 py-2 border border-light-border dark:border-dark-border text-light-muted dark:text-dark-muted hover:text-light-accent dark:hover:text-white rounded-full transition-all duration-300 cursor-pointer";
+            tab.addEventListener('click', () => {
+                renderServiceInModal(tabId, templateHtml);
+            });
+        }
+    });
+
+    // Request service button handler
+    const reqBtn = document.getElementById('request-service-btn');
+    if (reqBtn) {
+        reqBtn.addEventListener('click', () => {
+            // Close modal
+            document.getElementById('modal-close').click();
+            
+            // Wait for modal animation, then scroll to contact and focus / fill
+            setTimeout(() => {
+                const contactSection = document.getElementById('contact');
+                if (contactSection) {
+                    contactSection.scrollIntoView({ behavior: 'smooth' });
+                    const msgInput = document.querySelector('textarea[name="message"]') || document.getElementById('message');
+                    if (msgInput) {
+                        const prefillMsg = lang === 'en' 
+                            ? `Hello! I would like to inquire about the service: ${service.title}.`
+                            : `¡Hola! Me gustaría cotizar y solicitar más información sobre el servicio de: ${service.title}.`;
+                        msgInput.value = prefillMsg;
+                        msgInput.focus();
+                    }
+                }
+            }, 350);
+        });
+    }
+
+    // Prev / Next buttons
+    const prevBtn = document.getElementById('prev-service-btn');
+    const nextBtn = document.getElementById('next-service-btn');
+
+    if (prevBtn) {
+        const prevIndex = (serviceIndex - 1 + services.length) % services.length;
+        const prevServiceId = services[prevIndex].id;
+        const prevTextSpan = prevBtn.querySelector('span');
+        if (prevTextSpan) prevTextSpan.textContent = lang === 'en' ? 'Previous' : 'Anterior';
+        prevBtn.addEventListener('click', () => {
+            renderServiceInModal(prevServiceId, templateHtml);
+        });
+    }
+
+    if (nextBtn) {
+        const nextIndex = (serviceIndex + 1) % services.length;
+        const nextServiceId = services[nextIndex].id;
+        const nextTextSpan = nextBtn.querySelector('span');
+        if (nextTextSpan) nextTextSpan.textContent = lang === 'en' ? 'Next' : 'Siguiente';
+        nextBtn.addEventListener('click', () => {
+            renderServiceInModal(nextServiceId, templateHtml);
+        });
+    }
+}
+
+/**
+ * Abre un modal y carga su contenido mediante un archivo externo HTML.
+ * @param {string} url - Ruta relativa del archivo HTML a cargar.
+ */
 export async function openModal(url) {
     const modalContainer = document.getElementById('global-modal');
     const modalWrapper = document.getElementById('modal-content-wrapper');
@@ -113,6 +471,18 @@ export function initDynamicModals(root = document) {
             e.preventDefault();
             const url = newTrigger.getAttribute('data-modal-target');
             if (url) openModal(url);
+        });
+    });
+
+    // Dynamic Services Modals
+    root.querySelectorAll('[data-service-id]').forEach(trigger => {
+        const newTrigger = trigger.cloneNode(true);
+        trigger.parentNode.replaceChild(newTrigger, trigger);
+
+        newTrigger.addEventListener('click', (e) => {
+            e.preventDefault();
+            const serviceId = newTrigger.getAttribute('data-service-id');
+            if (serviceId) openServiceModal(serviceId);
         });
     });
 

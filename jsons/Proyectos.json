@@ -5,8 +5,8 @@
       "categoria": "Logística & SaaS",
       "tecnologias_listado": "Django & Python",
       "titulo_listado": "LogIA: Software para agencias de carga",
-      "descripcion_listado": "Torre de control digital para la gestión de envíos internacionales. Automatiza rastreos y cotizaciones eliminando el caos operativo.",
-      "url": "https://www.logia.lat",
+      "descripcion_listado": "Torre de control digital para la gestión de cargas internacionales. Agiliza rastreos y cotizaciones eliminando el caos operativo.",
+      "url": "https://app.logia.lat",
       "imagenes": [
         "img/proyectos/logia/dashboard.webp",
         "img/proyectos/logia/configuracion.webp",
@@ -24,18 +24,28 @@
         "Automatización"
       ],
       "titulo_modal": "LogIA <br><span class=\"text-light-muted dark:text-dark-muted\">Software para agencias de carga</span>",
-      "desafio": "Mover mercancía solía ser una pesadilla de correos infinitos y hojas de cálculo. Las agencias perdían horas rastreando contenedores manualmente.",
-      "solucion": "Diseñé LogIA como el cerebro central. Centraliza el rastreo en tiempo real y convierte horas de cálculos de cotización en un solo clic.",
+      "desafio": "Mover mercancía solía ser una pesadilla de correos infinitos y hojas de cálculo para generar documentos, reportes, etc. Las agencias perdían horas rastreando contenedores manualmente.",
+      "solucion": "Diseñé LogIA como el cerebro central. Agiliza el rastreo de cargas como contenedores, bultos, etc. y convierte horas de cálculos de cotización en un par de clics, generando documentos mas profesionales.",
       "logros": [
-        "Reducción del 90% en la creación de cotizaciones",
+        "Dashboard interactivo inteligente",
+        "Gestion de empleados, roles y permisos",
+        "Centralizacion de datos maestros como clientes, navieras, puertos, cargas, etc.",
+        "Reducción del 90% del tiempo en la creación de cotizaciones y documentos",
         "Interfaz estructurada para reducir fatiga visual",
-        "Rastreo automático con principales navieras (Maersk, MSC)"
+        "Rastreo agíl con principales navieras (Maersk, MSC, etc)",
+        "Software escalable con integracion de apis",
+        "Integración con CRM",
+        "Facturacion electronica para servicios de flete, transporte, almacenaje, etc. con o sin detraccion",
+        "Generación de reportes PDF de manera automática",
+        "Control de inventario de servicios y productos",
+        "Panel de control de KPI"
       ],
       "stack": [
         "Python",
         "Django",
         "PostgreSQL",
         "Tracking APIs",
+        "HTMX",
         "Bootstrap 5",
         "Tailwind CSS"
       ],
@@ -47,45 +57,11 @@
       ]
     },
     {
-      "id": "clawbot",
-      "categoria": "AI Logic",
-      "tecnologias_listado": "n8n / OpenAI",
-      "titulo_listado": "Clawbot: Sales Agent",
-      "descripcion_listado": "Agente conversacional autónomo entrenado para calificación de leads B2B que triplica la tasa de conversión.",
-      "url": "",
-      "imagenes": [],
-      "tags": [
-        "AI Logic",
-        "n8n",
-        "RAG"
-      ],
-      "titulo_modal": "Clawbot <br><span class=\"text-light-muted dark:text-dark-muted\">Sales Agent</span>",
-      "desafio": "El equipo de ventas dedicaba el 70% de su tiempo a prospectos no cualificados que llegaban en masa.",
-      "solucion": "Desplegamos un Agente Basado en IA usando n8n para orquestación y OpenAI con RAG. Filtra y notifica asíncronamente al CRM.",
-      "logros": [
-        "Disminución del CAC en un 45%",
-        "Atención 24/7 sin latencia",
-        "Aumento de cierres en un 60%"
-      ],
-      "stack": [
-        "n8n",
-        "OpenAI API",
-        "Pinecone",
-        "HubSpot API"
-      ],
-      "servicios": [
-        "Prompt Engineering",
-        "Automatización B2B",
-        "Integración de Sistemas",
-        "NLP / RAG"
-      ]
-    },
-    {
       "id": "eyg-fitness-sport",
       "categoria": "E-commerce Premium",
       "tecnologias_listado": "Django & JavaScript",
-      "titulo_listado": "E&G Fitness: Alto Rendimiento",
-      "descripcion_listado": "Ecosistema e-commerce de alta gama. Ingeniería de software aplicada a la venta de maquinaria con SEO hiper-optimizado.",
+      "titulo_listado": "E&G Fitness: E-commerce premium",
+      "descripcion_listado": "Ecosistema e-commerce de alta gama para la venta de equipos para equipar gimnasios, homegym, etc. Diseño limpio, elegante y optimizado para SEO.",
       "url": "https://www.eygfitnnesssport.com/",
       "imagenes": [
         "img/proyectos/eyg/01.webp",
@@ -108,12 +84,20 @@
         "SEO"
       ],
       "titulo_modal": "E&G Fitness <br><span class=\"text-light-muted dark:text-dark-muted font-light\">Elite Training Platform</span>",
-      "desafio": "Crear una interfaz digital que replique la experiencia de un showroom de equipamiento fitness de lujo.",
-      "solucion": "Plataforma que combina Django en backend con Vanilla JS ultra optimizado para un filtrado y navegación instantáneos.",
+      "desafio": "Crear una interfaz digital que satisfaga la experiencia de compra de equipos de alta gama y con la funcionalidad de compra en linea, tambien la de administrar estas ventas por parte del administrador.",
+      "solucion": "Plataforma que combina Django en backend con Vanilla JS ultra optimizado para un filtrado y navegación instantáneos en la tienda para el catalogo de productos.",
       "logros": [
-        "E-commerce escalable",
+        "Diseño minimalista elegante y adaptado al rubro",
+        "E-commerce escalable con un dashboard inteligente para la administración del e-commerce",
+        "Sistema POS integrado para ventas en la tienda fisica.",
+        "Aumento de cierres en un 60%",
+        "Envio de correos electronicos automaticos por la compra del producto",
+        "Gestion de emails profesionales para marketing y fines publicitarios, promocionar productos, descuentos, cupones de descuento, etc.",
+        "Sistema de calificacion del producto comprado",
+        "Reducción del 45% del CAC",
         "Posicionamiento SEO líder en su nicho",
-        "Interfaz intuitiva inspirada en lujo automotriz"
+        "Interfaz amigable para administrador de e-commerce",
+        "Integración con whatsapp"
       ],
       "stack": [
         "Python",
@@ -133,7 +117,7 @@
       "categoria": "Logística & SPA",
       "tecnologias_listado": "JavaScript, Tailwind CSS, HTML5, CSS",
       "titulo_listado": "HighLog International",
-      "descripcion_listado": "SPA - Landing page para empresa de logística internacional donde mostramos los valores, servicios, contacto.",
+      "descripcion_listado": "SPA - Landing page para empresa de logística internacional que se especializa en transporte de carga, aduanas, etc.",
       "url": "https://highloginternational.com/",
       "imagenes": [
         "img/proyectos/highlog/1.webp",
@@ -166,6 +150,40 @@
         "Desarrollo SPA",
         "UI/UX Design",
         "Logistics Strategy"
+      ]
+    },
+    {
+      "id": "agente-conversacional",
+      "categoria": "AI Logic",
+      "tecnologias_listado": "n8n / OpenAI",
+      "titulo_listado": "Agente de ventas con inteligencia artificial",
+      "descripcion_listado": "Agente conversacional autónomo entrenado para calificación de leads B2B que triplica la tasa de conversión.",
+      "url": "",
+      "imagenes": [],
+      "tags": [
+        "AI Logic",
+        "n8n",
+        "RAG"
+      ],
+      "titulo_modal": "Clawbot <br><span class=\"text-light-muted dark:text-dark-muted\">Sales Agent</span>",
+      "desafio": "El equipo de ventas dedicaba el 70% de su tiempo a prospectos no cualificados que llegaban en masa.",
+      "solucion": "Desplegamos un Agente Basado en IA usando n8n para orquestación y OpenAI con RAG. Filtra y notifica asíncronamente al CRM.",
+      "logros": [
+        "Disminución del CAC en un 45%",
+        "Atención 24/7 sin latencia",
+        "Aumento de cierres en un 60%"
+      ],
+      "stack": [
+        "n8n",
+        "OpenAI API",
+        "Pinecone",
+        "HubSpot API"
+      ],
+      "servicios": [
+        "Prompt Engineering",
+        "Automatización B2B",
+        "Integración de Sistemas",
+        "NLP / RAG"
       ]
     }
   ]

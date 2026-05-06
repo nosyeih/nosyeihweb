@@ -7,18 +7,20 @@
     "build": "npx tailwindcss -i ./css/input.css -o ./css/style.css --minify",
     "watch": "npx tailwindcss -i ./css/input.css -o ./css/style.css --watch"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/nosyeih/nosyeihweb.git"
-  },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "HieysoN",
+    "desarrollo web",
+    "agentes IA",
+    "n8n",
+    "automatización",
+    "software a medida",
+    "full stack",
+    "perú",
+    "inteligencia artificial"
+  ],
+  "author": "HieysoN",
   "license": "ISC",
   "type": "commonjs",
-  "bugs": {
-    "url": "https://github.com/nosyeih/nosyeihweb/issues"
-  },
-  "homepage": "https://github.com/nosyeih/nosyeihweb#readme",
   "devDependencies": {
     "tailwindcss": "^4.2.4"
   },

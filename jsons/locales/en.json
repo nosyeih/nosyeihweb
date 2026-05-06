@@ -1,4 +1,5 @@
 {
+  "nav.home": "Home",
   "nav.expertise": "Services",
   "nav.work": "Projects",
   "nav.contact": "Contact",
@@ -46,5 +47,7 @@
   "contact.placeholder.email": "Your Email Address",
   "contact.placeholder.msg": "Tell us about your idea...",
   "contact.btn": "Send Message",
+  "services.prev": "Previous",
+  "services.next": "Next",
   "footer.rights": "ALL RIGHTS RESERVED."
 }

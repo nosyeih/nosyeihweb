@@ -15,9 +15,30 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // 2. Data Bindings (Elementos Estáticos)
     document.querySelectorAll('[data-bind="nombre_marca"]').forEach(el => el.textContent = BRAND_CONFIG.nombre_marca);
-    document.querySelectorAll('[data-bind-href="linkedin"]').forEach(el => el.href = BRAND_CONFIG.url_linkedin);
-    document.querySelectorAll('[data-bind-href="github"]').forEach(el => el.href = BRAND_CONFIG.url_github);
+    document.querySelectorAll('[data-bind="email1"]').forEach(el => el.textContent = BRAND_CONFIG.email1);
+    const socialNetworks = [
+        { key: 'linkedin', url: BRAND_CONFIG.url_linkedin },
+        { key: 'github', url: BRAND_CONFIG.url_github },
+        { key: 'youtube', url: BRAND_CONFIG.url_youtube },
+        { key: 'instagram', url: BRAND_CONFIG.url_instagram },
+        { key: 'facebook', url: BRAND_CONFIG.url_facebook },
+        { key: 'tiktok', url: BRAND_CONFIG.url_tiktok },
+        { key: 'discord', url: BRAND_CONFIG.url_discord }
+    ];
+
+    socialNetworks.forEach(network => {
+        document.querySelectorAll(`[data-bind-href="${network.key}"]`).forEach(el => {
+            if (!network.url || network.url === '#' || network.url.trim() === '') {
+                el.classList.add('hidden');
+            } else {
+                el.href = network.url;
+                el.classList.remove('hidden');
+            }
+        });
+    });
+
     document.querySelectorAll('[data-bind-href="whatsapp_link"]').forEach(el => el.href = `https://wa.me/${BRAND_CONFIG.whatsapp}`);
+    document.querySelectorAll('[data-bind-href="email_link"]').forEach(el => el.href = `mailto:${BRAND_CONFIG.email1}`);
 
     // 3. Navbar scroll & Mobile Menu
     const navbar = document.getElementById('navbar');

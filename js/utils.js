@@ -122,7 +122,8 @@ export function initNeuralNetwork() {
     
     let width, height;
     let particles = [];
-    const connectionDistance = 150; 
+    const isMobile = window.innerWidth < 768;
+    const connectionDistance = isMobile ? 100 : 150; 
     const mouseRadius = 200; 
     
     let mouse = {
@@ -131,15 +132,17 @@ export function initNeuralNetwork() {
         radius: mouseRadius
     };
 
-    window.addEventListener('mousemove', function(event) {
-        mouse.x = event.x;
-        mouse.y = event.y;
-    });
-    
-    window.addEventListener('mouseout', function() {
-        mouse.x = undefined;
-        mouse.y = undefined;
-    });
+    if (!isMobile) {
+        window.addEventListener('mousemove', function(event) {
+            mouse.x = event.x;
+            mouse.y = event.y;
+        });
+        
+        window.addEventListener('mouseout', function() {
+            mouse.x = undefined;
+            mouse.y = undefined;
+        });
+    }
 
     function resizeCanvas() {
         width = window.innerWidth;
@@ -185,7 +188,7 @@ export function initNeuralNetwork() {
             this.x += this.dx;
             this.y += this.dy;
 
-            if (mouse.x && mouse.y) {
+            if (!isMobile && mouse.x && mouse.y) {
                 let dx = mouse.x - this.x;
                 let dy = mouse.y - this.y;
                 let distance = Math.sqrt(dx * dx + dy * dy);
@@ -204,7 +207,9 @@ export function initNeuralNetwork() {
 
     function initParticles() {
         particles = [];
-        const numParticles = (width * height) / 12000; 
+        // Reducir densidad de partículas a la mitad en móviles
+        const densityFactor = isMobile ? 24000 : 12000;
+        const numParticles = (width * height) / densityFactor; 
         
         for (let i = 0; i < numParticles; i++) {
             let size = (Math.random() * 1.5) + 0.5;
@@ -236,7 +241,7 @@ export function initNeuralNetwork() {
                 }
             }
             
-            if (mouse.x && mouse.y) {
+            if (!isMobile && mouse.x && mouse.y) {
                 let mx = particles[a].x - mouse.x;
                 let my = particles[a].y - mouse.y;
                 let mDistance = mx * mx + my * my;
@@ -323,7 +328,28 @@ export function initButtonSparks() {
     const canvases = document.querySelectorAll('.spark-btn-canvas');
     if (canvases.length === 0) return;
 
+    const isMobile = window.innerWidth < 768;
+
+    // Solo animar si el botón está visible en pantalla (IntersectionObserver)
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            const canvas = entry.target;
+            if (entry.isIntersecting) {
+                if (!canvas.dataset.animating) {
+                    canvas.dataset.animating = "true";
+                    startAnimation(canvas);
+                }
+            } else {
+                canvas.removeAttribute('data-animating');
+            }
+        });
+    }, { threshold: 0.1 });
+
     canvases.forEach(canvas => {
+        observer.observe(canvas);
+    });
+
+    function startAnimation(canvas) {
         const ctx = canvas.getContext('2d');
         let width, height;
 
@@ -332,7 +358,6 @@ export function initButtonSparks() {
             width = canvas.width = rect.width;
             height = canvas.height = rect.height;
         };
-        window.addEventListener('resize', resize);
         resize();
 
         let bolts = [];
@@ -342,10 +367,11 @@ export function initButtonSparks() {
             constructor(x, y) {
                 this.x = x;
                 this.y = y;
-                this.vx = (Math.random() - 0.5) * 10;
-                this.vy = (Math.random() - 0.5) * 10;
+                const speedMult = isMobile ? 0.6 : 1.0;
+                this.vx = (Math.random() - 0.5) * 10 * speedMult;
+                this.vy = (Math.random() - 0.5) * 10 * speedMult;
                 this.life = 1.0;
-                this.decay = 0.02 + Math.random() * 0.05;
+                this.decay = (isMobile ? 0.04 : 0.02) + Math.random() * 0.05; // Muere más rápido en móvil
                 this.size = 1 + Math.random() * 2;
             }
             update() {
@@ -354,8 +380,9 @@ export function initButtonSparks() {
                 this.vy += 0.2; // Gravity
                 this.life -= this.decay;
             }
-            draw() {
-                ctx.fillStyle = `rgba(74, 222, 128, ${this.life})`;
+            draw(isDark) {
+                const rgb = isDark ? '74, 222, 128' : '0, 0, 0';
+                ctx.fillStyle = `rgba(${rgb}, ${this.life})`;
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
                 ctx.fill();
@@ -363,7 +390,7 @@ export function initButtonSparks() {
         }
 
         function createBolt() {
-            const margin = 0; // Margin is 0 because the canvas fits exactly inside the container now
+            const margin = 0;
             const x1 = margin + Math.random() * (width - margin * 2);
             const y1 = margin + Math.random() * (height - margin * 2);
             const x2 = x1 + (Math.random() - 0.5) * 100;
@@ -371,36 +398,45 @@ export function initButtonSparks() {
             
             let segments = [];
             let curX = x1, curY = y1;
-            const parts = 10;
+            const parts = isMobile ? 6 : 10; // Menos segmentos en móvil
             
             for (let i = 0; i < parts; i++) {
-                const tx = x1 + (x2 - x1) * (i / parts) + (Math.random() - 0.5) * 30;
-                const ty = y1 + (y2 - y1) * (i / parts) + (Math.random() - 0.5) * 30;
+                const tx = x1 + (x2 - x1) * (i / parts) + (Math.random() - 0.5) * (isMobile ? 15 : 30);
+                const ty = y1 + (y2 - y1) * (i / parts) + (Math.random() - 0.5) * (isMobile ? 15 : 30);
                 segments.push({ x1: curX, y1: curY, x2: tx, y2: ty });
                 curX = tx; curY = ty;
                 
                 if (Math.random() > 0.8) { 
-                    for(let s=0; s<5; s++) sparks.push(new Spark(tx, ty));
+                    const sparkCount = isMobile ? 2 : 5; // Menos chispas en móvil
+                    for(let s=0; s<sparkCount; s++) sparks.push(new Spark(tx, ty));
                 }
             }
-            return { segments, life: 1.0, decay: 0.1 + Math.random() * 0.2 };
+            return { segments, life: 1.0, decay: (isMobile ? 0.2 : 0.1) + Math.random() * 0.2 };
         }
 
         function animate() {
-            // Comprobar si el canvas sigue visible en el DOM (en caso se remueva o se oculte)
-            if (!document.body.contains(canvas)) return;
+            // Detener el loop si no está visible o si se elimina del DOM
+            if (!document.body.contains(canvas) || !canvas.getAttribute('data-animating')) {
+                canvas.removeAttribute('data-animating');
+                return;
+            }
+            
+            const isDark = document.documentElement.classList.contains('dark');
+            const shadowColor = isDark ? '#4ade80' : 'rgba(0,0,0,0.5)';
+            const boltColor = isDark ? '255, 255, 255' : '0, 0, 0';
             
             ctx.clearRect(0, 0, width, height);
             
-            // Generate sparks less frequently maybe, but let's stick to the project modal frequency
-            if (Math.random() > 0.92) bolts.push(createBolt());
+            // Frecuencia de rayos menor en móvil
+            const boltProb = isMobile ? 0.96 : 0.92;
+            if (Math.random() > boltProb) bolts.push(createBolt());
 
             ctx.lineCap = 'round';
             
             bolts.forEach((bolt, index) => {
-                ctx.shadowBlur = 15;
-                ctx.shadowColor = '#4ade80';
-                ctx.strokeStyle = `rgba(255, 255, 255, ${bolt.life})`;
+                ctx.shadowBlur = isDark ? 15 : 5;
+                ctx.shadowColor = shadowColor;
+                ctx.strokeStyle = `rgba(${boltColor}, ${bolt.life})`;
                 ctx.lineWidth = 2 * bolt.life;
                 
                 ctx.beginPath();
@@ -417,17 +453,17 @@ export function initButtonSparks() {
             ctx.shadowBlur = 0;
             sparks.forEach((spark, index) => {
                 spark.update();
-                spark.draw();
+                spark.draw(isDark);
                 if (spark.life <= 0) sparks.splice(index, 1);
             });
 
             requestAnimationFrame(animate);
         }
 
-        // Delay starting slightly so bounding client rect is accurate after layouts
+        // Retardo leve para un renderizado inicial correcto de dimensiones
         setTimeout(() => {
             resize();
             animate();
         }, 100);
-    });
+    }
 }
